@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6">
+
+  {# ---------- Sidebar: filters ---------- #}
+  <aside class="space-y-4">
+    <form id="filters" class="space-y-4 bg-white rounded-lg border border-slate-200 p-4"
+          hx-get="/" hx-target="#club-list" hx-push-url="true"
+          hx-trigger="change, keyup changed delay:300ms from:#q"
+          hx-include="this">
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Pretraga</label>
+        <input id="q" name="q" type="search" value="{{ q }}"
+               placeholder="Ime kluba, grad..."
+               class="w-full rounded border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-hr-red/40 focus:border-hr-red">
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Tier (razina)</label>
+        <select name="tier" class="w-full rounded border border-slate-300 px-2 py-2 text-sm">
+          <option value="">Sve razine</option>
+          {% for t in tier_counts %}
+            <option value="{{ t.tier }}" {% if tier == t.tier %}selected{% endif %}>
+              Tier {{ t.tier }} ({{ t.n }})
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Županija</label>
+        <select name="county" class="w-full rounded border border-slate-300 px-2 py-2 text-sm">
+          <option value="">Sve županije</option>
+          {% for c in counties %}
+            <option value="{{ c.name }}" {% if county == c.name %}selected{% endif %}>
+              {{ c.name }} ({{ c.n }})
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <div class="block text-xs font-semibold text-slate-500 uppercase mb-2">Filtriraj po kontaktu</div>
+        <div class="space-y-1.5 text-sm">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="has_mobile" value="1" {% if has_mobile %}checked{% endif %}
+                   class="rounded border-slate-300 text-hr-red focus:ring-hr-red">
+            <span>📱 Mobitel <span class="text-slate-400 text-xs">({{ stats.with_mobile }})</span></span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="has_landline" value="1" {% if has_landline %}checked{% endif %}
+                   class="rounded border-slate-300 text-hr-red focus:ring-hr-red">
+            <span>☎️ Fiksni <span class="text-slate-400 text-xs">({{ stats.with_landline }})</span></span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="has_email" value="1" {% if has_email %}checked{% endif %}
+                   class="rounded border-slate-300 text-hr-red focus:ring-hr-red">
+            <span>📧 Email <span class="text-slate-400 text-xs">({{ stats.with_email }})</span></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t border-slate-200">
+        <a href="/" class="text-xs text-slate-500 hover:text-hr-red">↺ Resetiraj filtere</a>
+      </div>
+    </form>
+
+    {# Stats card #}
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <h3 class="text-xs font-semibold text-slate-500 uppercase mb-2">Statistika</h3>
+      <dl class="text-sm space-y-1">
+        <div class="flex justify-between"><dt class="text-slate-500">Ukupno klubova</dt><dd class="font-medium">{{ stats.total }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">Sa županijom</dt><dd>{{ stats.with_county }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">Sa gradom</dt><dd>{{ stats.with_city }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">Email</dt><dd>{{ stats.with_email }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">Mobitel</dt><dd>{{ stats.with_mobile }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">Fiksni</dt><dd>{{ stats.with_landline }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">Web</dt><dd>{{ stats.with_website }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">Facebook</dt><dd>{{ stats.with_fb }}</dd></div>
+      </dl>
+    </div>
+  </aside>
+
+  {# ---------- Main: club list ---------- #}
+  <section id="club-list">
+    {% include "partials/club_list.html" %}
+  </section>
+</div>
+{% endblock %}

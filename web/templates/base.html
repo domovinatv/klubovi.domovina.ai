@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Hrvatski nogometni klubovi{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"
+          integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+          crossorigin="anonymous"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Croatian flag inspired accents
+            hr: { red: '#c8102e', blue: '#171796', white: '#ffffff' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .htmx-indicator { opacity: 0; transition: opacity 200ms ease-in; }
+    .htmx-request .htmx-indicator { opacity: 1; }
+    .htmx-request.htmx-indicator { opacity: 1; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded bg-hr-red text-white grid place-items-center font-bold text-lg group-hover:scale-105 transition-transform">HR</div>
+        <div>
+          <div class="font-bold text-lg leading-tight">Nogometni klubovi</div>
+          <div class="text-xs text-slate-500">{{ stats.total if stats else '' }} klubova · od HNL do 3. ŽNL</div>
+        </div>
+      </a>
+      <nav class="flex items-center gap-4 text-sm">
+        <a href="/" class="hover:text-hr-red">Klubovi</a>
+        <a href="/api/stats" class="text-slate-500 hover:text-hr-red">API</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="max-w-7xl mx-auto px-4 py-8 text-xs text-slate-400">
+    Lokalna baza · SofaScore + hrnogomet.hr + Firecrawl · SQLite
+  </footer>
+</body>
+</html>

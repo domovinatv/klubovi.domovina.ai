@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}{{ club.canonical_name }} · Hrvatski nogometni klubovi{% endblock %}
+
+{% block content %}
+<a href="/" class="text-sm text-slate-500 hover:text-hr-red mb-4 inline-block">← Natrag na popis</a>
+
+<div class="bg-white rounded-lg border border-slate-200 overflow-hidden">
+
+  {# Header / hero #}
+  <div class="p-6 flex items-start gap-5 border-b border-slate-200">
+    <div class="w-24 h-24 flex-shrink-0 rounded bg-slate-100 grid place-items-center overflow-hidden">
+      {% if club.logo_url %}
+        <img src="{{ club.logo_url }}" alt="" class="w-full h-full object-contain"
+             onerror="this.style.display='none'; this.parentElement.innerText='⚽';">
+      {% else %}
+        <span class="text-5xl">⚽</span>
+      {% endif %}
+    </div>
+    <div class="flex-1">
+      <h1 class="text-2xl font-bold">{{ club.canonical_name }}</h1>
+      {% if club.short_name and club.short_name != club.canonical_name %}
+        <div class="text-sm text-slate-500">Kratko: {{ club.short_name }}</div>
+      {% endif %}
+      <div class="mt-2 text-sm text-slate-600">
+        {% if club.city %}<span class="inline-block mr-3">📍 {{ club.city }}</span>{% endif %}
+        {% if club.county %}<span class="inline-block mr-3">🏞 {{ club.county }}</span>{% endif %}
+        {% if club.founded_year %}<span class="inline-block mr-3">🎂 {{ club.founded_year }}</span>{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
+
+    {# Contact panel #}
+    <div class="p-6 space-y-3">
+      <h2 class="text-xs font-semibold uppercase text-slate-500">Kontakt</h2>
+      {% set has_contact = false %}
+      {% if club.address %}
+        <div><span class="text-slate-400 text-sm">Adresa:</span> {{ club.address }}</div>
+        {% set has_contact = true %}
+      {% endif %}
+      {% if club.phone %}
+        <div>
+          <span class="text-slate-400 text-sm">
+            {% if club.phone_kind == 'mobile' %}📱 Mobitel:
+            {% elif club.phone_kind == 'landline' %}☎️ Fiksni:
+            {% else %}Telefon:{% endif %}
+          </span>
+          <a href="tel:{{ club.phone_e164 or club.phone }}" class="text-hr-blue hover:underline">{{ club.phone }}</a>
+          {% if club.phone_e164 %}
+            <span class="text-xs text-slate-400 ml-1 font-mono">({{ club.phone_e164 }})</span>
+          {% endif %}
+        </div>
+        {% set has_contact = true %}
+      {% endif %}
+      {% if club.email %}
+        <div><span class="text-slate-400 text-sm">Email:</span>
+          <a href="mailto:{{ club.email }}" class="text-hr-blue hover:underline">{{ club.email }}</a></div>
+        {% set has_contact = true %}
+      {% endif %}
+      {% if club.website %}
+        <div><span class="text-slate-400 text-sm">Web:</span>
+          <a href="{{ club.website }}" target="_blank" rel="noopener" class="text-hr-blue hover:underline break-all">{{ club.website }}</a></div>
+        {% set has_contact = true %}
+      {% endif %}
+      {% if club.president %}
+        <div><span class="text-slate-400 text-sm">Predsjednik:</span> {{ club.president }}</div>
+        {% set has_contact = true %}
+      {% endif %}
+
+      <div class="flex gap-3 pt-2">
+        {% if club.fb_url %}
+          <a href="{{ club.fb_url }}" target="_blank" rel="noopener"
+             class="px-3 py-1.5 text-sm rounded bg-blue-600 text-white hover:bg-blue-700">Facebook</a>
+          {% set has_contact = true %}
+        {% endif %}
+        {% if club.ig_url %}
+          <a href="{{ club.ig_url }}" target="_blank" rel="noopener"
+             class="px-3 py-1.5 text-sm rounded bg-pink-600 text-white hover:bg-pink-700">Instagram</a>
+          {% set has_contact = true %}
+        {% endif %}
+        {% if club.x_url %}
+          <a href="{{ club.x_url }}" target="_blank" rel="noopener"
+             class="px-3 py-1.5 text-sm rounded bg-slate-900 text-white hover:bg-slate-800">X</a>
+          {% set has_contact = true %}
+        {% endif %}
+      </div>
+
+      {% if not has_contact %}
+        <p class="text-sm text-slate-400 italic">Nema kontakt podataka. Pokreni backfill za ovu županiju.</p>
+      {% endif %}
+    </div>
+
+    {# Stadium / leagues / aliases #}
+    <div class="p-6 space-y-4">
+      {% if club.stadium_name %}
+        <div>
+          <h2 class="text-xs font-semibold uppercase text-slate-500 mb-1">Stadion</h2>
+          <div>{{ club.stadium_name }}{% if club.stadium_capacity %} · {{ "{:,}".format(club.stadium_capacity).replace(",", ".") }} mjesta{% endif %}</div>
+        </div>
+      {% endif %}
+
+      <div>
+        <h2 class="text-xs font-semibold uppercase text-slate-500 mb-1">Lige / sezone</h2>
+        {% if club.leagues %}
+          <ul class="text-sm space-y-1">
+            {% for l in club.leagues %}
+              <li class="flex justify-between border-b border-slate-100 py-1 last:border-0">
+                <span>
+                  <span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-200 mr-2">T{{ l.tier }}</span>
+                  {{ l.league_name }}
+                </span>
+                <span class="text-slate-400 text-xs">{{ l.season }} <span class="text-slate-300">· {{ l.source }}</span></span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-sm text-slate-400">Nema podataka.</p>
+        {% endif %}
+      </div>
+
+      {% if club.aliases %}
+        <div>
+          <h2 class="text-xs font-semibold uppercase text-slate-500 mb-1">Aliasi</h2>
+          <div class="text-sm space-x-2">
+            {% for a in club.aliases %}
+              <span class="inline-block bg-slate-100 rounded px-2 py-0.5 text-xs">
+                {{ a.alias }} <span class="text-slate-400">[{{ a.source }}]</span>
+              </span>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {# Provenance / backfill history #}
+  {% if club.backfill_runs %}
+  <div class="border-t border-slate-200 p-6">
+    <h2 class="text-xs font-semibold uppercase text-slate-500 mb-2">Backfill povijest</h2>
+    <ul class="text-xs space-y-1">
+      {% for r in club.backfill_runs %}
+        <li class="flex justify-between text-slate-500">
+          <span>{{ r.ran_at }}</span>
+          <span class="font-mono text-slate-400">{{ r.fields_filled }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

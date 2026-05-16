@@ -1,0 +1,77 @@
+<div class="flex items-center justify-between mb-4">
+  <p class="text-sm text-slate-600">
+    {% if total == 0 %}
+      Nema klubova za odabrane filtere.
+    {% else %}
+      <span class="font-semibold">{{ total }}</span> klubova
+      {% if q %}za upit <span class="font-mono bg-slate-100 px-1 rounded">{{ q }}</span>{% endif %}
+      {% if county %} · {{ county }}{% endif %}
+      {% if tier %} · Tier {{ tier }}{% endif %}
+      {% if has_mobile %} · mobitel{% endif %}
+      {% if has_landline %} · fiksni{% endif %}
+      {% if has_email %} · email{% endif %}
+    {% endif %}
+  </p>
+  <span class="htmx-indicator text-xs text-slate-400">učitavam...</span>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+{% for c in clubs %}
+  <a href="/clubs/{{ c.slug }}"
+     class="bg-white rounded-lg border border-slate-200 hover:border-hr-red hover:shadow-sm transition p-4 flex gap-3 group">
+    <div class="w-12 h-12 flex-shrink-0 rounded bg-slate-100 grid place-items-center overflow-hidden">
+      {% if c.logo_url %}
+        <img src="{{ c.logo_url }}" alt="" class="w-full h-full object-contain"
+             onerror="this.style.display='none'; this.parentElement.innerText='⚽';">
+      {% else %}
+        <span class="text-2xl">⚽</span>
+      {% endif %}
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="font-semibold truncate group-hover:text-hr-red">{{ c.canonical_name }}</div>
+      <div class="text-xs text-slate-500 truncate">
+        {% if c.city %}{{ c.city }}{% endif %}
+        {% if c.city and c.county %} · {% endif %}
+        {% if c.county %}{{ c.county.replace(" županija", "") }}{% endif %}
+      </div>
+      <div class="mt-2 flex items-center gap-1 flex-wrap">
+        {% for t in c.tiers %}
+          <span class="text-[10px] font-medium px-1.5 py-0.5 rounded
+            {% if t == 1 %}bg-hr-red text-white
+            {% elif t == 2 %}bg-orange-500 text-white
+            {% elif t == 3 %}bg-amber-400 text-amber-900
+            {% elif t == 4 %}bg-yellow-300 text-yellow-900
+            {% elif t == 5 %}bg-lime-300 text-lime-900
+            {% elif t == 6 %}bg-emerald-200 text-emerald-900
+            {% elif t == 7 %}bg-sky-200 text-sky-900
+            {% else %}bg-slate-200 text-slate-700
+            {% endif %}">T{{ t }}</span>
+        {% endfor %}
+        {% if c.contact_count %}
+          <span class="text-[10px] text-slate-400 ml-1">{{ c.contact_count }} kontakata</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+{% endfor %}
+</div>
+
+{% if total_pages > 1 %}
+<nav class="mt-6 flex items-center justify-center gap-2 text-sm">
+  {% set prev_page = page - 1 %}
+  {% set next_page = page + 1 %}
+  {% if page > 1 %}
+    <a href="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&page={{ prev_page }}"
+       hx-get="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&page={{ prev_page }}"
+       hx-target="#club-list" hx-push-url="true"
+       class="px-3 py-1.5 rounded border border-slate-300 hover:border-hr-red hover:text-hr-red">← Prethodna</a>
+  {% endif %}
+  <span class="text-slate-500">Stranica {{ page }} / {{ total_pages }}</span>
+  {% if page < total_pages %}
+    <a href="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&page={{ next_page }}"
+       hx-get="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&page={{ next_page }}"
+       hx-target="#club-list" hx-push-url="true"
+       class="px-3 py-1.5 rounded border border-slate-300 hover:border-hr-red hover:text-hr-red">Sljedeća →</a>
+  {% endif %}
+</nav>
+{% endif %}
