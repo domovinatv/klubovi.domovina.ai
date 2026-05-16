@@ -20,6 +20,7 @@ from typing import Any
 from src.db import connect
 from src.firecrawl import FirecrawlClient
 from src.normalize import strip_diacritics
+from src.phones import classify as classify_phone, to_e164 as phone_e164
 
 logger = logging.getLogger(__name__)
 
@@ -198,6 +199,11 @@ def update_club(conn, club_id: int, fields: dict[str, Any]) -> list[str]:
             continue
         to_write[col] = val
 
+    # If phone is being newly set, also populate kind + E.164.
+    if "phone" in to_write:
+        to_write["phone_kind"] = classify_phone(to_write["phone"])
+        to_write["phone_e164"] = phone_e164(to_write["phone"])
+
     if to_write:
         sets = ", ".join(f"{c} = ?" for c in to_write)
         vals = list(to_write.values()) + [club_id]
@@ -205,7 +211,9 @@ def update_club(conn, club_id: int, fields: dict[str, Any]) -> list[str]:
             f"UPDATE clubs SET {sets}, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
             vals,
         )
-    return list(to_write.keys())
+    # Don't report the derived columns as "filled" — the user-facing fields
+    # are just phone + email + ...
+    return [k for k in to_write.keys() if k not in ("phone_kind", "phone_e164")]
 
 
 def backfill_club(

@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS clubs (
   website          TEXT,
   email            TEXT,
   phone            TEXT,
+  phone_kind       TEXT,   -- 'mobile' | 'landline' | 'unknown' (see src/phones.py)
+  phone_e164       TEXT,   -- +385...
   address          TEXT,
   fb_url           TEXT,
   ig_url           TEXT,
