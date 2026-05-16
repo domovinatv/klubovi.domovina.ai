@@ -203,24 +203,33 @@ def _aliases(conn, club_id: int) -> list[dict]:
 
 # ---------- Routes ----------
 
+def _truthy(v: str | None) -> bool:
+    # Form/links serialize unchecked boxes as empty string; FastAPI's bool
+    # type rejects "" with 422, so accept strings and convert ourselves.
+    return v not in (None, "", "0", "false", "False")
+
+
 @app.get("/", response_class=HTMLResponse)
 def index(
     request: Request,
     q: str | None = Query(None),
     county: str | None = Query(None),
     tier: str | None = Query(None),
-    has_mobile: bool = Query(False),
-    has_landline: bool = Query(False),
-    has_email: bool = Query(False),
+    has_mobile: str | None = Query(None),
+    has_landline: str | None = Query(None),
+    has_email: str | None = Query(None),
     page: int = Query(1, ge=1),
 ):
     # The <select> sends `tier=""` for "Sve razine"; treat as no filter.
     tier_int = int(tier) if tier and tier.isdigit() else None
+    has_mobile_b = _truthy(has_mobile)
+    has_landline_b = _truthy(has_landline)
+    has_email_b = _truthy(has_email)
     with _conn() as conn:
         clubs, total = _filtered_clubs(
             conn, q=q, county=county, tier=tier_int,
-            has_mobile=has_mobile, has_landline=has_landline,
-            has_email=has_email, page=page,
+            has_mobile=has_mobile_b, has_landline=has_landline_b,
+            has_email=has_email_b, page=page,
         )
         ctx = {
             "request": request,
@@ -232,9 +241,9 @@ def index(
             "q": q or "",
             "county": county or "",
             "tier": tier_int,
-            "has_mobile": has_mobile,
-            "has_landline": has_landline,
-            "has_email": has_email,
+            "has_mobile": has_mobile_b,
+            "has_landline": has_landline_b,
+            "has_email": has_email_b,
             "counties": _counties(conn),
             "tier_counts": _tier_counts(conn),
             "stats": _global_stats(conn),
