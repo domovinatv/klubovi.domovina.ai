@@ -70,11 +70,38 @@ sqlite3 data/clubs.db "SELECT * FROM clubs LIMIT 5;"
 Sve skripte su idempotentne — sirovi JSON je keširan u `data/raw/`, ponavljanje
 poziva ne hita API ako je odgovor već lokalno spremljen.
 
+## Firecrawl backfill
+
+`scripts/04_backfill.py` per klubu radi search → URL scoring → JSON-schema
+scrape sa Firecrawl v2 API-jem. API ključ se čita iz `.env`
+(`FIRECRAWL_API_KEY`). Sve odgovore keširamo u `data/raw/firecrawl/`.
+
+```bash
+# Cijela županija
+uv run python scripts/04_backfill.py --county "Zagrebačka županija"
+
+# Po tier-u
+uv run python scripts/04_backfill.py --tier 1 --tier 2
+
+# Brzi pilot
+uv run python scripts/04_backfill.py --limit 10
+```
+
+Pokriven dosad: Zagrebačka županija (47), Grad Zagreb (33), Splitsko-dalmatinska
+(20). Po klubu prosječno **~6 credits**. Hit-rate na čistim runovima:
+city/address ~50%, fb_url ~50%, email ~20-45%, phone ~20-55%, founded_year ~25%.
+
+Quality guard-ovi u `src/backfill.py`:
+- Blocklist aggregatora i FA-adresara (`.docx`/`poslovna.hr`/`nszz.hr`) koji
+  cure tuđe podatke u extract
+- FA email reject (`@nszz.hr`, `info@nszz`, savezi)
+- Paren-disambig cross-club leak (HNK Hajduk (LB) ne smije pokupiti Split adresu)
+- Social URL handling — Facebook se ne scrape-a (403), URL se zapisuje direktno
+
 ## Sljedeće faze
 
 1. **City → county mapping** za 91 SofaScore klub (statički lookup, ~50 gradova).
-2. **Firecrawl backfill kontakata** — `firecrawl-agent` s JSON shemom po klubu
-   za web/email/telefon/društvene mreže/predsjednik. Pilot prvo na 10 mix-tier
-   klubova, mjeriti trošak i točnost prije scale-up.
+2. **Scale-up backfill-a** na preostalih ~826 klubova (~5000 credits) — ili
+   self-hosted Firecrawl stack ako se odlučimo izbjeći Cloud trošak.
 3. **Coverage report** (`scripts/05_export.py`) — CSV + markdown po
    županiji/tier-u.

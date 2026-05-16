@@ -7,3 +7,5 @@ data/clubs.db-journal
 data/raw/
 data/exports/
 .DS_Store
+.env
+
