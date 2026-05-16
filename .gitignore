@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.python-version
+data/clubs.db
+data/clubs.db-journal
+data/raw/
+data/exports/
+.DS_Store
