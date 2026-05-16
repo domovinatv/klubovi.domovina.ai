@@ -21,10 +21,15 @@ from fastapi.templating import Jinja2Templates
 from src.db import connect  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent
+PROJECT_ROOT = ROOT.parent
+LOGO_DIR = PROJECT_ROOT / "data" / "logos"
+LOGO_DIR.mkdir(parents=True, exist_ok=True)
+
 TEMPLATES = Jinja2Templates(directory=str(ROOT / "templates"))
 
 app = FastAPI(title="Hrvatski nogometni klubovi", docs_url="/api/docs")
 app.mount("/static", StaticFiles(directory=str(ROOT / "static")), name="static")
+app.mount("/logos", StaticFiles(directory=str(LOGO_DIR)), name="logos")
 
 PAGE_SIZE = 30
 
@@ -95,10 +100,14 @@ def _hrnogomet_id(conn, club_id: int) -> str | None:
     return row["alias"] if row else None
 
 
-def _logo_url(conn, club_id: int) -> str | None:
-    hid = _hrnogomet_id(conn, club_id)
-    if hid:
-        return f"https://images.hrnogomet.hr/team_amblems/small/{hid}.png"
+def _logo_url(conn, club_id: int, slug: str) -> str | None:
+    """Return a logo URL if a local file exists, otherwise None.
+
+    Logos are fetched by scripts/07_fetch_logos.py into data/logos/{slug}.png
+    and served via the /logos static mount.
+    """
+    if (LOGO_DIR / f"{slug}.png").exists():
+        return f"/logos/{slug}.png"
     return None
 
 
@@ -151,7 +160,7 @@ def _filtered_clubs(
     rows = [dict(r) for r in conn.execute(list_sql, params).fetchall()]
     # Tack on logo URL + tier badge for each.
     for r in rows:
-        r["logo_url"] = _logo_url(conn, r["id"])
+        r["logo_url"] = _logo_url(conn, r["id"], r["slug"])
         r["tiers"] = _club_tiers(conn, r["id"])
         r["contact_count"] = sum(1 for f in CONTACT_FIELDS if r.get(f))
     return rows, total
@@ -243,7 +252,7 @@ def club_detail(slug: str, request: Request):
         if not row:
             return HTMLResponse("Not found", status_code=404)
         club = dict(row)
-        club["logo_url"] = _logo_url(conn, club["id"])
+        club["logo_url"] = _logo_url(conn, club["id"], club["slug"])
         club["leagues"] = _club_leagues(conn, club["id"])
         club["aliases"] = _aliases(conn, club["id"])
         runs = conn.execute(
