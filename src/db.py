@@ -28,6 +28,8 @@ CREATE TABLE IF NOT EXISTS clubs (
   president        TEXT,
   lat              REAL,
   lng              REAL,
+  semafor_url      TEXT,  -- canonical HNS Semafor club page, separate from `website`
+                          --   which is the club's own site if any
   notes            TEXT,
   created_at       TEXT DEFAULT CURRENT_TIMESTAMP,
   updated_at       TEXT DEFAULT CURRENT_TIMESTAMP

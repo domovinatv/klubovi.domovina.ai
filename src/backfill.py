@@ -58,9 +58,9 @@ _EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}")
 # County FA / governing-body email patterns — these belong to the FA, not the
 # clubs it lists. Reject any email matching these from extraction.
 _FA_EMAIL_RE = re.compile(
-    r"(?:^|@)(?:nszz|nszns|nszg|nszsd|nsosbz|nsizz|"
+    r"(?:^|@)(?:nszz|nszns|nszg|nszsd|nsosbz|nsizz|nssmz|nssloga|"
     r"savez|nogometni-savez|hns)\.[a-z]+$|"
-    r"^(?:tajnik|info|ured)@(?:nszz|nszns|hns)",
+    r"^(?:tajnik|info|ured|admin)@(?:nszz|nszns|nssmz|nssloga|hns)",
     re.IGNORECASE,
 )
 
@@ -108,10 +108,19 @@ def score_url(url: str, club_name: str) -> int:
         "fcfutbol", "playmaker", "playmakerstats", "soccerstand",
         # Business registries leak the parent legal entity, not the club.
         "poslovna.hr", "companywall.hr", "sudreg.hr", "fininfo.hr",
-        "burzakapital.hr", "boniteti.hr",
-        # County FA directories list everyone, scrape extracts the FA's own
-        # contact for every club it touches.
-        "nszz.hr", "nszns.hr",
+        "burzakapital.hr", "boniteti.hr", "fina.hr",
+        # County FA / governing-body sites list every club they administer,
+        # JSON scrape extracts the FA's own contact for every one of them.
+        "nszz.hr", "nszns.hr", "nssmz.hr", "nssloga-cakovec.hr",
+        # Pure aggregator sites surfaced by the 2026-05-17 verification audit.
+        "hrvatskekarta.com",
+        # HNS Semafor profile pages are canonical HNS but they ARE NOT the
+        # club's own website — keep the URL elsewhere (clubs.semafor_url)
+        # and don't let it through here as a "website".
+        "semafor.hns.family",
+        # Local-news outlets that occasionally outrank the club itself for
+        # search queries about that village's amateur team.
+        "dugoselska-kronika.hr",
     )):
         score -= 5
     # Documents (PDF/DOCX) almost always come from FA directories that mix
