@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between mb-4">
+<div class="flex items-center justify-between mb-4 gap-3 flex-wrap">
   <p class="text-sm text-slate-600">
     {% if total == 0 %}
       Nema klubova za odabrane filtere.
@@ -7,12 +7,22 @@
       {% if q %}za upit <span class="font-mono bg-slate-100 px-1 rounded">{{ q }}</span>{% endif %}
       {% if county %} · {{ county }}{% endif %}
       {% if tier %} · Tier {{ tier }}{% endif %}
+      {% if only_full %} · ✓ pun kontakt{% endif %}
       {% if has_mobile %} · mobitel{% endif %}
       {% if has_landline %} · fiksni{% endif %}
       {% if has_email %} · email{% endif %}
     {% endif %}
   </p>
-  <span class="htmx-indicator text-xs text-slate-400">učitavam...</span>
+  <div class="flex items-center gap-2">
+    <span class="htmx-indicator text-xs text-slate-400">učitavam...</span>
+    {% if total > 0 %}
+    <a href="/export.csv?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&only_full={{ '1' if only_full else '' }}&only_full={{ '1' if only_full else '' }}"
+       class="text-xs px-3 py-1.5 rounded bg-slate-900 text-white hover:bg-hr-red transition inline-flex items-center gap-1.5"
+       title="Skinuti trenutno filtrirane klubove kao CSV">
+      ⬇ Export CSV ({{ total }})
+    </a>
+    {% endif %}
+  </div>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
@@ -86,15 +96,15 @@
   {% set prev_page = page - 1 %}
   {% set next_page = page + 1 %}
   {% if page > 1 %}
-    <a href="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&page={{ prev_page }}"
-       hx-get="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&page={{ prev_page }}"
+    <a href="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&only_full={{ '1' if only_full else '' }}&page={{ prev_page }}"
+       hx-get="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&only_full={{ '1' if only_full else '' }}&page={{ prev_page }}"
        hx-target="#club-list" hx-push-url="true"
        class="px-3 py-1.5 rounded border border-slate-300 hover:border-hr-red hover:text-hr-red">← Prethodna</a>
   {% endif %}
   <span class="text-slate-500">Stranica {{ page }} / {{ total_pages }}</span>
   {% if page < total_pages %}
-    <a href="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&page={{ next_page }}"
-       hx-get="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&page={{ next_page }}"
+    <a href="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&only_full={{ '1' if only_full else '' }}&page={{ next_page }}"
+       hx-get="?q={{ q }}&county={{ county }}&tier={{ tier or '' }}&has_mobile={{ '1' if has_mobile else '' }}&has_landline={{ '1' if has_landline else '' }}&has_email={{ '1' if has_email else '' }}&only_full={{ '1' if only_full else '' }}&page={{ next_page }}"
        hx-target="#club-list" hx-push-url="true"
        class="px-3 py-1.5 rounded border border-slate-300 hover:border-hr-red hover:text-hr-red">Sljedeća →</a>
   {% endif %}

@@ -13,8 +13,11 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
+import csv
+import io
+
 from fastapi import FastAPI, Query, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -121,6 +124,16 @@ def _logo_url(conn, club_id: int, slug: str) -> str | None:
     return None
 
 
+_ACTION_SCORE_SQL = (
+    "((CASE WHEN c.phone_kind = 'mobile' THEN 1 ELSE 0 END) + "
+    " (CASE WHEN c.phone IS NOT NULL THEN 1 ELSE 0 END) + "
+    " (CASE WHEN c.email IS NOT NULL THEN 1 ELSE 0 END) + "
+    " (CASE WHEN c.address IS NOT NULL THEN 1 ELSE 0 END) + "
+    " (CASE WHEN c.website IS NOT NULL OR c.fb_url IS NOT NULL "
+    "       OR c.ig_url IS NOT NULL THEN 1 ELSE 0 END))"
+)
+
+
 def _filtered_clubs(
     conn: sqlite3.Connection,
     *,
@@ -130,7 +143,9 @@ def _filtered_clubs(
     has_mobile: bool,
     has_landline: bool,
     has_email: bool,
-    page: int,
+    only_full: bool = False,
+    page: int | None = 1,
+    per_page: int = PAGE_SIZE,
 ) -> tuple[list[dict], int]:
     where: list[str] = []
     params: list = []
@@ -157,15 +172,22 @@ def _filtered_clubs(
         where.append("c.phone_kind = 'landline'")
     if has_email:
         where.append("c.email IS NOT NULL")
+    if only_full:
+        where.append(f"{_ACTION_SCORE_SQL} = 5")
     where_sql = "WHERE " + " AND ".join(where) if where else ""
     count_sql = f"SELECT COUNT(DISTINCT c.id) AS n FROM clubs c {join} {where_sql}"
     total = conn.execute(count_sql, params).fetchone()["n"]
 
-    offset = max(0, (page - 1) * PAGE_SIZE)
+    # page=None means "all rows" (used by /export.csv).
+    if page is None:
+        limit_sql = ""
+    else:
+        offset = max(0, (page - 1) * per_page)
+        limit_sql = f" LIMIT {per_page} OFFSET {offset}"
     list_sql = (
         f"SELECT DISTINCT c.* FROM clubs c {join} {where_sql} "
         " ORDER BY c.canonical_name "
-        f" LIMIT {PAGE_SIZE} OFFSET {offset}"
+        f" {limit_sql}"
     )
     rows = [dict(r) for r in conn.execute(list_sql, params).fetchall()]
     # Action-oriented reachability flags: by what means CAN we reach the club?
@@ -239,6 +261,7 @@ def index(
     has_mobile: str | None = Query(None),
     has_landline: str | None = Query(None),
     has_email: str | None = Query(None),
+    only_full: str | None = Query(None),
     page: int = Query(1, ge=1),
 ):
     # The <select> sends `tier=""` for "Sve razine"; treat as no filter.
@@ -246,11 +269,12 @@ def index(
     has_mobile_b = _truthy(has_mobile)
     has_landline_b = _truthy(has_landline)
     has_email_b = _truthy(has_email)
+    only_full_b = _truthy(only_full)
     with _conn() as conn:
         clubs, total = _filtered_clubs(
             conn, q=q, county=county, tier=tier_int,
             has_mobile=has_mobile_b, has_landline=has_landline_b,
-            has_email=has_email_b, page=page,
+            has_email=has_email_b, only_full=only_full_b, page=page,
         )
         ctx = {
             "request": request,
@@ -265,6 +289,7 @@ def index(
             "has_mobile": has_mobile_b,
             "has_landline": has_landline_b,
             "has_email": has_email_b,
+            "only_full": only_full_b,
             "counties": _counties(conn),
             "tier_counts": _tier_counts(conn),
             "stats": _global_stats(conn),
@@ -293,6 +318,55 @@ def club_detail(slug: str, request: Request):
         club["backfill_runs"] = [dict(r) for r in runs]
     return TEMPLATES.TemplateResponse(
         request, "club.html", {"club": club, "contact_fields": CONTACT_FIELDS},
+    )
+
+
+@app.get("/export.csv")
+def export_csv(
+    q: str | None = Query(None),
+    county: str | None = Query(None),
+    tier: str | None = Query(None),
+    has_mobile: str | None = Query(None),
+    has_landline: str | None = Query(None),
+    has_email: str | None = Query(None),
+    only_full: str | None = Query(None),
+):
+    """Stream the currently-filtered set as a CSV with SMS-friendly columns."""
+    tier_int = int(tier) if tier and tier.isdigit() else None
+    with _conn() as conn:
+        clubs, _ = _filtered_clubs(
+            conn, q=q, county=county, tier=tier_int,
+            has_mobile=_truthy(has_mobile),
+            has_landline=_truthy(has_landline),
+            has_email=_truthy(has_email),
+            only_full=_truthy(only_full),
+            page=None,  # all rows
+        )
+
+    columns = [
+        "slug", "canonical_name", "short_name", "city", "county",
+        "phone", "phone_kind", "phone_e164", "email", "website",
+        "fb_url", "ig_url", "x_url", "address", "president",
+        "stadium_name", "founded_year",
+    ]
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(columns)
+    for c in clubs:
+        w.writerow([c.get(col) or "" for col in columns])
+    body = buf.getvalue()
+    filename_parts = ["klubovi"]
+    if county:
+        filename_parts.append(county.split()[0].lower())
+    if tier_int:
+        filename_parts.append(f"tier{tier_int}")
+    if _truthy(only_full):
+        filename_parts.append("punkontakt")
+    fname = "-".join(filename_parts) + ".csv"
+    return StreamingResponse(
+        iter([body]),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{fname}"'},
     )
 
 
