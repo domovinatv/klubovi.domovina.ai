@@ -9,4 +9,5 @@ data/exports/
 .DS_Store
 .env
 data/logos/
+data/verification/results-raw.json
 

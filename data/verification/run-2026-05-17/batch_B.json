@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "dinamo-zagreb",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://gnkdinamo.hr/hr"
+    ]
+  },
+  {
+    "slug": "kustosija-zagreb",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://nk-kustosija.hr/"
+    ]
+  },
+  {
+    "slug": "bilogora-91",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 0.8,
+    "issues": "website is HNS Semafor profile (not club site), fb_url is FB sharer link, stadium_name is club name copy",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/4982/nk-bilogora-91/"
+    ]
+  },
+  {
+    "slug": "croatia-g",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 0.83,
+    "issues": "website is aggregator hrvatskekarta.com, fb_url is FB sharer, x_url is Twitter share button",
+    "evidence": [
+      "https://www.znsvpz.hr/klub/croatia/26/"
+    ]
+  },
+  {
+    "slug": "dinamo-o",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.0,
+      "phone_kind": 1.0,
+      "coordinates": 0.5,
+      "league": 1.0
+    },
+    "overall": 0.75,
+    "issues": "address/email/website/phone all belong to county FA (NSSMZ) office, not the club; coords in Sisak area not Odra suburb",
+    "evidence": [
+      "https://nssmz.hr/klubovi/"
+    ]
+  }
+]

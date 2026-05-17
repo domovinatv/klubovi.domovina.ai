@@ -1,0 +1,255 @@
+{
+  "run_date": "2026-05-17",
+  "sample_size": 15,
+  "overall_score": 92.0,
+  "dimension_scores": {
+    "identity": 96.7,
+    "location": 100.0,
+    "contact": 70.0,
+    "phone_kind": 100.0,
+    "coordinates": 90.0,
+    "league": 100.0
+  },
+  "per_club_results": [
+    {
+      "slug": "gorica-velika-gorica",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://hnk-gorica.hr/"
+      ]
+    },
+    {
+      "slug": "lucko-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://nk-lucko.hr/"
+      ]
+    },
+    {
+      "slug": "crikvenica",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "stadium_name field contains club name instead of 'Gradski stadion Crikvenica'",
+      "evidence": [
+        "https://semafor.hns.family/en/clubs/1553/nk-crikvenica/"
+      ]
+    },
+    {
+      "slug": "bsk-budasevo",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_BSK_Buda%C5%A1evo"
+      ]
+    },
+    {
+      "slug": "bsk-brdovec",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.5,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.92,
+      "issues": "email is private gmail (president personal)",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/1201/nk-bsk-brdovec/"
+      ]
+    },
+    {
+      "slug": "dinamo-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://gnkdinamo.hr/hr"
+      ]
+    },
+    {
+      "slug": "kustosija-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://nk-kustosija.hr/"
+      ]
+    },
+    {
+      "slug": "bilogora-91",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.8,
+      "issues": "website is HNS Semafor profile (not club site), fb_url is FB sharer link, stadium_name is club name copy",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/4982/nk-bilogora-91/"
+      ]
+    },
+    {
+      "slug": "croatia-g",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.83,
+      "issues": "website is aggregator hrvatskekarta.com, fb_url is FB sharer, x_url is Twitter share button",
+      "evidence": [
+        "https://www.znsvpz.hr/klub/croatia/26/"
+      ]
+    },
+    {
+      "slug": "dinamo-o",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": 1.0,
+        "coordinates": 0.5,
+        "league": 1.0
+      },
+      "overall": 0.75,
+      "issues": "address/email/website/phone all belong to county FA (NSSMZ) office, not the club; coords in Sisak area not Odra suburb",
+      "evidence": [
+        "https://nssmz.hr/klubovi/"
+      ]
+    },
+    {
+      "slug": "vukovar-1991-osijek",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://hnl.hr/supersport-hnl/raspored-i-rezultati/"
+      ]
+    },
+    {
+      "slug": "rugvica-sava-1976",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": null,
+        "coordinates": 0.5,
+        "league": 1.0
+      },
+      "overall": 0.7,
+      "issues": "website/fb/ig all dugoselska-kronika local news; coords ~5km south of Rugvica",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_Rugvica"
+      ]
+    },
+    {
+      "slug": "top",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_TOP_Kerestinec"
+      ]
+    },
+    {
+      "slug": "sloga-s",
+      "scores": {
+        "identity": 0.5,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.9,
+      "issues": "slug 'sloga-s' ambiguous; contact data matches NK Sloga Čakovec, not Štrigova",
+      "evidence": [
+        "https://www.nssloga-cakovec.hr/"
+      ]
+    },
+    {
+      "slug": "gaj-brodanci",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 0.5,
+        "league": 1.0
+      },
+      "overall": 0.9,
+      "issues": "coords ~5-6km south of Brođanci village",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/1128/nk-gaj-brodjanci/"
+      ]
+    }
+  ]
+}

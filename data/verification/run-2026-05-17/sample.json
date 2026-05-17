@@ -1,0 +1,111 @@
+{
+  "seed": 42,
+  "strata": [
+    [
+      1,
+      3
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      4,
+      2
+    ],
+    [
+      5,
+      2
+    ],
+    [
+      6,
+      3
+    ],
+    [
+      7,
+      2
+    ],
+    [
+      8,
+      1
+    ]
+  ],
+  "batches": 3,
+  "clubs": [
+    {
+      "slug": "gorica-velika-gorica",
+      "tier": 1,
+      "batch": "A"
+    },
+    {
+      "slug": "lucko-zagreb",
+      "tier": 3,
+      "batch": "A"
+    },
+    {
+      "slug": "crikvenica",
+      "tier": 4,
+      "batch": "A"
+    },
+    {
+      "slug": "bsk-budasevo",
+      "tier": 6,
+      "batch": "A"
+    },
+    {
+      "slug": "bsk-brdovec",
+      "tier": 7,
+      "batch": "A"
+    },
+    {
+      "slug": "dinamo-zagreb",
+      "tier": 1,
+      "batch": "B"
+    },
+    {
+      "slug": "kustosija-zagreb",
+      "tier": 3,
+      "batch": "B"
+    },
+    {
+      "slug": "bilogora-91",
+      "tier": 4,
+      "batch": "B"
+    },
+    {
+      "slug": "croatia-g",
+      "tier": 6,
+      "batch": "B"
+    },
+    {
+      "slug": "dinamo-o",
+      "tier": 7,
+      "batch": "B"
+    },
+    {
+      "slug": "vukovar-1991-osijek",
+      "tier": 1,
+      "batch": "C"
+    },
+    {
+      "slug": "rugvica-sava-1976",
+      "tier": 5,
+      "batch": "C"
+    },
+    {
+      "slug": "top",
+      "tier": 5,
+      "batch": "C"
+    },
+    {
+      "slug": "sloga-s",
+      "tier": 6,
+      "batch": "C"
+    },
+    {
+      "slug": "gaj-brodanci",
+      "tier": 8,
+      "batch": "C"
+    }
+  ]
+}

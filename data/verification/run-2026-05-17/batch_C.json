@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "vukovar-1991-osijek",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://hnl.hr/supersport-hnl/raspored-i-rezultati/"
+    ]
+  },
+  {
+    "slug": "rugvica-sava-1976",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.0,
+      "phone_kind": null,
+      "coordinates": 0.5,
+      "league": 1.0
+    },
+    "overall": 0.7,
+    "issues": "website/fb/ig all dugoselska-kronika local news; coords ~5km south of Rugvica",
+    "evidence": [
+      "https://hr.wikipedia.org/wiki/NK_Rugvica"
+    ]
+  },
+  {
+    "slug": "top",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://hr.wikipedia.org/wiki/NK_TOP_Kerestinec"
+    ]
+  },
+  {
+    "slug": "sloga-s",
+    "scores": {
+      "identity": 0.5,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 0.9,
+    "issues": "slug 'sloga-s' ambiguous; contact data matches NK Sloga Čakovec, not Štrigova",
+    "evidence": [
+      "https://www.nssloga-cakovec.hr/"
+    ]
+  },
+  {
+    "slug": "gaj-brodanci",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 0.5,
+      "league": 1.0
+    },
+    "overall": 0.9,
+    "issues": "coords ~5-6km south of Brođanci village",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/1128/nk-gaj-brodjanci/"
+    ]
+  }
+]

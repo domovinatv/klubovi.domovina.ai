@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "gorica-velika-gorica",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://hnk-gorica.hr/"
+    ]
+  },
+  {
+    "slug": "lucko-zagreb",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://nk-lucko.hr/"
+    ]
+  },
+  {
+    "slug": "crikvenica",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "stadium_name field contains club name instead of 'Gradski stadion Crikvenica'",
+    "evidence": [
+      "https://semafor.hns.family/en/clubs/1553/nk-crikvenica/"
+    ]
+  },
+  {
+    "slug": "bsk-budasevo",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://hr.wikipedia.org/wiki/NK_BSK_Buda%C5%A1evo"
+    ]
+  },
+  {
+    "slug": "bsk-brdovec",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.5,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 0.92,
+    "issues": "email is private gmail (president personal)",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/1201/nk-bsk-brdovec/"
+    ]
+  }
+]
