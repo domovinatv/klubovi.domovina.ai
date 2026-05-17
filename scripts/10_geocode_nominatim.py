@@ -55,6 +55,9 @@ def _strip_prefix(name: str) -> str:
     return n
 
 
+_ZIP_RE = re.compile(r"\b(\d{4,5})\b")
+
+
 def _addr_tail(addr: str) -> str | None:
     """Drop street/number prefix; keep last 2 comma-separated chunks.
 
@@ -70,29 +73,80 @@ def _addr_tail(addr: str) -> str | None:
     return None
 
 
+def _zip_from(text: str | None) -> str | None:
+    """Extract a Croatian postal code (5 digits) from text. Handles
+    spaced variants like '10 000'. Returns None if not found."""
+    if not text:
+        return None
+    cleaned = re.sub(r"(\d)\s+(\d)", r"\1\2", text)
+    m = _ZIP_RE.search(cleaned)
+    if m:
+        z = m.group(1)
+        if len(z) == 5:
+            return z
+    return None
+
+
+def _name_place_candidates(canonical_name: str) -> list[str]:
+    """Several plausible 'place' interpretations of a club name.
+
+    The club name often has the form "{prefix} {nickname} {place}" or just
+    "{prefix} {place}". We can't know which is which structurally, so we
+    feed Nominatim a few candidates from longest to shortest and let it
+    pick what it understands. Last single word almost always nails it for
+    amateur clubs ("NK Slavonija Ivanovac" -> "Ivanovac")."""
+    base = _PREFIX_RE.sub("", canonical_name or "").strip()
+    base = _PAREN_RE.sub("", base).strip()
+    if not base:
+        return []
+    words = base.split()
+    candidates: list[str] = [base]
+    if len(words) >= 2:
+        candidates.append(words[-1])               # last word
+    if len(words) >= 3:
+        candidates.append(" ".join(words[-2:]))    # last two words
+    # Dedupe + drop too-short tokens that won't help geocoding.
+    seen: set[str] = set()
+    out: list[str] = []
+    for c in candidates:
+        if len(c) < 3:
+            continue
+        if c in seen:
+            continue
+        seen.add(c)
+        out.append(c)
+    return out
+
+
 def build_query_candidates(club: dict) -> list[str]:
     """Ordered query candidates from most specific to most general."""
     out: list[str] = []
     county = (club.get("county") or "").replace(" županija", "").strip()
     address = (club.get("address") or "").strip()
     city = (club.get("city") or "").strip()
-    name_place = _strip_prefix(club.get("canonical_name") or "")
-    if len(name_place) < 3:
-        name_place = ""
+    name_places = _name_place_candidates(club.get("canonical_name") or "")
+    zip_code = _zip_from(address) or _zip_from(city)
 
+    # Address-derived candidates: as-is, then trimmed tail, then ZIP-only.
     if address:
         out.append(f"{address}, Hrvatska")
         tail = _addr_tail(address)
         if tail:
             out.append(f"{tail}, Hrvatska")
+    if zip_code:
+        out.append(f"{zip_code}, Hrvatska")
+
+    # City-based candidates.
     if city and county:
         out.append(f"{city}, {county}, Hrvatska")
     if city:
         out.append(f"{city}, Hrvatska")
-    if name_place and county:
-        out.append(f"{name_place}, {county}, Hrvatska")
-    if name_place:
-        out.append(f"{name_place}, Hrvatska")
+
+    # Name-derived place candidates (longest to single word).
+    for place in name_places:
+        if county:
+            out.append(f"{place}, {county}, Hrvatska")
+        out.append(f"{place}, Hrvatska")
 
     # Dedupe preserving order.
     seen: set[str] = set()
