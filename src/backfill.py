@@ -120,7 +120,11 @@ def score_url(url: str, club_name: str) -> int:
         "semafor.hns.family",
         # Local-news outlets that occasionally outrank the club itself for
         # search queries about that village's amateur team.
-        "dugoselska-kronika.hr",
+        "dugoselska-kronika.hr", "dugoselski-sport.hr",
+        # Municipal-office domains found by 2026-05-17 Run 4 audit
+        # (NK Trnski had nova-raca.hr, NK Psunj Sokol had opcokucani...).
+        # Any opcina-* / -opcina pattern is the municipality, not the club.
+        "opcina-", "-opcina", "opcokucani", "nova-raca",
     )):
         score -= 5
     # Documents (PDF/DOCX) almost always come from FA directories that mix
@@ -138,6 +142,12 @@ def score_url(url: str, club_name: str) -> int:
             score -= 10
         else:
             score += 1  # FB pages are useful but lower priority than .hr site
+    # Twitter / X share-intent shapes (NOT real profiles): /share, /intent/tweet
+    # (already covered by FB block above pattern-wise since "/share" matches),
+    # PLUS /home?status= which the Run 4 audit found on ~155 Semafor pages.
+    if "twitter.com" in url_l or "x.com" in url_l:
+        if "/home?status=" in url_l or "?status=" in url_l or "/intent/tweet" in url_l:
+            score -= 10
     if url_l.endswith(".hr") or ".hr/" in url_l:
         score += 3
     # Strong bonus when the URL slug includes parts of the club name.
