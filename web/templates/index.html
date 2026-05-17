@@ -69,16 +69,16 @@
 
     {# Stats card #}
     <div class="bg-white rounded-lg border border-slate-200 p-4">
-      <h3 class="text-xs font-semibold text-slate-500 uppercase mb-2">Statistika</h3>
+      <h3 class="text-xs font-semibold text-slate-500 uppercase mb-2">Po načinu dohvata</h3>
       <dl class="text-sm space-y-1">
-        <div class="flex justify-between"><dt class="text-slate-500">Ukupno klubova</dt><dd class="font-medium">{{ stats.total }}</dd></div>
-        <div class="flex justify-between"><dt class="text-slate-500">Sa županijom</dt><dd>{{ stats.with_county }}</dd></div>
-        <div class="flex justify-between"><dt class="text-slate-500">Sa gradom</dt><dd>{{ stats.with_city }}</dd></div>
-        <div class="flex justify-between"><dt class="text-slate-500">Email</dt><dd>{{ stats.with_email }}</dd></div>
-        <div class="flex justify-between"><dt class="text-slate-500">Mobitel</dt><dd>{{ stats.with_mobile }}</dd></div>
-        <div class="flex justify-between"><dt class="text-slate-500">Fiksni</dt><dd>{{ stats.with_landline }}</dd></div>
-        <div class="flex justify-between"><dt class="text-slate-500">Web</dt><dd>{{ stats.with_website }}</dd></div>
-        <div class="flex justify-between"><dt class="text-slate-500">Facebook</dt><dd>{{ stats.with_fb }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">Ukupno klubova</dt><dd class="font-bold">{{ stats.total }}</dd></div>
+        <div class="flex justify-between border-t pt-1 mt-1"><dt class="text-emerald-700 font-medium">✓ Pun kontakt</dt><dd class="font-medium">{{ stats.full_contact }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">💬 Mogu SMS</dt><dd>{{ stats.can_sms }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">📞 Mogu nazvati</dt><dd>{{ stats.can_call }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">✉ Mogu email</dt><dd>{{ stats.can_email }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">📮 Mogu poštom</dt><dd>{{ stats.can_mail }}</dd></div>
+        <div class="flex justify-between"><dt class="text-slate-500">🌐 Online prisutni</dt><dd>{{ stats.can_web }}</dd></div>
+        <div class="flex justify-between border-t pt-1 mt-1"><dt class="text-slate-400">∅ Nedostupni</dt><dd class="text-slate-400">{{ stats.unreachable }}</dd></div>
       </dl>
     </div>
   </aside>

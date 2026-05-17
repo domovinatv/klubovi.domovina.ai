@@ -54,12 +54,22 @@ def _global_stats(conn: sqlite3.Connection) -> dict[str, int]:
           COUNT(*) AS total,
           SUM(CASE WHEN city IS NOT NULL THEN 1 ELSE 0 END) AS with_city,
           SUM(CASE WHEN county IS NOT NULL THEN 1 ELSE 0 END) AS with_county,
-          SUM(CASE WHEN email IS NOT NULL THEN 1 ELSE 0 END) AS with_email,
-          SUM(CASE WHEN phone IS NOT NULL THEN 1 ELSE 0 END) AS with_phone,
-          SUM(CASE WHEN phone_kind = 'mobile' THEN 1 ELSE 0 END) AS with_mobile,
-          SUM(CASE WHEN phone_kind = 'landline' THEN 1 ELSE 0 END) AS with_landline,
-          SUM(CASE WHEN website IS NOT NULL THEN 1 ELSE 0 END) AS with_website,
-          SUM(CASE WHEN fb_url IS NOT NULL THEN 1 ELSE 0 END) AS with_fb
+          SUM(CASE WHEN phone_kind = 'mobile' THEN 1 ELSE 0 END) AS can_sms,
+          SUM(CASE WHEN phone IS NOT NULL THEN 1 ELSE 0 END) AS can_call,
+          SUM(CASE WHEN email IS NOT NULL THEN 1 ELSE 0 END) AS can_email,
+          SUM(CASE WHEN address IS NOT NULL THEN 1 ELSE 0 END) AS can_mail,
+          SUM(CASE WHEN
+            website IS NOT NULL OR fb_url IS NOT NULL OR ig_url IS NOT NULL
+            THEN 1 ELSE 0 END) AS can_web,
+          SUM(CASE WHEN
+            phone_kind = 'mobile' AND phone IS NOT NULL
+            AND email IS NOT NULL AND address IS NOT NULL
+            AND (website IS NOT NULL OR fb_url IS NOT NULL OR ig_url IS NOT NULL)
+            THEN 1 ELSE 0 END) AS full_contact,
+          SUM(CASE WHEN
+            phone IS NULL AND email IS NULL AND address IS NULL
+            AND website IS NULL AND fb_url IS NULL AND ig_url IS NULL
+            THEN 1 ELSE 0 END) AS unreachable
         FROM clubs
         """
     ).fetchone()
@@ -158,11 +168,22 @@ def _filtered_clubs(
         f" LIMIT {PAGE_SIZE} OFFSET {offset}"
     )
     rows = [dict(r) for r in conn.execute(list_sql, params).fetchall()]
-    # Tack on logo URL + tier badge for each.
+    # Action-oriented reachability flags: by what means CAN we reach the club?
+    # These drive the card visuals (pills + left-border accent) and let the
+    # user see at-a-glance what outreach channels are available.
     for r in rows:
         r["logo_url"] = _logo_url(conn, r["id"], r["slug"])
         r["tiers"] = _club_tiers(conn, r["id"])
-        r["contact_count"] = sum(1 for f in CONTACT_FIELDS if r.get(f))
+        r["can_sms"] = r.get("phone_kind") == "mobile"
+        r["can_call"] = bool(r.get("phone"))               # mobile OR landline
+        r["can_email"] = bool(r.get("email"))
+        r["can_mail"] = bool(r.get("address"))             # postal address
+        r["can_web"] = bool(r.get("website") or r.get("fb_url") or r.get("ig_url"))
+        r["action_score"] = sum([
+            r["can_sms"], r["can_call"], r["can_email"],
+            r["can_mail"], r["can_web"],
+        ])
+        r["is_full"] = r["action_score"] == 5
     return rows, total
 
 
