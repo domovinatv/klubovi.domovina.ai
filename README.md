@@ -14,12 +14,14 @@ bazom koja se može ponovno generirati nuli kroz idempotentne skripte.
 | Klubova ukupno                            | **901** (8 tier-ova)  |
 | Backfill-ano (kroz Firecrawl)             | 896 (99.4%)       |
 | Na karti s lat/lng                        | **901 (100%)**    |
-| **Pun kontakt** (telefon + email + adresa + online) | **135**     |
-| Mobitela (SMS-ready, +385 E.164 format)   | 179               |
-| Emaila                                    | 237               |
-| Adresa                                    | 523               |
-| Website                                   | 480               |
-| FB profila                                | 490               |
+| **Pipeline reliability** (AI audit)       | **93 / 100**      |
+| **Pun kontakt** (telefon + email + adresa + online) | **155**     |
+| Mobitela (SMS-ready, +385 E.164 format)   | 217               |
+| Emaila                                    | 282               |
+| Adresa                                    | 530               |
+| Website                                   | 333               |
+| FB profila                                | 410               |
+| HNS Semafor profile linkova               | 172               |
 
 | Tier | Razina                    | Klubova | Glavni izvor |
 |-----:|---------------------------|--------:|--------------|
@@ -348,9 +350,29 @@ clubs_fts (FTS5 virtual)
    tokenizer: unicode61 remove_diacritics 2  +  pre-stripped đ/Đ
 ```
 
+## AI-driven verification
+
+`scripts/12_verify_pipeline.py` + `VERIFICATION.md` — stratified random sample
+(default 15 clubs) verified by parallel general-purpose subagents on 6
+dimensions (identity, location, contact, phone_kind, coordinates, league).
+Aggregated to a per-dimension and overall 0-100 reliability score. Each run
+goes into `data/verification/run-YYYY-MM-DD/`.
+
+Current baseline: **93 / 100** (after one cleanup + re-backfill iteration —
+`scripts/14_cleanup_leaks.py` cleared ~800 leaky values; expanded blocklist
+in `src/backfill.py` prevents re-introduction). Contact dimension (75/100)
+is the remaining weakness — three open patterns:
+sister-club cross-contamination, town-portal-as-website, local-news domain
+variants. See VERIFICATION.md "Time series" section.
+
 ## Sljedeće faze (otvorene ideje)
 
+- **Sister-club detector** — flag clubs whose `website` domain canonical name
+  doesn't match own canonical_name (catches "Dinamo Odra got Segesta Sisak's
+  data" leak class)
+- **Geocoder precision pass** — Croatia-G coords 19 km off, Dinamo-O 22 km
+  off; replace village-centroid with stadium-pin lookups on HNS Semafor pages
 - Email/phone deliverability audit (MX lookup, regex sanity)
-- Recurring snapshot job (CronCreate) — re-run scripts/01-04 monthly za nove sezone
+- Recurring snapshot job — re-run ingest monthly za nove sezone
 - Self-hosted Firecrawl stack za eliminaciju Cloud troška za buduće re-runove
 - SMS provider integracija (Vox/Infobip CSV import format)

@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "dinamo-zagreb",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://gnkdinamo.hr/"
+    ]
+  },
+  {
+    "slug": "kustosija-zagreb",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://nk-kustosija.hr/kontakt/"
+    ]
+  },
+  {
+    "slug": "bilogora-91",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 0.8,
+    "issues": "website is town portal grubisnopolje.hr, not club site",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/4982/nk-bilogora-91/"
+    ]
+  },
+  {
+    "slug": "croatia-g",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.5,
+      "phone_kind": 1.0,
+      "coordinates": 0.0,
+      "league": 1.0
+    },
+    "overall": 0.75,
+    "issues": "phone cannot be verified as club's; coords ~19km off Grabrovnica village",
+    "evidence": [
+      "https://www.znsvpz.hr/klub/croatia/26/"
+    ]
+  },
+  {
+    "slug": "dinamo-o",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.0,
+      "phone_kind": null,
+      "coordinates": 0.0,
+      "league": 1.0
+    },
+    "overall": 0.6,
+    "issues": "website/email belong to HNK Segesta Sisak (sister-club cross-contamination); coords ~22km off Odra Sisacka",
+    "evidence": [
+      "https://en.wikipedia.org/wiki/Odra_Sisa%C4%8Dka"
+    ]
+  }
+]

@@ -132,3 +132,37 @@ Each run gets its own `data/verification/run-YYYY-MM-DD/` directory and is
 checked in (small — `~30 KB` per run). Comparing two `report.json` files shows
 whether changes between runs lifted or hurt specific dimensions. The
 `per_club_results[].issues` strings are the most useful diff signal.
+
+## Time series
+
+| Run | Overall | identity | location | contact | phone_kind | coordinates | league | What changed since previous |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| **2026-05-17** (baseline) | 92.0 | 96.7 | 100 | 70.0 | 100 | 90.0 | 100 | first measurement after the 901-club backfill landed |
+| **2026-05-17b** | 93.0 | 100 | 100 | **75.0** | 100 | 86.7 | 100 | `scripts/14_cleanup_leaks.py` (~800 leaky values nulled), `src/backfill.py` blocklist expanded, 654-club targeted re-backfill |
+
+Run 2 caveats:
+
+- **Contact moved 70 → 75** — real lift, but smaller than projected. Cleanup
+  cleared known leaks (aggregator URLs, share-button links, FA cross-contamination,
+  cross-club shared values), but the targeted re-backfill surfaced *new* leak
+  classes the original blocklist didn't anticipate:
+  - **Sister-club cross-contamination** — NK Dinamo Odra inherited HNK Segesta
+    Sisak's website + email. Same Sisak area, different clubs. No URL pattern
+    catches this; needs name-vs-domain similarity check.
+  - **Town/city portal as `website`** — NK Bilogora 91's website became
+    `grubisnopolje.hr` (the town's city-government portal). Not an aggregator
+    and not a club site either.
+  - **Local-news domain variants** — we blocked `dugoselska-kronika.hr` but
+    the re-backfill found `dugoselski-sport.hr` for Rugvica Sava — same
+    publisher, different domain.
+
+- **Coordinates regressed 90 → 86.7** — *same lat/lng* in DB, scored more
+  strictly this time. Run 2 agents caught two Nominatim village-centroid
+  errors (Croatia-G 19 km off Grabrovnica, Dinamo-O 22 km off Odra Sisačka)
+  that Run 1 agents accepted. Not a data regression, a measurement-tightening.
+  Indicates the audit is internally inconsistent on the `~5 km` threshold —
+  rubric should be sharpened with a deterministic distance check before the
+  next run.
+
+The three new contact-leak patterns are the right input for the next
+iteration's blocklist + heuristic rules.

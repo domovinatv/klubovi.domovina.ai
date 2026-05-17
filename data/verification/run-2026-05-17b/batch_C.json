@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "vukovar-1991-osijek",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/5361/hnk-vukovar-1991/"
+    ]
+  },
+  {
+    "slug": "rugvica-sava-1976",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 0.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 0.8,
+    "issues": "website/email/fb belong to Dugo Selo local news outlets, not the club",
+    "evidence": [
+      "https://hr.wikipedia.org/wiki/NK_Rugvica"
+    ]
+  },
+  {
+    "slug": "top",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/1297/nk-top/"
+    ]
+  },
+  {
+    "slug": "sloga-s",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": null,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "phone has two numbers joined; phone_kind=unknown reasonable",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/405/nk-sloga-strigova/"
+    ]
+  },
+  {
+    "slug": "gaj-brodanci",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/1128/nk-gaj-brodjanci/"
+    ]
+  }
+]

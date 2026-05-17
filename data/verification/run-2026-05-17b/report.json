@@ -1,0 +1,255 @@
+{
+  "run_date": "2026-05-17",
+  "sample_size": 15,
+  "overall_score": 93.0,
+  "dimension_scores": {
+    "identity": 100.0,
+    "location": 100.0,
+    "contact": 75.0,
+    "phone_kind": 100.0,
+    "coordinates": 86.7,
+    "league": 100.0
+  },
+  "per_club_results": [
+    {
+      "slug": "gorica-velika-gorica",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://hnk-gorica.hr/"
+      ]
+    },
+    {
+      "slug": "lucko-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://nk-lucko.hr/kontakt/"
+      ]
+    },
+    {
+      "slug": "crikvenica",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/1553/nk-crikvenica/"
+      ]
+    },
+    {
+      "slug": "bsk-budasevo",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://nk-bsk-budasevo.webnode.hr/"
+      ]
+    },
+    {
+      "slug": "bsk-brdovec",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/1201/nk-bsk-brdovec/"
+      ]
+    },
+    {
+      "slug": "dinamo-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://gnkdinamo.hr/"
+      ]
+    },
+    {
+      "slug": "kustosija-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://nk-kustosija.hr/kontakt/"
+      ]
+    },
+    {
+      "slug": "bilogora-91",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.8,
+      "issues": "website is town portal grubisnopolje.hr, not club site",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/4982/nk-bilogora-91/"
+      ]
+    },
+    {
+      "slug": "croatia-g",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.5,
+        "phone_kind": 1.0,
+        "coordinates": 0.0,
+        "league": 1.0
+      },
+      "overall": 0.75,
+      "issues": "phone cannot be verified as club's; coords ~19km off Grabrovnica village",
+      "evidence": [
+        "https://www.znsvpz.hr/klub/croatia/26/"
+      ]
+    },
+    {
+      "slug": "dinamo-o",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": null,
+        "coordinates": 0.0,
+        "league": 1.0
+      },
+      "overall": 0.6,
+      "issues": "website/email belong to HNK Segesta Sisak (sister-club cross-contamination); coords ~22km off Odra Sisacka",
+      "evidence": [
+        "https://en.wikipedia.org/wiki/Odra_Sisa%C4%8Dka"
+      ]
+    },
+    {
+      "slug": "vukovar-1991-osijek",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/5361/hnk-vukovar-1991/"
+      ]
+    },
+    {
+      "slug": "rugvica-sava-1976",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.8,
+      "issues": "website/email/fb belong to Dugo Selo local news outlets, not the club",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_Rugvica"
+      ]
+    },
+    {
+      "slug": "top",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/1297/nk-top/"
+      ]
+    },
+    {
+      "slug": "sloga-s",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": null,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "phone has two numbers joined; phone_kind=unknown reasonable",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/405/nk-sloga-strigova/"
+      ]
+    },
+    {
+      "slug": "gaj-brodanci",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/1128/nk-gaj-brodjanci/"
+      ]
+    }
+  ]
+}

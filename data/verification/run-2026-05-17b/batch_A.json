@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "gorica-velika-gorica",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://hnk-gorica.hr/"
+    ]
+  },
+  {
+    "slug": "lucko-zagreb",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://nk-lucko.hr/kontakt/"
+    ]
+  },
+  {
+    "slug": "crikvenica",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/1553/nk-crikvenica/"
+    ]
+  },
+  {
+    "slug": "bsk-budasevo",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": null,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://nk-bsk-budasevo.webnode.hr/"
+    ]
+  },
+  {
+    "slug": "bsk-brdovec",
+    "scores": {
+      "identity": 1.0,
+      "location": 1.0,
+      "contact": 1.0,
+      "phone_kind": 1.0,
+      "coordinates": 1.0,
+      "league": 1.0
+    },
+    "overall": 1.0,
+    "issues": "",
+    "evidence": [
+      "https://semafor.hns.family/klubovi/1201/nk-bsk-brdovec/"
+    ]
+  }
+]
