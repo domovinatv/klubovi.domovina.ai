@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.backfill import backfill_club  # noqa: E402
 from src.db import connect  # noqa: E402
-from src.firecrawl import FirecrawlClient  # noqa: E402
+from src.firecrawl import FirecrawlClient, InsufficientCreditsError  # noqa: E402
 
 logging.basicConfig(
     level=logging.INFO,
@@ -52,6 +52,11 @@ def select_clubs(conn, args) -> list[dict]:
     if args.skip_filled:
         # Skip clubs that already have email or phone.
         where.append("(c.email IS NULL AND c.phone IS NULL)")
+    if args.unprocessed:
+        # Skip any club that has ever been touched by a backfill_runs entry,
+        # even if that run filled zero fields. Avoids burning credits on
+        # already-attempted clubs whose external data is simply absent.
+        where.append("c.id NOT IN (SELECT DISTINCT club_id FROM backfill_runs)")
     if where:
         sql.append("WHERE " + " AND ".join(where))
     sql.append("ORDER BY c.canonical_name")
@@ -84,28 +89,50 @@ def run() -> None:
     p.add_argument("--limit", type=int, help="Max clubs to process")
     p.add_argument("--skip-filled", action="store_true",
                    help="Skip clubs that already have email or phone")
+    p.add_argument("--unprocessed", action="store_true",
+                   help="Skip clubs that already have a backfill_runs entry")
     args = p.parse_args()
 
     with connect() as conn, FirecrawlClient() as client:
         clubs = select_clubs(conn, args)
-        log.info("selected %d clubs", len(clubs))
+        balances = client.credits_across_keys()
+        starting_balance = balances[0][1] if balances else None
+        log.info("selected %d clubs   keys: %s",
+                 len(clubs),
+                 ", ".join(f"{n}={c}" for n, c in balances))
 
         statuses: dict[str, int] = {}
+        stopped_early = False
+        processed_ids: list[int] = []
         for i, c in enumerate(clubs, 1):
             log.info("[%d/%d] %s", i, len(clubs), c["canonical_name"])
             try:
                 res = backfill_club(conn, client, c)
+            except InsufficientCreditsError as e:
+                log.warning("OUT OF CREDITS at club %d/%d: %s", i, len(clubs), e)
+                stopped_early = True
+                conn.commit()
+                break
             except Exception as e:
                 log.exception("error on %s: %s", c["canonical_name"], e)
                 statuses["exception"] = statuses.get("exception", 0) + 1
                 continue
             statuses[res["status"]] = statuses.get(res["status"], 0) + 1
+            processed_ids.append(c["id"])
             conn.commit()
+            if i % 25 == 0:
+                bal = client.remaining_credits()
+                log.info("  ... %d/%d processed. remaining credits: %s",
+                         i, len(clubs), bal)
 
+        ending_balance = client.remaining_credits()
         log.info("=" * 60)
-        log.info("Done. Credits used: %d. Status breakdown: %s",
-                 client.credits_used, statuses)
-        hit_rate_report(conn, [c["id"] for c in clubs])
+        log.info("Done %s. processed=%d  status=%s  spent=%s  remaining=%s",
+                 "(stopped on out-of-credits)" if stopped_early else "(all clubs)",
+                 len(processed_ids), statuses,
+                 (starting_balance - ending_balance) if starting_balance and ending_balance else "?",
+                 ending_balance)
+        hit_rate_report(conn, processed_ids)
 
 
 if __name__ == "__main__":
