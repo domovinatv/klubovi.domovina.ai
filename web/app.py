@@ -475,6 +475,33 @@ def league_detail(league_id: int, request: Request):
     )
 
 
+@app.get("/map", response_class=HTMLResponse)
+def map_view(request: Request):
+    with _conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT c.id, c.slug, c.canonical_name, c.city, c.county,
+                   c.lat, c.lng, c.phone, c.email,
+                   (SELECT MIN(l.tier)
+                      FROM club_seasons cs JOIN leagues l ON l.id = cs.league_id
+                      WHERE cs.club_id = c.id) AS tier
+            FROM clubs c
+            WHERE c.lat IS NOT NULL AND c.lng IS NOT NULL
+            """
+        ).fetchall()
+        total = conn.execute("SELECT COUNT(*) FROM clubs").fetchone()[0]
+    clubs = [dict(r) for r in rows]
+    import json as _json
+    return TEMPLATES.TemplateResponse(
+        request, "map.html",
+        {
+            "clubs_json": _json.dumps(clubs, ensure_ascii=False),
+            "geo_count": len(clubs),
+            "total": total,
+        },
+    )
+
+
 @app.get("/api/stats")
 def api_stats() -> JSONResponse:
     with _conn() as conn:

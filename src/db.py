@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS clubs (
   ig_url           TEXT,
   x_url            TEXT,
   president        TEXT,
+  lat              REAL,
+  lng              REAL,
   notes            TEXT,
   created_at       TEXT DEFAULT CURRENT_TIMESTAMP,
   updated_at       TEXT DEFAULT CURRENT_TIMESTAMP
