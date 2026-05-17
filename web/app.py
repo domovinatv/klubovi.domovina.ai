@@ -22,6 +22,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from src.db import connect  # noqa: E402
+from src.normalize import strip_diacritics  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = ROOT.parent
@@ -134,6 +135,52 @@ _ACTION_SCORE_SQL = (
 )
 
 
+def _enrich_clubs(conn, rows: list[dict]) -> list[dict]:
+    """Decorate plain club rows with logo + tier badges + reachability flags."""
+    for r in rows:
+        r["logo_url"] = _logo_url(conn, r["id"], r["slug"])
+        r["tiers"] = _club_tiers(conn, r["id"])
+        r["can_sms"] = r.get("phone_kind") == "mobile"
+        r["can_call"] = bool(r.get("phone"))
+        r["can_email"] = bool(r.get("email"))
+        r["can_mail"] = bool(r.get("address"))
+        r["can_web"] = bool(r.get("website") or r.get("fb_url") or r.get("ig_url"))
+        r["action_score"] = sum([
+            r["can_sms"], r["can_call"], r["can_email"],
+            r["can_mail"], r["can_web"],
+        ])
+        r["is_full"] = r["action_score"] == 5
+    return rows
+
+
+def _county_stats(conn, name: str) -> dict[str, int]:
+    row = conn.execute(
+        """
+        SELECT
+          COUNT(*) AS total,
+          SUM(CASE WHEN phone_kind = 'mobile' THEN 1 ELSE 0 END) AS can_sms,
+          SUM(CASE WHEN phone IS NOT NULL THEN 1 ELSE 0 END) AS can_call,
+          SUM(CASE WHEN email IS NOT NULL THEN 1 ELSE 0 END) AS can_email,
+          SUM(CASE WHEN address IS NOT NULL THEN 1 ELSE 0 END) AS can_mail,
+          SUM(CASE WHEN
+            website IS NOT NULL OR fb_url IS NOT NULL OR ig_url IS NOT NULL
+            THEN 1 ELSE 0 END) AS can_web,
+          SUM(CASE WHEN
+            phone_kind = 'mobile' AND phone IS NOT NULL
+            AND email IS NOT NULL AND address IS NOT NULL
+            AND (website IS NOT NULL OR fb_url IS NOT NULL OR ig_url IS NOT NULL)
+            THEN 1 ELSE 0 END) AS full_contact,
+          SUM(CASE WHEN
+            phone IS NULL AND email IS NULL AND address IS NULL
+            AND website IS NULL AND fb_url IS NULL AND ig_url IS NULL
+            THEN 1 ELSE 0 END) AS unreachable
+        FROM clubs WHERE county = ?
+        """,
+        (name,),
+    ).fetchone()
+    return dict(row)
+
+
 def _filtered_clubs(
     conn: sqlite3.Connection,
     *,
@@ -161,11 +208,18 @@ def _filtered_clubs(
         where.append("c.county = ?")
         params.append(county)
     if q:
-        where.append(
-            "(c.canonical_name LIKE ? OR c.short_name LIKE ? OR c.city LIKE ?)"
-        )
-        like = f"%{q}%"
-        params.extend([like, like, like])
+        # Route search through clubs_fts (FTS5). Each word becomes a prefix
+        # match so "hajd" hits "hajduk". Normalize the query the same way
+        # we normalized the index so "djakovo" / "Đakovo" / "dakovo" collide.
+        tokens = [w for w in strip_diacritics(q).lower().split() if w]
+        if tokens:
+            fts_query = " ".join(f'"{w}"*' for w in tokens)
+            where.append(
+                "c.slug IN (SELECT slug FROM clubs_fts WHERE clubs_fts MATCH ?)"
+            )
+            params.append(fts_query)
+        else:
+            where.append("1 = 0")  # empty query post-norm → no results
     if has_mobile:
         where.append("c.phone_kind = 'mobile'")
     if has_landline:
@@ -189,23 +243,7 @@ def _filtered_clubs(
         " ORDER BY c.canonical_name "
         f" {limit_sql}"
     )
-    rows = [dict(r) for r in conn.execute(list_sql, params).fetchall()]
-    # Action-oriented reachability flags: by what means CAN we reach the club?
-    # These drive the card visuals (pills + left-border accent) and let the
-    # user see at-a-glance what outreach channels are available.
-    for r in rows:
-        r["logo_url"] = _logo_url(conn, r["id"], r["slug"])
-        r["tiers"] = _club_tiers(conn, r["id"])
-        r["can_sms"] = r.get("phone_kind") == "mobile"
-        r["can_call"] = bool(r.get("phone"))               # mobile OR landline
-        r["can_email"] = bool(r.get("email"))
-        r["can_mail"] = bool(r.get("address"))             # postal address
-        r["can_web"] = bool(r.get("website") or r.get("fb_url") or r.get("ig_url"))
-        r["action_score"] = sum([
-            r["can_sms"], r["can_call"], r["can_email"],
-            r["can_mail"], r["can_web"],
-        ])
-        r["is_full"] = r["action_score"] == 5
+    rows = _enrich_clubs(conn, [dict(r) for r in conn.execute(list_sql, params).fetchall()])
     return rows, total
 
 
@@ -225,7 +263,8 @@ def _club_tiers(conn, club_id: int) -> list[int]:
 def _club_leagues(conn, club_id: int) -> list[dict]:
     rows = conn.execute(
         """
-        SELECT l.name AS league_name, l.tier, cs.season, cs.source
+        SELECT l.id AS league_id, l.name AS league_name, l.tier,
+               cs.season, cs.source
         FROM club_seasons cs JOIN leagues l ON l.id = cs.league_id
         WHERE cs.club_id = ?
         ORDER BY l.tier, l.name
@@ -367,6 +406,72 @@ def export_csv(
         iter([body]),
         media_type="text/csv; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{fname}"'},
+    )
+
+
+@app.get("/counties/{name}", response_class=HTMLResponse)
+def county_detail(name: str, request: Request):
+    with _conn() as conn:
+        row = conn.execute(
+            "SELECT COUNT(*) AS n FROM clubs WHERE county = ?", (name,)
+        ).fetchone()
+        if not row["n"]:
+            return HTMLResponse("Nepoznata županija", status_code=404)
+
+        rows = conn.execute(
+            "SELECT * FROM clubs WHERE county = ? ORDER BY canonical_name",
+            (name,),
+        ).fetchall()
+        clubs = _enrich_clubs(conn, [dict(r) for r in rows])
+
+        tier_breakdown = conn.execute(
+            """
+            SELECT l.tier, COUNT(DISTINCT cs.club_id) AS n
+            FROM leagues l
+            JOIN club_seasons cs ON cs.league_id = l.id
+            JOIN clubs c ON c.id = cs.club_id
+            WHERE c.county = ?
+            GROUP BY l.tier
+            ORDER BY l.tier
+            """,
+            (name,),
+        ).fetchall()
+
+    return TEMPLATES.TemplateResponse(
+        request, "county.html",
+        {
+            "county_name": name,
+            "clubs": clubs,
+            "stats": _county_stats(conn, name),
+            "tier_breakdown": [dict(r) for r in tier_breakdown],
+        },
+    )
+
+
+@app.get("/leagues/{league_id}", response_class=HTMLResponse)
+def league_detail(league_id: int, request: Request):
+    with _conn() as conn:
+        league = conn.execute(
+            "SELECT * FROM leagues WHERE id = ?", (league_id,)
+        ).fetchone()
+        if not league:
+            return HTMLResponse("Nepoznata liga", status_code=404)
+
+        rows = conn.execute(
+            """
+            SELECT DISTINCT c.*, cs.season
+            FROM clubs c
+            JOIN club_seasons cs ON cs.club_id = c.id
+            WHERE cs.league_id = ?
+            ORDER BY c.canonical_name
+            """,
+            (league_id,),
+        ).fetchall()
+        clubs = _enrich_clubs(conn, [dict(r) for r in rows])
+
+    return TEMPLATES.TemplateResponse(
+        request, "league.html",
+        {"league": dict(league), "clubs": clubs},
     )
 
 

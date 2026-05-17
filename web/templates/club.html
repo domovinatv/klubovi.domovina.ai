@@ -24,7 +24,7 @@
       {% endif %}
       <div class="mt-2 text-sm text-slate-600">
         {% if club.city %}<span class="inline-block mr-3">📍 {{ club.city }}</span>{% endif %}
-        {% if club.county %}<span class="inline-block mr-3">🏞 {{ club.county }}</span>{% endif %}
+        {% if club.county %}<a href="/counties/{{ club.county }}" class="inline-block mr-3 hover:text-hr-red">🏞 {{ club.county }}</a>{% endif %}
         {% if club.founded_year %}<span class="inline-block mr-3">🎂 {{ club.founded_year }}</span>{% endif %}
       </div>
     </div>
@@ -107,10 +107,10 @@
           <ul class="text-sm space-y-1">
             {% for l in club.leagues %}
               <li class="flex justify-between border-b border-slate-100 py-1 last:border-0">
-                <span>
+                <a href="/leagues/{{ l.league_id }}" class="hover:text-hr-red">
                   <span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-200 mr-2">T{{ l.tier }}</span>
                   {{ l.league_name }}
-                </span>
+                </a>
                 <span class="text-slate-400 text-xs">{{ l.season }} <span class="text-slate-300">· {{ l.source }}</span></span>
               </li>
             {% endfor %}

@@ -25,71 +25,7 @@
   </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
-{% for c in clubs %}
-  <a href="/clubs/{{ c.slug }}"
-     class="bg-white rounded-lg border border-slate-200 border-l-4
-       {% if c.action_score == 5 %}border-l-emerald-500
-       {% elif c.action_score >= 3 %}border-l-lime-400
-       {% elif c.action_score >= 1 %}border-l-amber-300
-       {% else %}border-l-slate-200 opacity-75{% endif %}
-       hover:border-hr-red hover:shadow-sm transition p-4 flex gap-3 group">
-    <div class="w-12 h-12 flex-shrink-0 rounded bg-slate-100 grid place-items-center overflow-hidden">
-      {% if c.logo_url %}
-        <img src="{{ c.logo_url }}" alt="" class="w-full h-full object-contain"
-             onerror="this.style.display='none'; this.parentElement.innerText='⚽';">
-      {% else %}
-        <span class="text-2xl">⚽</span>
-      {% endif %}
-    </div>
-    <div class="flex-1 min-w-0">
-      <div class="flex items-center gap-2">
-        <div class="font-semibold truncate group-hover:text-hr-red">{{ c.canonical_name }}</div>
-        {% if c.is_full %}
-          <span class="text-[9px] font-bold uppercase tracking-wide bg-emerald-500 text-white px-1.5 py-0.5 rounded shrink-0">✓ Pun</span>
-        {% elif c.action_score == 0 %}
-          <span class="text-[9px] font-bold uppercase tracking-wide bg-slate-300 text-slate-700 px-1.5 py-0.5 rounded shrink-0">∅ Nedostupan</span>
-        {% endif %}
-      </div>
-      <div class="text-xs text-slate-500 truncate">
-        {% if c.city %}{{ c.city }}{% endif %}
-        {% if c.city and c.county %} · {% endif %}
-        {% if c.county %}{{ c.county.replace(" županija", "") }}{% endif %}
-      </div>
-
-      {# ---------- Tier badges ---------- #}
-      <div class="mt-2 flex items-center gap-1 flex-wrap">
-        {% for t in c.tiers %}
-          <span class="text-[10px] font-medium px-1.5 py-0.5 rounded
-            {% if t == 1 %}bg-hr-red text-white
-            {% elif t == 2 %}bg-orange-500 text-white
-            {% elif t == 3 %}bg-amber-400 text-amber-900
-            {% elif t == 4 %}bg-yellow-300 text-yellow-900
-            {% elif t == 5 %}bg-lime-300 text-lime-900
-            {% elif t == 6 %}bg-emerald-200 text-emerald-900
-            {% elif t == 7 %}bg-sky-200 text-sky-900
-            {% else %}bg-slate-200 text-slate-700
-            {% endif %}">T{{ t }}</span>
-        {% endfor %}
-      </div>
-
-      {# ---------- Reachability pills (action-oriented, faded when missing) ---------- #}
-      <div class="mt-1.5 flex items-center gap-1 flex-wrap text-[10px]">
-        <span class="px-1.5 py-0.5 rounded {% if c.can_sms %}bg-emerald-100 text-emerald-700 font-medium{% else %}bg-slate-50 text-slate-300{% endif %}"
-              title="{% if c.can_sms %}SMS na {{ c.phone }}{% else %}Nema mobitela za SMS{% endif %}">💬 SMS</span>
-        <span class="px-1.5 py-0.5 rounded {% if c.can_call %}bg-sky-100 text-sky-700 font-medium{% else %}bg-slate-50 text-slate-300{% endif %}"
-              title="{% if c.can_call %}Nazvati {{ c.phone }}{% else %}Nema telefona{% endif %}">📞 Poziv</span>
-        <span class="px-1.5 py-0.5 rounded {% if c.can_email %}bg-purple-100 text-purple-700 font-medium{% else %}bg-slate-50 text-slate-300{% endif %}"
-              title="{% if c.can_email %}{{ c.email }}{% else %}Nema emaila{% endif %}">✉ Email</span>
-        <span class="px-1.5 py-0.5 rounded {% if c.can_mail %}bg-amber-100 text-amber-700 font-medium{% else %}bg-slate-50 text-slate-300{% endif %}"
-              title="{% if c.can_mail %}{{ c.address }}{% else %}Nema adrese za poštu{% endif %}">📮 Pošta</span>
-        <span class="px-1.5 py-0.5 rounded {% if c.can_web %}bg-indigo-100 text-indigo-700 font-medium{% else %}bg-slate-50 text-slate-300{% endif %}"
-              title="{% if c.can_web %}Online prisutnost{% else %}Nema online prisutnosti{% endif %}">🌐 Online</span>
-      </div>
-    </div>
-  </a>
-{% endfor %}
-</div>
+{% include "partials/club_grid.html" %}
 
 {% if total_pages > 1 %}
 <nav class="mt-6 flex items-center justify-center gap-2 text-sm">
