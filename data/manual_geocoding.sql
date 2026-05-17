@@ -1,109 +1,59 @@
--- Manual geocoding for the 15 clubs that Nominatim could not place.
+-- Manual geocoding for the 15 clubs Nominatim couldn't place.
 -- Generated 2026-05-17 from data/clubs.db.
+-- APPLIED on 2026-05-17 — coordinates filled in via web research by 3 parallel
+-- subagents (Croatian football news + Wikipedia + HNS Semafor + OSM lookup).
+-- Re-runnable as a record of provenance; idempotent UPDATEs.
 --
--- HOW TO USE
---   For each club below:
---     1. Open the OSM (or Google) search URL.
---     2. Find the field/club on the map; right-click -> copy coordinates.
---        Croatia: lat ~42-46 (north), lng ~13-19 (east).
---     3. UNCOMMENT the UPDATE line (remove leading "-- "),
---        replace 0.0, 0.0 with the real values.
---     4. Save, then apply:  sqlite3 data/clubs.db < data/manual_geocoding.sql
---     5. Refresh /map.
---
--- Lines stay commented until you intentionally uncomment them, so running
--- the file in its template state is a no-op.
+-- Confidence:
+--   high   = village/town identified from official or Wikipedia source
+--   medium = club known to be displaced or based in a sub-locality
+-- Bounds verified: lat 42.0-46.6, lng 13.0-19.5 (Croatia).
 
--- HNK Konavljanin
---   county:  Dubrovačko-neretvanska županija
---   address: Čilipi 70, Čilipi
---   osm:    https://www.openstreetmap.org/search?query=%C4%8Cilipi+70%2C+%C4%8Cilipi
---   google: https://www.google.com/maps/search/%C4%8Cilipi+70%2C+%C4%8Cilipi
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'konavljanin';
+BEGIN TRANSACTION;
 
--- NK Ekonomik
---   county:  Sisačko-moslavačka županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Ekonomik%2C+Sisa%C4%8Dko-moslava%C4%8Dka+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Ekonomik%2C+Sisa%C4%8Dko-moslava%C4%8Dka+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'ekonomik';
+-- HNK Konavljanin (Dubrovačko-neretvanska) — village center Čilipi
+UPDATE clubs SET lat = 42.549539, lng = 18.281587, updated_at = CURRENT_TIMESTAMP WHERE slug = 'konavljanin';
 
--- NK HOŠK
---   county:  Osječko-baranjska županija
---   osm:    https://www.openstreetmap.org/search?query=NK+HO%C5%A0K%2C+Osje%C4%8Dko-baranjska+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+HO%C5%A0K%2C+Osje%C4%8Dko-baranjska+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'hosk';
+-- NK Ekonomik (Sisačko-moslavačka) — Donja Vlahinička near Popovača; source: HNS Semafor
+UPDATE clubs SET lat = 45.5834415, lng = 16.5959794, updated_at = CURRENT_TIMESTAMP WHERE slug = 'ekonomik';
 
--- NK Hrvatski Bojovnik
---   county:  Koprivničko-križevačka županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Hrvatski+Bojovnik%2C+Koprivni%C4%8Dko-kri%C5%BEeva%C4%8Dka+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Hrvatski+Bojovnik%2C+Koprivni%C4%8Dko-kri%C5%BEeva%C4%8Dka+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'hrvatski-bojovnik';
+-- NK HOŠK (Osječko-baranjska) — Gašinci in Satnica Đakovačka; source: Wikipedia
+UPDATE clubs SET lat = 45.3350343, lng = 18.3116310, updated_at = CURRENT_TIMESTAMP WHERE slug = 'hosk';
 
--- NK Janjevo
---   county:  Šibensko-kninska županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Janjevo%2C+%C5%A0ibensko-kninska+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Janjevo%2C+%C5%A0ibensko-kninska+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'janjevo';
+-- NK Hrvatski Bojovnik (Koprivničko-križevačka) — Mokrice Miholečke; source: HNS Semafor
+UPDATE clubs SET lat = 46.055000, lng = 16.381944, updated_at = CURRENT_TIMESTAMP WHERE slug = 'hrvatski-bojovnik';
 
--- NK Kraljevčan 38
---   city:    Donji Kraljevac
---   county:  Međimurska županija
---   address: Donji Kraljevac
---   osm:    https://www.openstreetmap.org/search?query=Donji+Kraljevac
---   google: https://www.google.com/maps/search/Donji+Kraljevac
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'kraljevcan-38';
+-- NK Janjevo (Šibensko-kninska) — displaced community in Kistanje; source: Wikipedia
+UPDATE clubs SET lat = 43.9805404, lng = 15.9619568, updated_at = CURRENT_TIMESTAMP WHERE slug = 'janjevo';
 
--- NK Parasan
---   county:  Požeško-slavonska županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Parasan%2C+Po%C5%BEe%C5%A1ko-slavonska+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Parasan%2C+Po%C5%BEe%C5%A1ko-slavonska+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'parasan';
+-- NK Kraljevčan 38 (Međimurska) — Donji Kraljevec village center
+UPDATE clubs SET lat = 46.370500, lng = 16.654970, updated_at = CURRENT_TIMESTAMP WHERE slug = 'kraljevcan-38';
 
--- NK Prekodravac
---   county:  Koprivničko-križevačka županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Prekodravac%2C+Koprivni%C4%8Dko-kri%C5%BEeva%C4%8Dka+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Prekodravac%2C+Koprivni%C4%8Dko-kri%C5%BEeva%C4%8Dka+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'prekodravac';
+-- NK Parasan (Požeško-slavonska) — Golobrdci near Požega; source: sport-pozega
+UPDATE clubs SET lat = 45.3767231, lng = 17.6620291, updated_at = CURRENT_TIMESTAMP WHERE slug = 'parasan';
 
--- NK Rusin
---   county:  Vukovarsko-srijemska županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Rusin%2C+Vukovarsko-srijemska+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Rusin%2C+Vukovarsko-srijemska+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'rusin';
+-- NK Prekodravac (Koprivničko-križevačka) — Ždala in Gola municipality; source: Wikipedia
+UPDATE clubs SET lat = 46.169138, lng = 17.141775, updated_at = CURRENT_TIMESTAMP WHERE slug = 'prekodravac';
 
--- NK Sabarija
---   osm:    https://www.openstreetmap.org/search?query=NK+Sabarija%2C+Hrvatska
---   google: https://www.google.com/maps/search/NK+Sabarija%2C+Hrvatska
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'sabarija';
+-- NK Rusin (Vukovarsko-srijemska) — Mikluševci Ruthenian minority village; source: Wikipedia
+UPDATE clubs SET lat = 45.2512468, lng = 19.0846544, updated_at = CURRENT_TIMESTAMP WHERE slug = 'rusin';
 
--- NK Srijemac
---   county:  Vukovarsko-srijemska županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Srijemac%2C+Vukovarsko-srijemska+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Srijemac%2C+Vukovarsko-srijemska+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'srijemac';
+-- NK Sabarija (no county) — Subotica Podravska, Rasinja, Koprivničko-križevačka; source: Wikipedia
+UPDATE clubs SET lat = 46.1901671, lng = 16.7413231, updated_at = CURRENT_TIMESTAMP WHERE slug = 'sabarija';
 
--- NK Strijelac
---   county:  Sisačko-moslavačka županija
---   address: Banova Jaruga Cvjetni trg b. b., Banova Jaruga
---   osm:    https://www.openstreetmap.org/search?query=Banova+Jaruga+Cvjetni+trg+b.+b.%2C+Banova+Jaruga
---   google: https://www.google.com/maps/search/Banova+Jaruga+Cvjetni+trg+b.+b.%2C+Banova+Jaruga
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'strijelac';
+-- NK Srijemac (Vukovarsko-srijemska) — Strošinci; source: Wikipedia
+UPDATE clubs SET lat = 44.9157897, lng = 19.0653634, updated_at = CURRENT_TIMESTAMP WHERE slug = 'srijemac';
 
--- NK Tomislav Siž
---   county:  Koprivničko-križevačka županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Tomislav+Si%C5%BE%2C+Koprivni%C4%8Dko-kri%C5%BEeva%C4%8Dka+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Tomislav+Si%C5%BE%2C+Koprivni%C4%8Dko-kri%C5%BEeva%C4%8Dka+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'tomislav-siz';
+-- NK Strijelac (Sisačko-moslavačka) — Banova Jaruga village center
+UPDATE clubs SET lat = 45.441282, lng = 16.893942, updated_at = CURRENT_TIMESTAMP WHERE slug = 'strijelac';
 
--- NK Vatrogasac (K)
---   county:  Zagrebačka županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Vatrogasac+%28K%29%2C+Zagreba%C4%8Dka+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Vatrogasac+%28K%29%2C+Zagreba%C4%8Dka+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'vatrogasac-k';
+-- NK Tomislav Siž (Koprivničko-križevačka) — Sveti Ivan Žabno (Siž = SIŽ); source: nktomislav.hr
+UPDATE clubs SET lat = 45.9464805, lng = 16.6055861, updated_at = CURRENT_TIMESTAMP WHERE slug = 'tomislav-siz';
 
--- NK Vatrogasac (Z)
---   county:  Zagrebačka županija
---   osm:    https://www.openstreetmap.org/search?query=NK+Vatrogasac+%28Z%29%2C+Zagreba%C4%8Dka+%C5%BEupanija
---   google: https://www.google.com/maps/search/NK+Vatrogasac+%28Z%29%2C+Zagreba%C4%8Dka+%C5%BEupanija
--- UPDATE clubs SET lat = 0.0, lng = 0.0, updated_at = CURRENT_TIMESTAMP WHERE slug = 'vatrogasac-z';
+-- NK Vatrogasac (K) (Zagrebačka) — Kobilić near Velika Gorica; source: HNS Semafor
+UPDATE clubs SET lat = 45.7319711, lng = 16.1012819, updated_at = CURRENT_TIMESTAMP WHERE slug = 'vatrogasac-k';
 
+-- NK Vatrogasac (Z) (Zagrebačka) — Zdenci Brdovečki; source: HNS Semafor
+UPDATE clubs SET lat = 45.8628953, lng = 15.7540367, updated_at = CURRENT_TIMESTAMP WHERE slug = 'vatrogasac-z';
+
+COMMIT;
