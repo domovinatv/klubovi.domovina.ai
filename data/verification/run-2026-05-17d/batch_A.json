@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "dinamo-zagreb",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "",
+    "evidence": ["https://gnkdinamo.hr/hr", "https://en.wikipedia.org/wiki/GNK_Dinamo_Zagreb"]
+  },
+  {
+    "slug": "zadar",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": null, "coordinates": 1.0, "league": 0.5},
+    "overall": 0.9,
+    "issues": "league field shows both T3 (2021/22 stale) and T4 (25/26); current 25/26 is 3. NL Jug which is tier 3 per HNS, so T4 label looks incorrect",
+    "evidence": ["https://hnkzadar.hr/", "https://semafor.hns.family/en/clubs/1024/hnk-zadar/"]
+  },
+  {
+    "slug": "kurilovec-velika-gorica",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": null, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "founded_year=2018 reflects rename year (NK Udarnik -> NK Kurilovec); club tradition dates to 1948 per own history page",
+    "evidence": ["https://nk-kurilovec.hr/povijest-kluba/", "https://semafor.hns.family/klubovi/1301/nk-kurilovec/"]
+  },
+  {
+    "slug": "dubravcan-dd",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 0.5, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 0.92,
+    "issues": "x_url is a twitter share intent link (twitter.com/home?status=...semafor.hns.family) not a real club profile - aggregator/share leak per rubric",
+    "evidence": ["https://hr.wikipedia.org/wiki/NK_Dubrav%C4%8Dan_Donja_Dubrava", "https://mns.hr/wp-content/uploads/2025/02/Adresar-klubova-MNS-2025-03.pdf"]
+  },
+  {
+    "slug": "poljana",
+    "scores": {"identity": 1.0, "location": 0.5, "contact": 0.0, "phone_kind": 1.0, "coordinates": 0.5, "league": 1.0},
+    "overall": 0.67,
+    "issues": "address postcode 34543 belongs to Poljana in Požeško-Slavonska county, not SMŽ Poljana near Kutina (mismatch); email danijel.vincetic@hep.hr is a personal HEP corporate address not a club address; phone +38534... uses 034 area code (Požega) not SMŽ - cross-county leak suggests data merged from wrong Poljana",
+    "evidence": ["https://semafor.hns.family/klubovi/3431/nk-poljana-poljana/", "https://ns-kutina.hr/wp-content/uploads/2026/01/Glasnik-142026_06052026.pdf"]
+  }
+]

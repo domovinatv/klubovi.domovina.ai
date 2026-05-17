@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "rijeka",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "",
+    "evidence": ["https://nk-rijeka.hr/", "https://en.wikipedia.org/wiki/HNK_Rijeka"]
+  },
+  {
+    "slug": "primorac-biograd-na-moru",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 0.5, "phone_kind": null, "coordinates": 1.0, "league": 1.0},
+    "overall": 0.9,
+    "issues": "x_url is a twitter.com/home?status= share link, not the club's actual Twitter account",
+    "evidence": ["https://semafor.hns.family/klubovi/207/hnk-primorac-bnm/", "https://en.wikipedia.org/wiki/HNK_Primorac_Biograd_na_Moru", "https://www.sofascore.com/football/team/hnk-primorac-biograd/233066"]
+  },
+  {
+    "slug": "garic-g",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 0.5, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 0.9166666666666666,
+    "issues": "website znsvpz.hr is a county FA aggregator listing, not the club's own site",
+    "evidence": ["https://hr.wikipedia.org/wiki/NK_Gari%C4%87_Gare%C5%A1nica", "https://semafor.hns.family/klubovi/1379/nk-garic-g/", "https://www.facebook.com/nkgaricgaresnica/"]
+  },
+  {
+    "slug": "trnski",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 0.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 0.8333333333333334,
+    "issues": "phone, email (financije@nova-raca.hr), and website all belong to Općina Nova Rača municipality, not the football club",
+    "evidence": ["https://nova-raca.hr/nk-trnski/", "https://nsbbz.hr/", "https://www.sofascore.com/hr/football/match/nk-trnski-nova-raca-nk-ribar-koncanica/AIFcsGdnd"]
+  },
+  {
+    "slug": "dubrava-z",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": null, "phone_kind": null, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "",
+    "evidence": ["https://www.sofascore.com/football/team/nk-dubrava-zadubravlje/389268", "https://zns-bpz.hr/"]
+  }
+]

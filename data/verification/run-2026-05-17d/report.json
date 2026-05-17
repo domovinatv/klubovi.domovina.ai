@@ -1,0 +1,277 @@
+{
+  "run_date": "2026-05-17",
+  "sample_size": 15,
+  "overall_score": 89.1,
+  "dimension_scores": {
+    "identity": 100.0,
+    "location": 90.0,
+    "contact": 67.9,
+    "phone_kind": 100.0,
+    "coordinates": 86.7,
+    "league": 93.3
+  },
+  "per_club_results": [
+    {
+      "slug": "dinamo-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://gnkdinamo.hr/hr",
+        "https://en.wikipedia.org/wiki/GNK_Dinamo_Zagreb"
+      ]
+    },
+    {
+      "slug": "zadar",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 0.5
+      },
+      "overall": 0.9,
+      "issues": "league field shows both T3 (2021/22 stale) and T4 (25/26); current 25/26 is 3. NL Jug which is tier 3 per HNS, so T4 label looks incorrect",
+      "evidence": [
+        "https://hnkzadar.hr/",
+        "https://semafor.hns.family/en/clubs/1024/hnk-zadar/"
+      ]
+    },
+    {
+      "slug": "kurilovec-velika-gorica",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "founded_year=2018 reflects rename year (NK Udarnik -> NK Kurilovec); club tradition dates to 1948 per own history page",
+      "evidence": [
+        "https://nk-kurilovec.hr/povijest-kluba/",
+        "https://semafor.hns.family/klubovi/1301/nk-kurilovec/"
+      ]
+    },
+    {
+      "slug": "dubravcan-dd",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.5,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.92,
+      "issues": "x_url is a twitter share intent link (twitter.com/home?status=...semafor.hns.family) not a real club profile - aggregator/share leak per rubric",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_Dubrav%C4%8Dan_Donja_Dubrava",
+        "https://mns.hr/wp-content/uploads/2025/02/Adresar-klubova-MNS-2025-03.pdf"
+      ]
+    },
+    {
+      "slug": "poljana",
+      "scores": {
+        "identity": 1.0,
+        "location": 0.5,
+        "contact": 0.0,
+        "phone_kind": 1.0,
+        "coordinates": 0.5,
+        "league": 1.0
+      },
+      "overall": 0.67,
+      "issues": "address postcode 34543 belongs to Poljana in Požeško-Slavonska county, not SMŽ Poljana near Kutina (mismatch); email danijel.vincetic@hep.hr is a personal HEP corporate address not a club address; phone +38534... uses 034 area code (Požega) not SMŽ - cross-county leak suggests data merged from wrong Poljana",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/3431/nk-poljana-poljana/",
+        "https://ns-kutina.hr/wp-content/uploads/2026/01/Glasnik-142026_06052026.pdf"
+      ]
+    },
+    {
+      "slug": "vukovar-1991-osijek",
+      "scores": {
+        "identity": 1.0,
+        "location": 0.5,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 0.5,
+        "league": 1.0
+      },
+      "overall": 0.8,
+      "issues": "city field says Osijek but 2025/26 home games are played at Stadion HNK Cibalia in Vinkovci, not Stadion Gradski vrt in Osijek; coordinates (45.5453, 18.6953) point to Vukovar (registered seat) rather than current home venue — acceptable edge case but inconsistent with stadium_name field which lists Osijek's Gradski vrt",
+      "evidence": [
+        "https://en.wikipedia.org/wiki/HNK_Vukovar_1991",
+        "https://press032.com/hnk-vukovar-1991-svoje-domace-utakmice-u-supersport-hnl-igrat-ce-u-vinkovcima/",
+        "https://semafor.hns.family/klubovi/5361/hnk-vukovar-1991/"
+      ]
+    },
+    {
+      "slug": "split",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 0.5
+      },
+      "overall": 0.9,
+      "issues": "club is RNK Split 1912 re-established May 2024, currently in 5th tier per Wikipedia/sources; tier field says 3 with T3 2021/22 historical and T6 1.ŽNL SDŽ — mismatch with reported current 5th tier; contact details and website all verified clean and official",
+      "evidence": [
+        "https://rnksplit1912.hr/",
+        "https://en.wikipedia.org/wiki/RNK_Split",
+        "https://semafor.hns.family/klubovi/178191/rnk-split-1912/"
+      ]
+    },
+    {
+      "slug": "psunj-sokol",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.83,
+      "issues": "phone +38535371001 and email opcina.okucani@opcokucani.tcloud.hr belong to Općina Okučani (municipality), not the football club — clear contact leak to municipal office",
+      "evidence": [
+        "https://www.okucani.hr/1/index.php/drustveno-uredenje/sport/nk-psunj-sokol",
+        "https://hr.wikipedia.org/wiki/NK_Psunj_Sokol_Oku%C4%8Dani",
+        "https://semafor.hns.family/klubovi/571/nk-psunj-sokol/"
+      ]
+    },
+    {
+      "slug": "tomislav-d",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "no issues; club confirmed in Berek, BBŽ county; relegated from Elitna ŽNL after 2023/24 to 2. ŽNL BBŽ — matches T6/T7 listing; Facebook page verified",
+      "evidence": [
+        "https://bjelovar.info/sport/posljednje-kolo-bilo-je-super-efikasno-hnk-daruvar-pobjedom-potvrdio-naslov-prvaka-ligu-napusta-berecki-tomislav-zamijenit-ce-ga-gudovacka-lasta/",
+        "https://www.sofascore.com/hr/turnir/nogomet/croatia-amateur/2-znl-bjelovarsko-bilogorska/18278"
+      ]
+    },
+    {
+      "slug": "adriatic",
+      "scores": {
+        "identity": 1.0,
+        "location": 0.5,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 0.0,
+        "league": 1.0
+      },
+      "overall": 0.7,
+      "issues": "city field is empty (only county provided) — club is based in Split at Mostarska 72 and plays at Park mladeži (~43.519, 16.444); given coordinates 43.5589/16.3606 point to Kaštel area, >5km from actual home pitch; official site nkadriatic.hr verified",
+      "evidence": [
+        "https://www.nkadriatic.hr/",
+        "https://hr.wikipedia.org/wiki/NK_Adriatic_Split",
+        "https://semafor.hns.family/klubovi/4558/nk-adriatic/"
+      ]
+    },
+    {
+      "slug": "rijeka",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://nk-rijeka.hr/",
+        "https://en.wikipedia.org/wiki/HNK_Rijeka"
+      ]
+    },
+    {
+      "slug": "primorac-biograd-na-moru",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.5,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.9,
+      "issues": "x_url is a twitter.com/home?status= share link, not the club's actual Twitter account",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/207/hnk-primorac-bnm/",
+        "https://en.wikipedia.org/wiki/HNK_Primorac_Biograd_na_Moru",
+        "https://www.sofascore.com/football/team/hnk-primorac-biograd/233066"
+      ]
+    },
+    {
+      "slug": "garic-g",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.5,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.9166666666666666,
+      "issues": "website znsvpz.hr is a county FA aggregator listing, not the club's own site",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_Gari%C4%87_Gare%C5%A1nica",
+        "https://semafor.hns.family/klubovi/1379/nk-garic-g/",
+        "https://www.facebook.com/nkgaricgaresnica/"
+      ]
+    },
+    {
+      "slug": "trnski",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.8333333333333334,
+      "issues": "phone, email (financije@nova-raca.hr), and website all belong to Općina Nova Rača municipality, not the football club",
+      "evidence": [
+        "https://nova-raca.hr/nk-trnski/",
+        "https://nsbbz.hr/",
+        "https://www.sofascore.com/hr/football/match/nk-trnski-nova-raca-nk-ribar-koncanica/AIFcsGdnd"
+      ]
+    },
+    {
+      "slug": "dubrava-z",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": null,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://www.sofascore.com/football/team/nk-dubrava-zadubravlje/389268",
+        "https://zns-bpz.hr/"
+      ]
+    }
+  ]
+}

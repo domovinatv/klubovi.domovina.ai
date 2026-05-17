@@ -1,0 +1,111 @@
+{
+  "seed": 23251,
+  "strata": [
+    [
+      1,
+      3
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      4,
+      2
+    ],
+    [
+      5,
+      2
+    ],
+    [
+      6,
+      3
+    ],
+    [
+      7,
+      2
+    ],
+    [
+      8,
+      1
+    ]
+  ],
+  "batches": 3,
+  "clubs": [
+    {
+      "slug": "dinamo-zagreb",
+      "tier": 1,
+      "batch": "A"
+    },
+    {
+      "slug": "vukovar-1991-osijek",
+      "tier": 1,
+      "batch": "B"
+    },
+    {
+      "slug": "rijeka",
+      "tier": 1,
+      "batch": "C"
+    },
+    {
+      "slug": "zadar",
+      "tier": 3,
+      "batch": "A"
+    },
+    {
+      "slug": "split",
+      "tier": 3,
+      "batch": "B"
+    },
+    {
+      "slug": "primorac-biograd-na-moru",
+      "tier": 4,
+      "batch": "C"
+    },
+    {
+      "slug": "kurilovec-velika-gorica",
+      "tier": 4,
+      "batch": "A"
+    },
+    {
+      "slug": "psunj-sokol",
+      "tier": 5,
+      "batch": "B"
+    },
+    {
+      "slug": "garic-g",
+      "tier": 5,
+      "batch": "C"
+    },
+    {
+      "slug": "dubravcan-dd",
+      "tier": 6,
+      "batch": "A"
+    },
+    {
+      "slug": "tomislav-d",
+      "tier": 6,
+      "batch": "B"
+    },
+    {
+      "slug": "trnski",
+      "tier": 6,
+      "batch": "C"
+    },
+    {
+      "slug": "poljana",
+      "tier": 7,
+      "batch": "A"
+    },
+    {
+      "slug": "adriatic",
+      "tier": 7,
+      "batch": "B"
+    },
+    {
+      "slug": "dubrava-z",
+      "tier": 8,
+      "batch": "C"
+    }
+  ]
+}

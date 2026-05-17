@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "vukovar-1991-osijek",
+    "scores": {"identity": 1.0, "location": 0.5, "contact": 1.0, "phone_kind": null, "coordinates": 0.5, "league": 1.0},
+    "overall": 0.8,
+    "issues": "city field says Osijek but 2025/26 home games are played at Stadion HNK Cibalia in Vinkovci, not Stadion Gradski vrt in Osijek; coordinates (45.5453, 18.6953) point to Vukovar (registered seat) rather than current home venue — acceptable edge case but inconsistent with stadium_name field which lists Osijek's Gradski vrt",
+    "evidence": ["https://en.wikipedia.org/wiki/HNK_Vukovar_1991", "https://press032.com/hnk-vukovar-1991-svoje-domace-utakmice-u-supersport-hnl-igrat-ce-u-vinkovcima/", "https://semafor.hns.family/klubovi/5361/hnk-vukovar-1991/"]
+  },
+  {
+    "slug": "split",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": null, "coordinates": 1.0, "league": 0.5},
+    "overall": 0.9,
+    "issues": "club is RNK Split 1912 re-established May 2024, currently in 5th tier per Wikipedia/sources; tier field says 3 with T3 2021/22 historical and T6 1.ŽNL SDŽ — mismatch with reported current 5th tier; contact details and website all verified clean and official",
+    "evidence": ["https://rnksplit1912.hr/", "https://en.wikipedia.org/wiki/RNK_Split", "https://semafor.hns.family/klubovi/178191/rnk-split-1912/"]
+  },
+  {
+    "slug": "psunj-sokol",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 0.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 0.83,
+    "issues": "phone +38535371001 and email opcina.okucani@opcokucani.tcloud.hr belong to Općina Okučani (municipality), not the football club — clear contact leak to municipal office",
+    "evidence": ["https://www.okucani.hr/1/index.php/drustveno-uredenje/sport/nk-psunj-sokol", "https://hr.wikipedia.org/wiki/NK_Psunj_Sokol_Oku%C4%8Dani", "https://semafor.hns.family/klubovi/571/nk-psunj-sokol/"]
+  },
+  {
+    "slug": "tomislav-d",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": null, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "no issues; club confirmed in Berek, BBŽ county; relegated from Elitna ŽNL after 2023/24 to 2. ŽNL BBŽ — matches T6/T7 listing; Facebook page verified",
+    "evidence": ["https://bjelovar.info/sport/posljednje-kolo-bilo-je-super-efikasno-hnk-daruvar-pobjedom-potvrdio-naslov-prvaka-ligu-napusta-berecki-tomislav-zamijenit-ce-ga-gudovacka-lasta/", "https://www.sofascore.com/hr/turnir/nogomet/croatia-amateur/2-znl-bjelovarsko-bilogorska/18278"]
+  },
+  {
+    "slug": "adriatic",
+    "scores": {"identity": 1.0, "location": 0.5, "contact": 1.0, "phone_kind": null, "coordinates": 0.0, "league": 1.0},
+    "overall": 0.7,
+    "issues": "city field is empty (only county provided) — club is based in Split at Mostarska 72 and plays at Park mladeži (~43.519, 16.444); given coordinates 43.5589/16.3606 point to Kaštel area, >5km from actual home pitch; official site nkadriatic.hr verified",
+    "evidence": ["https://www.nkadriatic.hr/", "https://hr.wikipedia.org/wiki/NK_Adriatic_Split", "https://semafor.hns.family/klubovi/4558/nk-adriatic/"]
+  }
+]

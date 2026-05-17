@@ -140,6 +140,7 @@ whether changes between runs lifted or hurt specific dimensions. The
 | **2026-05-17** (baseline) | 92.0 | 96.7 | 100 | 70.0 | 100 | 90.0 | 100 | first measurement after the 901-club backfill landed |
 | **2026-05-17b** | 93.0 | 100 | 100 | **75.0** | 100 | 86.7 | 100 | `scripts/14_cleanup_leaks.py` (~800 leaky values nulled), `src/backfill.py` blocklist expanded, 654-club targeted re-backfill |
 | **2026-05-17c** | 89.1 | 96.7 | 93.3 | 66.7 | 94.4 | 90.0 | 96.7 | dedicated HNS Semafor scraper landed: 172 → 209 semafor_url, +71 stadium_name fills, 15 stadium leak corrections, 8 address fills, 7 phone fills, 2 founded_year fills |
+| **2026-05-17d** | 89.1 | 100  | 90.0 | 67.9 | 100  | 86.7 | 93.3 | independent draw (seed 23251, not 42) — verifies the score is sample-stable; identity/phone_kind perfect on 15 fresh clubs |
 
 Run 2 caveats:
 
@@ -192,3 +193,31 @@ Run 3 caveats:
   doesn't exercise.** Top tier (Dinamo, Hajduk, Rijeka — now in DB with
   Semafor address + +385 phone + lat/lng) is not present in this sample.
   Next run with a different seed, or a larger N, would reflect the wins.
+
+Run 4 caveats (independent seed 23251):
+
+- **Same 89.1/100 from a completely different 15-club draw** — the score
+  is sample-stable; the rubric's noise floor in a 15-sample is ~3–4 pts.
+  identity and phone_kind both perfect this run (vs 96.7 / 94.4 in Run 3),
+  contact essentially unchanged at 67.9. Top-tier Dinamo + Rijeka both
+  scored 1.00 — Semafor's top-tier ingest did not introduce regressions
+  where it touched.
+
+- **New systemic contact-leak class surfaced: municipal-office
+  contamination.** NK Trnski now has phone/email/website of Općina Nova
+  Rača (financije@nova-raca.hr); NK Psunj Sokol has Općina Okučani's
+  switchboard. These slipped past the FA-email and aggregator blocklists
+  because the domains look legitimate ("nova-raca.hr", "opcokucani"). A
+  domain-vs-club name-similarity check is the cleanest fix.
+
+- **Twitter share-intent links re-appeared as `x_url`.** Run 2 cleanup
+  cleared `twitter.com/share%` and `intent/tweet%`; this run's hits
+  (`twitter.com/home?status=...semafor.hns.family`) use a different share
+  URL shape that the cleanup didn't anticipate. Two clubs affected
+  (dubravcan-dd, primorac-biograd-na-moru). Extend the blocklist.
+
+- **Cross-county same-name club leak.** NK Poljana (SMŽ, tier 7) has
+  address + phone + email pointing at Poljana, Požega county (different
+  Poljana, ~150 km apart). This is a deeper class than sister-club
+  contamination — needs a county-vs-area-code consistency check before
+  accepting backfill values.
