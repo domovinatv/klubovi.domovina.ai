@@ -30,6 +30,10 @@ CREATE TABLE IF NOT EXISTS clubs (
   lng              REAL,
   semafor_url      TEXT,  -- canonical HNS Semafor club page, separate from `website`
                           --   which is the club's own site if any
+  sofascore_url    TEXT,  -- https://www.sofascore.com/team/football/-/{id}
+                          --   populated for the 434 clubs we matched to a
+                          --   Sofascore team via tier-1-4 ingest or the
+                          --   Croatia Amateur sweep
   notes            TEXT,
   created_at       TEXT DEFAULT CURRENT_TIMESTAMP,
   updated_at       TEXT DEFAULT CURRENT_TIMESTAMP
