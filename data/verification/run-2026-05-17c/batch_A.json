@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "gorica-velika-gorica",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "none; address, phone, email, website all match official club site",
+    "evidence": ["https://hnk-gorica.hr/klub/kontakt/", "https://semafor.hns.family/klubovi/1274/hnk-gorica/"]
+  },
+  {
+    "slug": "lucko-zagreb",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "none; all contact fields verified against official nk-lucko.hr",
+    "evidence": ["https://nk-lucko.hr/kontakt/", "https://en.wikipedia.org/wiki/NK_Lu%C4%8Dko"]
+  },
+  {
+    "slug": "bilogora-91",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 0.0, "phone_kind": null, "coordinates": 1.0, "league": 1.0},
+    "overall": 0.8,
+    "issues": "website https://grubisnopolje.hr/ is the municipality portal, not the club (clear leak); stadium_name should be 'Bilogorac' not 'NK Bilogora 91'; club's actual web presence is facebook.com/nkbilogora",
+    "evidence": ["https://hr.wikipedia.org/wiki/NK_Bilogora_91_Grubi%C5%A1no_Polje", "https://www.facebook.com/nkbilogora/"]
+  },
+  {
+    "slug": "croatia-g",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "none; phone 033 prefix is correct Virovitica-area landline; club confirmed in 1. ŽNL VPŽ",
+    "evidence": ["https://www.znsvpz.hr/klub/croatia/26/", "https://hr.wikipedia.org/wiki/NK_Croatia_Grabrovnica"]
+  },
+  {
+    "slug": "bsk-brdovec",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 0.5, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 0.92,
+    "issues": "email rnovosel3@gmail.com is president's personal gmail (belongs to club officer, but not an institutional address); 091 prefix correctly classified as mobile; league confirmed via Semafor (2. NSZŽ Zapad)",
+    "evidence": ["https://semafor.hns.family/klubovi/1201/nk-bsk-brdovec/", "https://hr.wikipedia.org/wiki/NK_BSK_Brdovec"]
+  }
+]

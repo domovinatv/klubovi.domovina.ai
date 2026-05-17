@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "dinamo-zagreb",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "none; all fields verified against official gnkdinamo.hr",
+    "evidence": ["https://gnkdinamo.hr/hr", "https://hr.wikipedia.org/wiki/GNK_Dinamo_Zagreb"]
+  },
+  {
+    "slug": "kustosija-zagreb",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 1.0, "phone_kind": 1.0, "coordinates": 1.0, "league": 1.0},
+    "overall": 1.0,
+    "issues": "minor: site lists email as info@kustosija.hr while DB has info@nk-kustosija.hr (same domain family, likely both valid)",
+    "evidence": ["https://nk-kustosija.hr"]
+  },
+  {
+    "slug": "rugvica-sava-1976",
+    "scores": {"identity": 1.0, "location": 1.0, "contact": 0.0, "phone_kind": 0.5, "coordinates": 1.0, "league": 1.0},
+    "overall": 0.75,
+    "issues": "contact leak: email urednistvo@dugoselska-kronika.hr, website dugoselski-sport.hr, fb/ig dugoselskakronika all belong to local newspaper Dugoselska Kronika, not the club; phone_kind 'unknown' but 01-prefix is clearly landline (Zagreb area)",
+    "evidence": ["https://hr.wikipedia.org/wiki/NK_Rugvica", "https://www.dugoselska-kronika.hr/", "https://01portal.hr/nk-rugvica-sava-1976-za-novi-uzlet-nogometa-u-rugvici/"]
+  },
+  {
+    "slug": "sloga-s",
+    "scores": {"identity": 1.0, "location": 0.5, "contact": 0.0, "phone_kind": null, "coordinates": 0.0, "league": 1.0},
+    "overall": 0.5,
+    "issues": "club is NK Sloga Štrigova (city Štrigova) but fb_url nkslogack belongs to NK Sloga Čakovec (different club); president Tihomir Blažeka is associated with Sloga Čakovec nogometna škola; coords 46.3775,16.4507 are near Čakovec, Štrigova is at ~46.51,16.36 (>10km off); county Međimurska correct",
+    "evidence": ["https://semafor.hns.family/klubovi/405/nk-sloga-strigova/", "https://www.nssloga-cakovec.hr/", "https://www.facebook.com/nkslogack/"]
+  },
+  {
+    "slug": "dinamo-o",
+    "scores": {"identity": 0.5, "location": 0.5, "contact": 0.0, "phone_kind": 1.0, "coordinates": 0.5, "league": 0.5},
+    "overall": 0.5,
+    "issues": "major data leak: address Antuna Cuvaja 16 is NSSMŽ (county FA) HQ; phone +38544540088, email hnk.segesta.sisak@sk.t-com.hr, website hnk-segesta.hr all belong to HNK Segesta Sisak (tier 2 club), not this tier 7 club; NK Dinamo Kutina exists but hasn't competed since 2020/21; coords near Popovača, ambiguous between Sisak/Kutina",
+    "evidence": ["https://hnk-segesta.hr/", "https://hr.wikipedia.org/wiki/NK_Dinamo_Kutina", "https://nssmz.hr/klubovi/"]
+  }
+]

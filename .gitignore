@@ -10,4 +10,5 @@ data/exports/
 .env
 data/logos/
 data/verification/results-raw.json
+.claude/
 

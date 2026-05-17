@@ -14,14 +14,18 @@ bazom koja se može ponovno generirati nuli kroz idempotentne skripte.
 | Klubova ukupno                            | **901** (8 tier-ova)  |
 | Backfill-ano (kroz Firecrawl)             | 896 (99.4%)       |
 | Na karti s lat/lng                        | **901 (100%)**    |
-| **Pipeline reliability** (AI audit)       | **93 / 100**      |
+| **Pipeline reliability** (AI audit)       | **89–93 / 100** ¹ |
 | **Pun kontakt** (telefon + email + adresa + online) | **155**     |
 | Mobitela (SMS-ready, +385 E.164 format)   | 217               |
 | Emaila                                    | 282               |
-| Adresa                                    | 530               |
+| Adresa                                    | 538               |
 | Website                                   | 333               |
 | FB profila                                | 410               |
-| HNS Semafor profile linkova               | 172               |
+| HNS Semafor profile linkova               | 209               |
+
+¹ Tri AI verification run-a sa seed 42 dali su 93.0 / 92.0 / 89.1 — niža vrijednost je verifier-ova
+strožija interpretacija "president's gmail nije club email" i "joined phone string treba landline kind",
+ne stvarna degradacija podataka. Vidi `VERIFICATION.md` i `data/verification/run-*/report.md`.
 
 | Tier | Razina                    | Klubova | Glavni izvor |
 |-----:|---------------------------|--------:|--------------|
@@ -63,6 +67,16 @@ najpreciznijeg do najopćenitijeg, zaustavlja se na prvom hit-u.
 Za 15 klubova koje nijedan geocoder ne može — paralelni `general-purpose` agenti
 s `WebSearch`/`WebFetch` ekstrahiraju lokaciju iz HNS Semafora, Wikipedije,
 županijskih FA stranica.
+
+### HNS Semafor scraper (`semafor.hns.family`)
+Static-HTML scraper (httpx + bs4 u `src/semafor.py`) za HNS-ove kanonske
+registracijske stranice klubova. Top tier (HNL/1.NL) izlaže **+385 telefon,
+puni adresu, datum osnutka i lat/lng** (kroz `#club_map data-coordinates`),
+amaterski tier-i samo {ime, grad, stadion}. `scripts/17_ingest_semafor.py`
+popunjava prazna polja i ispravlja `stadium_name = canonical_name` leak;
+`scripts/17b_discover_semafor_top_tier.py` crawl-a SuperSport HNL/1.NL/2.NL
+standings da otkrije nove `semafor_url`-ove i match-a ih na DB po
+city + token-subset.
 
 ## Pipeline po klubu
 

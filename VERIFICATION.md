@@ -139,6 +139,7 @@ whether changes between runs lifted or hurt specific dimensions. The
 |---|---:|---:|---:|---:|---:|---:|---:|---|
 | **2026-05-17** (baseline) | 92.0 | 96.7 | 100 | 70.0 | 100 | 90.0 | 100 | first measurement after the 901-club backfill landed |
 | **2026-05-17b** | 93.0 | 100 | 100 | **75.0** | 100 | 86.7 | 100 | `scripts/14_cleanup_leaks.py` (~800 leaky values nulled), `src/backfill.py` blocklist expanded, 654-club targeted re-backfill |
+| **2026-05-17c** | 89.1 | 96.7 | 93.3 | 66.7 | 94.4 | 90.0 | 96.7 | dedicated HNS Semafor scraper landed: 172 → 209 semafor_url, +71 stadium_name fills, 15 stadium leak corrections, 8 address fills, 7 phone fills, 2 founded_year fills |
 
 Run 2 caveats:
 
@@ -166,3 +167,28 @@ Run 2 caveats:
 
 The three new contact-leak patterns are the right input for the next
 iteration's blocklist + heuristic rules.
+
+Run 3 caveats:
+
+- **Overall 93 → 89.1 is mostly verifier strictness, not data regression.**
+  The fields Semafor actually touched (stadium_name, address, founded_year,
+  phone, lat/lng — never email/website/social) intersected this seed-42
+  sample on only one club: `bilogora-91`. That club's stadium_name became
+  "NK Bilogora 91" exactly because that is what Semafor publishes; the Run
+  3 verifier disagrees with Semafor and prefers "Bilogorac". Score stayed
+  0.80 — same as Run 2 — so Semafor changes did not move this club's
+  reliability.
+
+- **The real point drops are agent-variance + pre-existing leaks now being
+  scored harder:** `sloga-s` (1.00 → 0.50, fb_url points to Sloga Čakovec
+  instead of Sloga Štrigova — present since the original backfill);
+  `dinamo-o` (0.60 → 0.50, address Antuna Cuvaja 16 == NSSMŽ HQ, also
+  pre-existing); `bsk-brdovec` (1.00 → 0.92, verifier docked for
+  president's personal gmail as `email`); `rugvica` (0.80 → 0.75, verifier
+  docked phone_kind=unknown on a joined-phone-string that `src/phones.py`
+  can't parse). None of these were introduced by Semafor.
+
+- **What Semafor actually delivers shows up in fields the seed-42 sample
+  doesn't exercise.** Top tier (Dinamo, Hajduk, Rijeka — now in DB with
+  Semafor address + +385 phone + lat/lng) is not present in this sample.
+  Next run with a different seed, or a larger N, would reflect the wins.

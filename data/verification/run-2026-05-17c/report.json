@@ -1,0 +1,276 @@
+{
+  "run_date": "2026-05-17",
+  "sample_size": 15,
+  "overall_score": 89.1,
+  "dimension_scores": {
+    "identity": 96.7,
+    "location": 93.3,
+    "contact": 66.7,
+    "phone_kind": 94.4,
+    "coordinates": 90.0,
+    "league": 96.7
+  },
+  "per_club_results": [
+    {
+      "slug": "gorica-velika-gorica",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "none; address, phone, email, website all match official club site",
+      "evidence": [
+        "https://hnk-gorica.hr/klub/kontakt/",
+        "https://semafor.hns.family/klubovi/1274/hnk-gorica/"
+      ]
+    },
+    {
+      "slug": "lucko-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "none; all contact fields verified against official nk-lucko.hr",
+      "evidence": [
+        "https://nk-lucko.hr/kontakt/",
+        "https://en.wikipedia.org/wiki/NK_Lu%C4%8Dko"
+      ]
+    },
+    {
+      "slug": "bilogora-91",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.8,
+      "issues": "website https://grubisnopolje.hr/ is the municipality portal, not the club (clear leak); stadium_name should be 'Bilogorac' not 'NK Bilogora 91'; club's actual web presence is facebook.com/nkbilogora",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_Bilogora_91_Grubi%C5%A1no_Polje",
+        "https://www.facebook.com/nkbilogora/"
+      ]
+    },
+    {
+      "slug": "croatia-g",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "none; phone 033 prefix is correct Virovitica-area landline; club confirmed in 1. ŽNL VPŽ",
+      "evidence": [
+        "https://www.znsvpz.hr/klub/croatia/26/",
+        "https://hr.wikipedia.org/wiki/NK_Croatia_Grabrovnica"
+      ]
+    },
+    {
+      "slug": "bsk-brdovec",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.5,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.92,
+      "issues": "email rnovosel3@gmail.com is president's personal gmail (belongs to club officer, but not an institutional address); 091 prefix correctly classified as mobile; league confirmed via Semafor (2. NSZŽ Zapad)",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/1201/nk-bsk-brdovec/",
+        "https://hr.wikipedia.org/wiki/NK_BSK_Brdovec"
+      ]
+    },
+    {
+      "slug": "dinamo-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "none; all fields verified against official gnkdinamo.hr",
+      "evidence": [
+        "https://gnkdinamo.hr/hr",
+        "https://hr.wikipedia.org/wiki/GNK_Dinamo_Zagreb"
+      ]
+    },
+    {
+      "slug": "kustosija-zagreb",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "minor: site lists email as info@kustosija.hr while DB has info@nk-kustosija.hr (same domain family, likely both valid)",
+      "evidence": [
+        "https://nk-kustosija.hr"
+      ]
+    },
+    {
+      "slug": "rugvica-sava-1976",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.0,
+        "phone_kind": 0.5,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.75,
+      "issues": "contact leak: email urednistvo@dugoselska-kronika.hr, website dugoselski-sport.hr, fb/ig dugoselskakronika all belong to local newspaper Dugoselska Kronika, not the club; phone_kind 'unknown' but 01-prefix is clearly landline (Zagreb area)",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_Rugvica",
+        "https://www.dugoselska-kronika.hr/",
+        "https://01portal.hr/nk-rugvica-sava-1976-za-novi-uzlet-nogometa-u-rugvici/"
+      ]
+    },
+    {
+      "slug": "sloga-s",
+      "scores": {
+        "identity": 1.0,
+        "location": 0.5,
+        "contact": 0.0,
+        "phone_kind": null,
+        "coordinates": 0.0,
+        "league": 1.0
+      },
+      "overall": 0.5,
+      "issues": "club is NK Sloga Štrigova (city Štrigova) but fb_url nkslogack belongs to NK Sloga Čakovec (different club); president Tihomir Blažeka is associated with Sloga Čakovec nogometna škola; coords 46.3775,16.4507 are near Čakovec, Štrigova is at ~46.51,16.36 (>10km off); county Međimurska correct",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/405/nk-sloga-strigova/",
+        "https://www.nssloga-cakovec.hr/",
+        "https://www.facebook.com/nkslogack/"
+      ]
+    },
+    {
+      "slug": "dinamo-o",
+      "scores": {
+        "identity": 0.5,
+        "location": 0.5,
+        "contact": 0.0,
+        "phone_kind": 1.0,
+        "coordinates": 0.5,
+        "league": 0.5
+      },
+      "overall": 0.5,
+      "issues": "major data leak: address Antuna Cuvaja 16 is NSSMŽ (county FA) HQ; phone +38544540088, email hnk.segesta.sisak@sk.t-com.hr, website hnk-segesta.hr all belong to HNK Segesta Sisak (tier 2 club), not this tier 7 club; NK Dinamo Kutina exists but hasn't competed since 2020/21; coords near Popovača, ambiguous between Sisak/Kutina",
+      "evidence": [
+        "https://hnk-segesta.hr/",
+        "https://hr.wikipedia.org/wiki/NK_Dinamo_Kutina",
+        "https://nssmz.hr/klubovi/"
+      ]
+    },
+    {
+      "slug": "vukovar-1991-osijek",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "website returned 403 to scraper but domain matches club; FB/IG not provided",
+      "evidence": [
+        "https://semafor.hns.family/natjecanja/100391485/supersport-hnl/",
+        "https://press032.com/hnk-vukovar-1991-ce-svoje-utakmice-u-supersport-hnl-igrati-u-osijeku/",
+        "https://hnl.hr/supersport-hnl/raspored-i-rezultati/"
+      ]
+    },
+    {
+      "slug": "crikvenica",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 0.5,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 0.9,
+      "issues": "FB page could not be definitively verified as official (page content truncated by scraper); URL slug matches club name plausibly",
+      "evidence": [
+        "https://semafor.hns.family/klubovi/1553/nk-crikvenica/",
+        "https://en.wikipedia.org/wiki/NK_Crikvenica",
+        "https://semafor.hns.family/natjecanja/100585203/treca-nl-zapad-2526/"
+      ]
+    },
+    {
+      "slug": "top",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": 1.0,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "phone 3370679 is malformed (7 digits, no area code) so unknown classification is correct; t-com.hr email is plausible legacy account",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_TOP_Kerestinec",
+        "https://www.sofascore.com/team/football/nk-top-kerestinec/361889"
+      ]
+    },
+    {
+      "slug": "bsk-budasevo",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_BSK_Buda%C5%A1evo",
+        "https://semafor.hns.family/klubovi/1054/nk-bsk-budasevo/",
+        "https://www.sofascore.com/tournament/football/croatia-amateur/1-znl-sisacko-moslavacka/16479"
+      ]
+    },
+    {
+      "slug": "gaj-brodanci",
+      "scores": {
+        "identity": 1.0,
+        "location": 1.0,
+        "contact": 1.0,
+        "phone_kind": null,
+        "coordinates": 1.0,
+        "league": 1.0
+      },
+      "overall": 1.0,
+      "issues": "",
+      "evidence": [
+        "https://hr.wikipedia.org/wiki/NK_Gaj_Bro%C4%91anci",
+        "https://semafor.hns.family/klubovi/1128/nk-gaj-brodjanci/",
+        "https://www.sofascore.com/hr/football/team/nk-gaj-brodanci/507993"
+      ]
+    }
+  ]
+}
