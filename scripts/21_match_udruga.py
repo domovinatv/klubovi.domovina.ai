@@ -105,6 +105,17 @@ def city_match(club_city: str, cts_sjediste: str) -> bool:
     return a in b or b in a
 
 
+def normalize_county(s: str | None) -> str:
+    """Normalise county strings so DB ('X županija', 'Grad Zagreb') and CTS
+    ('X', 'Grad Zagreb') can be compared."""
+    if not s:
+        return ""
+    s = strip_diacritics(s).lower().strip()
+    s = re.sub(r"\s+zupanija\s*$", "", s)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
+
+
 def load_cts() -> list[dict]:
     rows: list[dict] = []
     with CTS_PATH.open(encoding="utf-8") as f:
@@ -122,6 +133,7 @@ def load_cts() -> list[dict]:
             row["_short_norm"] = strip_prefix(row["NAZIV"])
             row["_short_norm_sk"] = strip_prefix(row.get("SKRACENI_NAZIV") or "")
             row["_city"] = city_from_sjediste(row["SJEDISTE"])
+            row["_county"] = normalize_county(row.get("ZUPANIJA"))
             rows.append(row)
     return rows
 
@@ -133,7 +145,8 @@ _GENERIC = {"klub", "nogometni", "nogometna", "nogomet", "sportski", "sport",
             "skola", "udruga", "hrvatski", "gradanski", "gradski"}
 
 
-def best_match(cname: str, ccity: str, cts: list[dict]):
+def best_match(cname: str, ccity: str, cts: list[dict], ccounty: str = ""):
+    ccnty = normalize_county(ccounty)
     cn_full = norm(cname)
     cn_short = strip_prefix(cname)
     cc_norm = norm(ccity)
@@ -157,6 +170,22 @@ def best_match(cname: str, ccity: str, cts: list[dict]):
         rt = set(row["_short_norm"].split()) | set(row["_short_norm_sk"].split())
         if probe & rt or fuzz.partial_ratio(cn_short, row["_short_norm"]) >= 80:
             candidates.append(row)
+    # Hard county gate: if we know the club's county, drop CTS rows from a
+    # different county. This kills the "Hajduk Tovarnik wins for Hajduk Bjelovar"
+    # failure mode. Grad Zagreb and Zagrebačka are treated as compatible (clubs
+    # often misfiled between them).
+    if ccnty:
+        zagreb_pair = {"grad zagreb", "zagrebacka"}
+        kept = []
+        for row in candidates:
+            rc = row["_county"]
+            if not rc:
+                kept.append(row); continue
+            if rc == ccnty:
+                kept.append(row); continue
+            if {rc, ccnty} <= zagreb_pair:
+                kept.append(row); continue
+        candidates = kept
     if not candidates:
         return None, []
 
@@ -207,7 +236,7 @@ def main():
 
     conn = sqlite3.connect(DB_PATH)
     clubs = conn.execute(
-        "SELECT id, canonical_name, city, president FROM clubs ORDER BY id"
+        "SELECT id, canonical_name, city, county, president FROM clubs ORDER BY id"
     ).fetchall()
 
     matched = {}
@@ -215,8 +244,8 @@ def main():
     nomatch = []
     low_conf = []
 
-    for cid, cname, ccity, pres in clubs:
-        best, top5 = best_match(cname, ccity or "", cts)
+    for cid, cname, ccity, ccounty, pres in clubs:
+        best, top5 = best_match(cname, ccity or "", cts, ccounty or "")
         if best is None:
             nomatch.append({"id": cid, "name": cname, "city": ccity})
             continue
