@@ -43,7 +43,13 @@ log = logging.getLogger("geocode")
 
 CACHE_DIR = ROOT / "data" / "raw" / "nominatim"
 USER_AGENT = "hrnk-baza/0.1 (local research; one-shot bulk geocode of HR football clubs)"
-ENDPOINT = "https://nominatim.openstreetmap.org/search"
+# Honour `NOMINATIM_ENDPOINT` so the same script targets the local Docker
+# instance (see docker/nominatim/) when one is running. Falls back to the
+# public SaaS with its 1 req/s throttle.
+_BASE = os.environ.get("NOMINATIM_ENDPOINT", "https://nominatim.openstreetmap.org").rstrip("/")
+ENDPOINT = f"{_BASE}/search"
+_LOCAL = any(h in _BASE for h in ("localhost", "127.0.0.1", "nominatim:"))
+_THROTTLE = 0.0 if _LOCAL else 1.05
 
 _PREFIX_RE = re.compile(r"^(HNK|GNK|NK|RNK|MNK|HAŠK|ŠNK|GŠNK|BŠK)\s+", re.IGNORECASE)
 _PAREN_RE = re.compile(r"\s*\([^)]+\)\s*$")
@@ -163,8 +169,10 @@ def geocode(client: httpx.Client, query: str) -> tuple[float, float] | None:
     if cache.exists():
         data = json.loads(cache.read_text())
     else:
-        # Polite delay just before each network call.
-        time.sleep(1.05)
+        # Polite delay just before each network call (skipped on local Docker
+        # where NOMINATIM_ENDPOINT=http://localhost:8080).
+        if _THROTTLE:
+            time.sleep(_THROTTLE)
         try:
             r = client.get(
                 ENDPOINT,

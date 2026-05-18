@@ -1,0 +1,59 @@
+# Local Nominatim geocoder for bulk HR data.
+#
+# One-time setup:
+#   docker compose -f docker/nominatim/compose.yml up -d
+#   # First boot downloads croatia-latest.osm.pbf (~150MB) and imports it
+#   # (10-15 min on a modern laptop). Watch logs:
+#   docker compose -f docker/nominatim/compose.yml logs -f nominatim
+#   # Wait for "Nominatim is ready". Test:
+#   curl 'http://localhost:8080/search?q=Ivanic-Grad&format=json&limit=1'
+#
+# Then point the geocoder scripts at it:
+#   export NOMINATIM_ENDPOINT=http://localhost:8080
+#   uv run python scripts/10_geocode_nominatim.py
+#   uv run python scripts/26_verify_geo.py
+#
+# To re-import on a fresh OSM snapshot, just remove the named volume and
+# `up -d` again:
+#   docker compose -f docker/nominatim/compose.yml down -v
+#   docker compose -f docker/nominatim/compose.yml up -d
+#
+# Disk: ~3-5 GB (HR only). RAM: peak ~6 GB during import, ~2 GB steady state.
+
+services:
+  nominatim:
+    image: mediagis/nominatim:4.4
+    container_name: hrnk-nominatim
+    ports:
+      - "8080:8080"
+    environment:
+      # Geofabrik daily-refreshed Croatia extract. Swap to a regional or
+      # europe-latest URL if the project ever needs cross-border coverage.
+      PBF_URL: https://download.geofabrik.de/europe/croatia-latest.osm.pbf
+      # `address` style keeps house numbers + POIs — what we need for clubs.
+      # `full` adds polygons and is ~3x slower to import; only enable if we
+      # ever need reverse-geocoding for admin boundaries.
+      IMPORT_STYLE: address
+      # Replication keeps the DB current. Geofabrik publishes daily diffs;
+      # set to false during initial import experiments to skip the cron job.
+      REPLICATION_URL: https://download.geofabrik.de/europe/croatia-updates/
+      NOMINATIM_PASSWORD: localdev
+      # Speed-up tunables. Match to your CPU; defaults are conservative.
+      THREADS: 4
+    volumes:
+      - nominatim-data:/var/lib/postgresql/14/main
+      - nominatim-flatnode:/nominatim/flatnode
+    shm_size: 1g
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/status >/dev/null"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20m  # generous: covers cold-start import
+
+volumes:
+  nominatim-data:
+    name: hrnk-nominatim-data
+  nominatim-flatnode:
+    name: hrnk-nominatim-flatnode
