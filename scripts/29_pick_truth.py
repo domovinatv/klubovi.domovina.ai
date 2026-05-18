@@ -152,9 +152,19 @@ def main(dry: bool):
                 counters["bare_generic_google"] += 1
                 continue
 
-        # County guard: Google's formatted_address usually contains the county.
+        # County guard: most Croatian addresses don't include the county name,
+        # only the city and ZIP. So we accept any of:
+        #   a) county tokens directly in Google's formatted_address
+        #   b) clubs.city overlaps with Google's address
+        #   c) a non-city distinctive token from canonical appears in Google's
+        #      address (e.g. "Ivanić" from "Naftaš Ivanić" → "Ivanić-Grad")
         county_norm = tokens((r["county"] or "").replace("zupanija", ""))
-        county_ok = (not county_norm) or bool(county_norm & g_toks)
+        city_toks = tokens(r["city"] or "")
+        addr_toks = tokens(r["google_formatted_address"] or "")
+        county_match = bool(county_norm & g_toks)
+        city_match = bool(city_toks & addr_toks)
+        name_in_addr = bool((distinct - city_toks - county_norm) & addr_toks)
+        county_ok = county_match or city_match or name_in_addr or not county_norm
         if hit and county_ok:
             counters["trust_google"] += 1
             overrides.append({
