@@ -102,6 +102,17 @@ def main(dry: bool):
 
     counters = Counter()
     overrides = []
+
+    def keep_nominatim(reason: str, cid: int):
+        """All paths that decline Google must tag the row so the final
+        sweep does NOT mark it as 'both' (agreers)."""
+        counters[reason] += 1
+        if not dry:
+            conn.execute(
+                "UPDATE clubs SET geo_source=? WHERE id=? AND geo_source IS NULL",
+                ("nominatim", cid),
+            )
+
     for r in rows:
         d = haversine_m((r["lat"], r["lng"]), (r["lat_google"], r["lng_google"]))
         if d < 500:
@@ -111,7 +122,7 @@ def main(dry: bool):
         # Skip if Google resolved to a foreign country (Slovenia, BiH, ...).
         addr_low = strip_diacritics(r["google_formatted_address"] or "").lower()
         if any(c in addr_low for c in _NON_HR):
-            counters["foreign_google"] += 1
+            keep_nominatim("foreign_google", r["id"])
             continue
 
         # Skip Google hits that look like a different sport / governing body.
@@ -126,7 +137,7 @@ def main(dry: bool):
             or "stadium" in gname_low
         )
         if not is_football:
-            counters["nonfootball_google"] += 1
+            keep_nominatim("nonfootball_google", r["id"])
             continue
 
         distinct = distinctive(r["canonical_name"], r["city"], r["county"])
@@ -149,7 +160,7 @@ def main(dry: bool):
             )
             extra = g_name_tokens - canon_core_tokens
             if not extra:
-                counters["bare_generic_google"] += 1
+                keep_nominatim("bare_generic_google", r["id"])
                 continue
 
         # County guard: most Croatian addresses don't include the county name,
@@ -181,12 +192,7 @@ def main(dry: bool):
                     (r["lat_google"], r["lng_google"], "google_places", r["id"]),
                 )
         else:
-            counters["keep_nominatim"] += 1
-            if not dry:
-                conn.execute(
-                    "UPDATE clubs SET geo_source=? WHERE id=? AND geo_source IS NULL",
-                    ("nominatim", r["id"]),
-                )
+            keep_nominatim("keep_nominatim", r["id"])
 
     if not dry:
         # Tag agreers as nominatim too (or rather, "both" — they match).
