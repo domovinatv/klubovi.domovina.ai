@@ -12,3 +12,14 @@ data/logos/
 data/verification/results-raw.json
 .claude/
 
+# Frontend (React PWA)
+frontend/node_modules/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+# Built from SQLite by scripts/40_export_static.py — regenerated on each deploy
+frontend/public/data/
+frontend/public/logos/
+# Built from frontend/public/data/ by scripts/41_export_sitemap.py
+frontend/public/sitemap.xml
+frontend/public/robots.txt
+
