@@ -1,0 +1,45 @@
+Data License — Creative Commons Attribution 4.0 International (CC-BY-4.0)
+
+Copyright (c) 2026 Matija Stepanić / DOMOVINA
+
+The data assets in this repository — including but not limited to anything
+generated under data/, frontend/public/data/, and frontend/public/logos/ —
+are licensed under the Creative Commons Attribution 4.0 International License
+(CC-BY-4.0).
+
+You are free to:
+  - Share: copy and redistribute the material in any medium or format
+  - Adapt: remix, transform, and build upon the material for any purpose,
+    even commercially
+
+Under the following terms:
+  - Attribution: You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made. Suggested attribution:
+        "DOMOVINA Klubovi — klubovi.domovina.ai"
+  - No additional restrictions: You may not apply legal terms or
+    technological measures that legally restrict others from doing anything
+    the license permits.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Source acknowledgments
+----------------------
+The dataset is compiled from publicly accessible sources. Their underlying
+data remain subject to the policies of the original publishers:
+
+  - SofaScore (https://www.sofascore.com) — competition + stadium metadata
+  - hrnogomet.hr (https://www.hrnogomet.hr) — Croatian football club registry
+  - HNS Semafor (https://semafor.hns.family) — official Croatian FA scoreboard
+  - Registar udruga RH (https://registri-npo-mpu.gov.hr) — Croatian NGO register
+  - OpenStreetMap / Nominatim — geocoded coordinates (© OSM contributors, ODbL)
+  - Google Places API — cross-verified coordinates (subject to Google ToS)
+
+This repository does not redistribute the source data directly. The exporter
+scripts produce derivative aggregations from the SQLite catalog, and the
+catalog itself is built by the ingest scripts at runtime against the listed
+public endpoints.
+
+Logo files under data/logos/ are trademarks of their respective clubs and are
+included strictly for editorial / identification purposes. Each club retains
+ownership of its logo and may request removal at any time by opening an issue
+on the repository.

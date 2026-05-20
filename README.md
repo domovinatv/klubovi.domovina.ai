@@ -1,11 +1,48 @@
-# Hrvatski amaterski nogometni klubovi
+# DOMOVINA Klubovi — Hrvatski nogometni klubovi
 
-Sustavna lokalna baza svih **901 hrvatskih nogometnih klubova** od SuperSport HNL-a
+**Live:** [klubovi.domovina.ai](https://klubovi.domovina.ai)
+&nbsp;·&nbsp; **Code license:** [MIT](LICENSE)
+&nbsp;·&nbsp; **Data license:** [CC-BY 4.0](LICENSE-DATA)
+&nbsp;·&nbsp; **Network:** part of [DOMOVINA](https://domovina.ai)
+
+---
+
+## English summary
+
+Open public catalog of every Croatian football club — from SuperSport HNL down
+to 3. ŽNL (the 8th tier). **901 clubs**, all geocoded, with contact info,
+leagues across seasons, presidents, stadiums, founding years, and logos —
+compiled from public registries (SofaScore, hrnogomet.hr, HNS Semafor,
+Registar udruga RH, Nominatim, Google Places).
+
+Two interfaces ship from this repo:
+
+- **`frontend/`** — a static React PWA at [klubovi.domovina.ai](https://klubovi.domovina.ai),
+  deployed to Cloudflare Pages. Pure client-side filtering over a 113 KB
+  gzipped JSON; offline-capable; per-club OG tags injected by a worker.
+- **`web/`** — a local FastAPI + HTMX admin tool for working against the
+  SQLite catalog directly.
+
+The ingest + enrichment pipeline (`scripts/`) is fully reproducible:
+`uv run python scripts/01_ingest_sofascore.py` etc. rebuild `data/clubs.db`
+from scratch against the public sources. Data quality is sampled and scored
+by parallel AI verification runs (see `VERIFICATION.md`).
+
+This repo lives under the [DOMOVINA](https://github.com/domovinatv) umbrella —
+an open Croatian podcast/data/AI ecosystem.
+
+---
+
+## Hrvatski
+
+Sustavna javna baza svih **901 hrvatskih nogometnih klubova** od SuperSport HNL-a
 do 3. ŽNL — s kontakt podacima (web, email, telefon, predsjednik, društvene mreže),
 adresama, stadionima, godinama osnutka, logotipima, i preciznim geo-koordinatama.
 
 Cilj: alat za ciljani outreach (SMS, email, pošta) prema klubovima, s lokalnom
 bazom koja se može ponovno generirati nuli kroz idempotentne skripte.
+
+**Live verzija**: [klubovi.domovina.ai](https://klubovi.domovina.ai)
 
 ## Trenutno stanje
 
@@ -390,3 +427,68 @@ variants. See VERIFICATION.md "Time series" section.
 - Recurring snapshot job — re-run ingest monthly za nove sezone
 - Self-hosted Firecrawl stack za eliminaciju Cloud troška za buduće re-runove
 - SMS provider integracija (Vox/Infobip CSV import format)
+
+---
+
+## Quick start
+
+```bash
+# 1. Install Python deps (uses uv)
+uv sync
+
+# 2. Build the SQLite catalog from public sources (≈ 30 min total)
+uv run python scripts/01_ingest_sofascore.py     # top 4 tiers
+uv run python scripts/02_ingest_hrnogomet.py     # tiers 5–8
+uv run python scripts/22_ingest_udruga.py        # president + OIB + address
+uv run python scripts/27_google_geocode.py       # needs GOOGLE_MAPS_API_KEY
+# see scripts/ directory for the full numbered pipeline
+
+# 3. Run the local admin UI (FastAPI + HTMX)
+uv run uvicorn web.app:app --reload --port 8000
+# → open http://localhost:8000
+
+# 4. Build the public PWA
+cd frontend && npm install && npm run dev
+# → open http://localhost:5173
+```
+
+`.env` requirements (gitignored — see `.env.example` for the shape):
+
+```bash
+FIRECRAWL_API_KEYS=fc-...,fc-...     # comma-separated, rotation built-in
+GOOGLE_MAPS_API_KEY=AIza...          # Places + Geocoding API enabled
+```
+
+## Deploy (Cloudflare Pages)
+
+The PWA at `frontend/` deploys to project **`klubovi-domovina`** under the
+D.O.M. Cloudflare account. End-to-end deploy script:
+
+```bash
+cd frontend && ./scripts/deploy.sh
+# 1. uv run scripts/40_export_static.py    SQLite → frontend/public/data/*.json
+# 2. uv run scripts/41_export_sitemap.py   sitemap.xml + robots.txt
+# 3. npm run build                          Vite build → dist/
+# 4. wrangler pages deploy dist --project-name=klubovi-domovina
+```
+
+Custom domain `klubovi.domovina.ai` is attached manually in the CF dashboard.
+
+## Contributing
+
+Errors in the data? Missing club? Logo should be removed? Please open an issue
+on this repo with the slug (e.g. `dinamo-zagreb`) and a short description.
+Pull requests with a fix to the relevant `scripts/` ingest step are very
+welcome — but please don't commit `data/clubs.db` (it's gitignored on purpose;
+the pipeline regenerates it from public sources).
+
+## License
+
+- **Code** (`scripts/`, `src/`, `web/`, `frontend/`) — [MIT](LICENSE)
+- **Data + logos** (`data/`, exported JSON, sitemap) — [CC-BY 4.0](LICENSE-DATA)
+
+Attribution: *"DOMOVINA Klubovi — klubovi.domovina.ai"*.
+
+Club logos remain trademarks of their respective clubs and are included
+strictly for editorial / identification purposes. Removal requests honored on
+issue submission.
