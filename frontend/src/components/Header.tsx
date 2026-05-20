@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
+import { WidthToggle } from "./WidthToggle";
 
 const navItem = ({ isActive }: { isActive: boolean }) =>
   [
@@ -21,20 +22,23 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="flex items-center gap-1 sm:gap-2 text-sm" aria-label="Glavna navigacija">
-          <NavLink to="/" end className={navItem}>
-            Klubovi
-          </NavLink>
-          <NavLink to="/karta" className={navItem}>
-            Karta
-          </NavLink>
-          <NavLink to="/statistika" className={navItem}>
-            Statistika
-          </NavLink>
-          <NavLink to="/o-projektu" className={navItem}>
-            O projektu
-          </NavLink>
-        </nav>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <nav className="flex items-center gap-1 sm:gap-2 text-sm" aria-label="Glavna navigacija">
+            <NavLink to="/" end className={navItem}>
+              Klubovi
+            </NavLink>
+            <NavLink to="/karta" className={navItem}>
+              Karta
+            </NavLink>
+            <NavLink to="/statistika" className={navItem}>
+              Statistika
+            </NavLink>
+            <NavLink to="/o-projektu" className={navItem}>
+              O projektu
+            </NavLink>
+          </nav>
+          <WidthToggle />
+        </div>
       </div>
     </header>
   );
