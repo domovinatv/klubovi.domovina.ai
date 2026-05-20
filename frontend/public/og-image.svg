@@ -1,28 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#002F6C"/>
       <stop offset="1" stop-color="#001A40"/>
     </linearGradient>
+    <linearGradient id="croFlagVertical" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF0000"/>
+      <stop offset="33.3%" stop-color="#FF0000"/>
+      <stop offset="33.3%" stop-color="#FFFFFF"/>
+      <stop offset="66.6%" stop-color="#FFFFFF"/>
+      <stop offset="66.6%" stop-color="#002F6C"/>
+      <stop offset="100%" stop-color="#002F6C"/>
+    </linearGradient>
   </defs>
+
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <!-- Brand stripe top -->
+
   <rect x="0" y="0" width="400" height="8" fill="#FF0000"/>
   <rect x="400" y="0" width="400" height="8" fill="#FFFFFF"/>
   <rect x="800" y="0" width="400" height="8" fill="#FFFFFF" opacity="0.4"/>
-  <!-- Soccer star icon -->
-  <g transform="translate(120, 200)">
-    <circle cx="100" cy="100" r="100" fill="#FFFFFF"/>
-    <path d="M100 30 L120.6 70.5 L165.5 76.4 L132.7 107.5 L140.9 152.1 L100 130 L59.1 152.1 L67.3 107.5 L34.5 76.4 L79.4 70.5 Z" fill="#FF0000"/>
+
+  <g transform="translate(100 175) scale(0.55)">
+    <rect width="512" height="512" rx="32" fill="white"/>
+    <path d="M72 64H248C354.071 64 440 149.929 440 256C440 362.071 354.071 448 248 448H72V64Z" fill="url(#croFlagVertical)"/>
+    <path d="M168 160H248C301.019 160 344 202.981 344 256C344 309.019 301.019 352 248 352H168V160Z" fill="white"/>
+    <g transform="translate(245 256)">
+      <circle cx="0" cy="0" r="68" fill="white" stroke="#002F6C" stroke-width="6"/>
+      <polygon points="0,-26 24.7,-8 15.3,21 -15.3,21 -24.7,-8" fill="#002F6C"/>
+      <g stroke="#002F6C" stroke-width="5" stroke-linecap="round">
+        <line x1="0" y1="-26" x2="0" y2="-68"/>
+        <line x1="24.7" y1="-8" x2="64.7" y2="-21"/>
+        <line x1="15.3" y1="21" x2="40" y2="55"/>
+        <line x1="-15.3" y1="21" x2="-40" y2="55"/>
+        <line x1="-24.7" y1="-8" x2="-64.7" y2="-21"/>
+      </g>
+    </g>
   </g>
-  <!-- Text block -->
-  <g transform="translate(380, 230)" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif">
-    <text font-size="34" font-weight="700" letter-spacing="8" opacity="0.9">DOMOVINA<tspan fill="#FF6B6B">.AI</tspan> / KLUBOVI</text>
-    <text y="80" font-size="64" font-weight="800" letter-spacing="-1">Hrvatski nogometni</text>
-    <text y="150" font-size="64" font-weight="800" letter-spacing="-1">klubovi — svi na jednom mjestu</text>
-    <text y="220" font-size="28" font-weight="500" opacity="0.75">901 klub · od HNL-a do 3. ŽNL · otvoreni podaci</text>
+
+  <g transform="translate(440 230)" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif">
+    <text font-size="32" font-weight="700" letter-spacing="6" opacity="0.85">DOMOVINA<tspan fill="#FFB3B3">.AI</tspan>  /  KLUBOVI</text>
+    <text y="80" font-size="62" font-weight="800" letter-spacing="-1">Hrvatski nogometni</text>
+    <text y="148" font-size="62" font-weight="800" letter-spacing="-1">klubovi — svi na jednom mjestu</text>
+    <text y="218" font-size="26" font-weight="500" opacity="0.75">901 klub · od HNL-a do 3. ŽNL · otvoreni podaci</text>
   </g>
-  <!-- Brand stripe bottom -->
+
   <rect x="0" y="622" width="400" height="8" fill="#FFFFFF" opacity="0.4"/>
   <rect x="400" y="622" width="400" height="8" fill="#FFFFFF"/>
   <rect x="800" y="622" width="400" height="8" fill="#FF0000"/>

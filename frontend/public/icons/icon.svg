@@ -1,6 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#002F6C"/>
-  <circle cx="256" cy="256" r="160" fill="#FFFFFF"/>
-  <path d="M256 112 L300.1 199.5 L396.5 211.5 L325.5 280 L343.1 376 L256 328 L168.9 376 L186.5 280 L115.5 211.5 L211.9 199.5 Z" fill="#FF0000"/>
-  <text x="256" y="468" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="38" fill="#FFFFFF" letter-spacing="4">KLUBOVI</text>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="croFlagVertical" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF0000"/>
+      <stop offset="33.3%" stop-color="#FF0000"/>
+      <stop offset="33.3%" stop-color="#FFFFFF"/>
+      <stop offset="66.6%" stop-color="#FFFFFF"/>
+      <stop offset="66.6%" stop-color="#002F6C"/>
+      <stop offset="100%" stop-color="#002F6C"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="32" fill="white"/>
+
+  <!-- DOMOVINA outer D with vertical Croatian flag fill -->
+  <path d="M72 64H248C354.071 64 440 149.929 440 256C440 362.071 354.071 448 248 448H72V64Z" fill="url(#croFlagVertical)"/>
+
+  <!-- Inner white D (negative space) -->
+  <path d="M168 160H248C301.019 160 344 202.981 344 256C344 309.019 301.019 352 248 352H168V160Z" fill="white"/>
+
+  <!-- Soccer ball mark, navy, fits inside the inner D area -->
+  <g transform="translate(245 256)">
+    <circle cx="0" cy="0" r="68" fill="white" stroke="#002F6C" stroke-width="6"/>
+    <polygon points="0,-26 24.7,-8 15.3,21 -15.3,21 -24.7,-8" fill="#002F6C"/>
+    <g stroke="#002F6C" stroke-width="5" stroke-linecap="round">
+      <line x1="0" y1="-26" x2="0" y2="-68"/>
+      <line x1="24.7" y1="-8" x2="64.7" y2="-21"/>
+      <line x1="15.3" y1="21" x2="40" y2="55"/>
+      <line x1="-15.3" y1="21" x2="-40" y2="55"/>
+      <line x1="-24.7" y1="-8" x2="-64.7" y2="-21"/>
+    </g>
+  </g>
 </svg>

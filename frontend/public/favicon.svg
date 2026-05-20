@@ -1,5 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#002F6C"/>
-  <circle cx="32" cy="32" r="20" fill="#FFFFFF"/>
-  <path d="M32 14 L37.5 25 L49.5 26.5 L40.7 35 L42.9 47 L32 41 L21.1 47 L23.3 35 L14.5 26.5 L26.5 25 Z" fill="#FF0000"/>
+<svg width="64" height="64" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="croFlagVertical" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF0000"/>
+      <stop offset="33.3%" stop-color="#FF0000"/>
+      <stop offset="33.3%" stop-color="#FFFFFF"/>
+      <stop offset="66.6%" stop-color="#FFFFFF"/>
+      <stop offset="66.6%" stop-color="#002F6C"/>
+      <stop offset="100%" stop-color="#002F6C"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="32" fill="white"/>
+  <path d="M72 64H248C354.071 64 440 149.929 440 256C440 362.071 354.071 448 248 448H72V64Z" fill="url(#croFlagVertical)"/>
+  <path d="M168 160H248C301.019 160 344 202.981 344 256C344 309.019 301.019 352 248 352H168V160Z" fill="white"/>
+  <g transform="translate(245 256)">
+    <circle cx="0" cy="0" r="68" fill="white" stroke="#002F6C" stroke-width="8"/>
+    <polygon points="0,-26 24.7,-8 15.3,21 -15.3,21 -24.7,-8" fill="#002F6C"/>
+    <g stroke="#002F6C" stroke-width="7" stroke-linecap="round">
+      <line x1="0" y1="-26" x2="0" y2="-68"/>
+      <line x1="24.7" y1="-8" x2="64.7" y2="-21"/>
+      <line x1="15.3" y1="21" x2="40" y2="55"/>
+      <line x1="-15.3" y1="21" x2="-40" y2="55"/>
+      <line x1="-24.7" y1="-8" x2="-64.7" y2="-21"/>
+    </g>
+  </g>
 </svg>
