@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#002F6C" />
+    <meta name="color-scheme" content="light" />
+
+    <title>DOMOVINA Klubovi — Hrvatski nogometni klubovi</title>
+    <meta
+      name="description"
+      content="Katalog svih hrvatskih nogometnih klubova od HNL-a do 3. ŽNL — kontakti, lige, karta. Otvoreni podaci."
+    />
+    <link rel="canonical" href="https://klubovi.domovina.ai/" />
+    <link rel="alternate" hreflang="hr" href="https://klubovi.domovina.ai/" />
+    <link rel="alternate" hreflang="x-default" href="https://klubovi.domovina.ai/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DOMOVINA Klubovi — Hrvatski nogometni klubovi" />
+    <meta
+      property="og:description"
+      content="Katalog svih hrvatskih nogometnih klubova od HNL-a do 3. ŽNL — kontakti, lige, karta."
+    />
+    <meta property="og:url" content="https://klubovi.domovina.ai/" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:image" content="https://klubovi.domovina.ai/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <link rel="preload" href="/data/clubs.json" as="fetch" type="application/json" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

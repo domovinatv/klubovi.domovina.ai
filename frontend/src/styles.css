@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --navy: #002f6c;
+    --red: #ff0000;
+    --muted: #5a6570;
+    --surface: #f5f7f9;
+    --border: #e1e5ea;
+    --tier-1: #ff0000;
+    --tier-2: #f97316;
+    --tier-3: #fbbf24;
+    --tier-4: #fde047;
+    --tier-5: #86efac;
+    --tier-6: #5eead4;
+    --tier-7: #7dd3fc;
+    --tier-8: #94a3b8;
+  }
+
+  html,
+  body {
+    @apply bg-white text-navy-700 antialiased;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial,
+      sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  img,
+  svg {
+    @apply max-w-full block;
+  }
+
+  a {
+    @apply text-navy hover:text-flag-red transition-colors;
+  }
+
+  ::selection {
+    background: rgba(0, 47, 108, 0.18);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply max-w-6xl mx-auto px-4 sm:px-6;
+  }
+  html[data-layout="wide"] .container-page {
+    @apply max-w-none px-6 lg:px-10 xl:px-14 2xl:px-20;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-DEFAULT px-4 py-2 text-sm font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-navy text-white hover:bg-navy-700;
+  }
+  .btn-ghost {
+    @apply btn border border-border text-navy hover:border-navy hover:bg-surface;
+  }
+
+  .card {
+    @apply bg-white border border-border rounded-DEFAULT shadow-card;
+  }
+  .card-hover {
+    @apply card transition-shadow hover:shadow-elevated;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-0.5 text-xs font-medium text-muted;
+  }
+
+  .field-label {
+    @apply block text-[11px] font-semibold uppercase tracking-wider text-muted mb-1.5;
+  }
+
+  .input {
+    @apply w-full rounded-sm border border-border bg-white px-3 py-2 text-sm text-navy-700 placeholder:text-muted/70 focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/15 transition;
+  }
+
+  .brand-mark {
+    @apply font-extrabold tracking-brand text-navy text-xl sm:text-2xl;
+  }
+  .brand-mark .ai {
+    @apply text-flag-red;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
