@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#002F6C"/>
+      <stop offset="1" stop-color="#001A40"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Brand stripe top -->
+  <rect x="0" y="0" width="400" height="8" fill="#FF0000"/>
+  <rect x="400" y="0" width="400" height="8" fill="#FFFFFF"/>
+  <rect x="800" y="0" width="400" height="8" fill="#FFFFFF" opacity="0.4"/>
+  <!-- Soccer star icon -->
+  <g transform="translate(120, 200)">
+    <circle cx="100" cy="100" r="100" fill="#FFFFFF"/>
+    <path d="M100 30 L120.6 70.5 L165.5 76.4 L132.7 107.5 L140.9 152.1 L100 130 L59.1 152.1 L67.3 107.5 L34.5 76.4 L79.4 70.5 Z" fill="#FF0000"/>
+  </g>
+  <!-- Text block -->
+  <g transform="translate(380, 230)" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif">
+    <text font-size="34" font-weight="700" letter-spacing="8" opacity="0.9">DOMOVINA<tspan fill="#FF6B6B">.AI</tspan> / KLUBOVI</text>
+    <text y="80" font-size="64" font-weight="800" letter-spacing="-1">Hrvatski nogometni</text>
+    <text y="150" font-size="64" font-weight="800" letter-spacing="-1">klubovi — svi na jednom mjestu</text>
+    <text y="220" font-size="28" font-weight="500" opacity="0.75">901 klub · od HNL-a do 3. ŽNL · otvoreni podaci</text>
+  </g>
+  <!-- Brand stripe bottom -->
+  <rect x="0" y="622" width="400" height="8" fill="#FFFFFF" opacity="0.4"/>
+  <rect x="400" y="622" width="400" height="8" fill="#FFFFFF"/>
+  <rect x="800" y="622" width="400" height="8" fill="#FF0000"/>
+</svg>

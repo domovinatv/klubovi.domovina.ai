@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#002F6C"/>
+  <circle cx="256" cy="256" r="160" fill="#FFFFFF"/>
+  <path d="M256 112 L300.1 199.5 L396.5 211.5 L325.5 280 L343.1 376 L256 328 L168.9 376 L186.5 280 L115.5 211.5 L211.9 199.5 Z" fill="#FF0000"/>
+  <text x="256" y="468" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="38" fill="#FFFFFF" letter-spacing="4">KLUBOVI</text>
+</svg>
