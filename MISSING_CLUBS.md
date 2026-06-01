@@ -1,6 +1,6 @@
 # Što još nedostaje u katalogu
 
-> Stanje: 2026-06-02 · baza: **921** klubova · vidi [issue #1](https://github.com/domovinatv/klubovi.domovina.ai/issues/1)
+> Stanje: 2026-06-02 · baza: **1014** klubova (901 → +20 ŽNK → +93 gated) · vidi [issue #1](https://github.com/domovinatv/klubovi.domovina.ai/issues/1)
 
 ## Kontekst — `901` nikad nije bio "svi klubovi u HR"
 
@@ -23,27 +23,40 @@ su kroz tu rupu. Prijava (M. Tolić, trener ŽNK Donat) otkrila je simptom.
 Razred = Ž (ženski) / F (futsal) / M (muški). Dedup **mora** čuvati razred —
 ŽNK Rijeka i HNK Rijeka su različiti klubovi, ne duplikat.
 
-## ✅ Riješeno — 20 ŽNK ingestirano
+## ✅ Riješeno — 20 ŽNK + 93 gated muška kluba (DB 901 → 1014)
 
-`scripts/33_ingest_znk.py --write` → +20 ženskih klubova (ŽNK Virovitica već je
-bio u bazi). Donat = id 902. Vidi `data/exports/znk_and_missing_candidates.xlsx`.
+**Faza 1 — `scripts/33_ingest_znk.py --write`**: +20 ženskih klubova (ŽNK
+Virovitica već u bazi). Donat = id 902. Logoi sa Semafora
+(`scripts/34_fetch_semafor_logos.py`). Geo: 10 both / 6 nominatim / 3 google /
+1 semafor, svih 20 verificirano i na karti.
 
-## ⬜ Preostalo — ~289 genuino novih klubova
+**Faza 2 — `scripts/35_ingest_missing_gated.py`** (strogi quality gate, izbor
+korisnika): od 271 stagiranih kandidata, kroz puni geo pipeline (Nominatim →
+Google → pick_truth), **zadržano samo 93** koji dosegnu `geo_source='both'` (oba
+geokodera se slažu) unutar HR bbox-a. Svih 93 ima grad + županiju + dvostruko
+potvrđene koordinate. **167 odbijeno** → `data/exports/missing_clubs_gate_rejects.csv`
+(nisu smeće, samo nedovoljno potvrđeni). **11 dodatnih obrisano** kao
+proximity-duplikati postojećih klubova (npr. "NK Radnički (D)" = "NK Radnički
+Dalj", 0 m) — semafor_url prebačen na postojeći prije brisanja.
 
-Izvor i parsiranje već postoje (cache + `src/semafor.py`); fali samo INSERT put
-(po uzoru na `scripts/33_ingest_znk.py`) + provjera flagova. Pregled u
-`data/exports/znk_and_missing_candidates.xlsx` (stupac `preporuka`):
+## ⬜ Preostalo za review
 
-| preporuka | broj | što |
+| izvor | broj | što |
 |---|---|---|
-| 🟢 DODAJ | ~283 | čisti muški/veterani zapisi sa Semafora |
-| 🟡 PROVJERI | 5 | **II/B rezervne momčadi** — prvi tim vjerojatno već u bazi, ne duplicirati: GNK Dinamo II, NK Osijek II, NK Bedekovčina II, NK Lobor II, NK Mladost Satnica Đakovačka 2 |
+| `missing_clubs_gate_rejects.csv` | 167 | nisu prošli strogi `both` gate — 130 Google-override (poput suvenirnice Hajduk), 35 nominatim-only, 2 semafor; ručno presuditi ili olabaviti gate |
+| II/B rezervne momčadi | 5 | preskočeno: GNK Dinamo II, NK Osijek II, NK Bedekovčina II, NK Lobor II, NK Mladost Satnica Đakovačka 2 |
+| stubovi bez adrese | 2 | NK Lobor I, NK Bedekovčina I |
 
-### Na što paziti pri sljedećem ingestu
-1. **Dedup po razredu**, ne po golom imenu — inače ženski/futsal nestaju (ista greška kao prije).
-2. **II/B momčadi preskočiti** ili vezati na prvi tim, ne kao zasebne klubove.
-3. **City→county** treba proširiti mapu (`CITY_COUNTY` u 33) — ~289 klubova pokriva puno više od 15 gradova; razmisli o lookupu iz postojećih DB redova ili Nominatim reverse.
-4. **Stub zapisi** (bez osnutka/adrese/koord) — npr. ŽNK Dilj (V) je ingestiran ali je tanak; provjeri postoji li klub uopće prije masovnog uvoza.
+### Naučene lekcije (za sljedeći ingest)
+1. **Dedup po razredu** (Ž/F/M), ne po golom imenu — inače ženski nestaju.
+2. **Proximity-dedup OBAVEZAN**: class+core dedup promašuje "(KS)" vs "Kaštel
+   Sućurac" varijante; provjeri ima li novi klub postojeći unutar ~120 m.
+3. **Google override-filteri su za muške klubove** — kod ŽNK lažno prolaze
+   (suvenirnica "Prodavaonica obilježja HNK Hajduk" umalo postala teren).
+4. **city_from_address ne hvata sve formate** (razmaknuti zip "40 313", bez
+   zareza) — 8/104 imalo adresu u `city` polju; popravljeno parsiranjem repa.
+5. **Županija iz poštanskog broja** (2-znamenkasti prefiks → županija) kad
+   grad nije u postojećoj DB mapi.
 
 ## ⬜ Šira rupa — cache nije puni svemir
 
