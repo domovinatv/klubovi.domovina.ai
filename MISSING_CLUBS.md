@@ -39,12 +39,36 @@ potvrđene koordinate. **167 odbijeno** → `data/exports/missing_clubs_gate_rej
 proximity-duplikati postojećih klubova (npr. "NK Radnički (D)" = "NK Radnički
 Dalj", 0 m) — semafor_url prebačen na postojeći prije brisanja.
 
-## ⬜ Preostalo za review
+## ⬜ Pending pipeline — 179 klubova za cherry-pick
 
-| izvor | broj | što |
+Klubovi koji nisu prošli strogi `both` gate **nisu obrisani iz pipelinea** —
+ostaju kao "pending" red. Kad se netko javi da nedostaje klub, lako ga
+cherry-pickamo. Lista je **regenerabilna** (deterministička iz cachea + trenutne
+baze), pa preživljava brisanje stagiranih redaka:
+
+```
+uv run python scripts/35_ingest_missing_gated.py --pending
+# → data/exports/missing_clubs_pending.csv  (semafor_id, naziv, grad, adresa, moguci_duplikat, semafor_url)
+```
+
+Trenutno **179** (167 gate-rejects + 11 proximity-dupe + 1), od toga **14
+označeno `moguci_duplikat=DA`** (vjerojatno već u bazi pod varijantom imena —
+ne cherry-pickati naslijepo). Razlozi zašto su pali: ~130 Google-override
+(npr. suvenirnica Hajduk), ~35 nominatim-only, 2 semafor.
+
+### Cherry-pick workflow (kad se javi da fali klub X)
+1. Nađi X u `missing_clubs_pending.csv` po imenu → uzmi `semafor_id`.
+2. Provjeri `moguci_duplikat` — ako DA, prvo provjeri postoji li već u bazi.
+3. Re-stage taj jedan ID + geocode (Nominatim/Google) + verify lokaciju.
+4. Dodaj ako je lokacija potvrđena; logo preko `scripts/34_fetch_semafor_logos.py`.
+
+*(`data/exports/` je gitignoran — zato je generator skripta to što se commita,
+a CSV se regenerira komandom gore.)*
+
+### Posebno preskočeno (nije u pending listi)
+| | broj | što |
 |---|---|---|
-| `missing_clubs_gate_rejects.csv` | 167 | nisu prošli strogi `both` gate — 130 Google-override (poput suvenirnice Hajduk), 35 nominatim-only, 2 semafor; ručno presuditi ili olabaviti gate |
-| II/B rezervne momčadi | 5 | preskočeno: GNK Dinamo II, NK Osijek II, NK Bedekovčina II, NK Lobor II, NK Mladost Satnica Đakovačka 2 |
+| II/B rezervne momčadi | 5 | GNK Dinamo II, NK Osijek II, NK Bedekovčina II, NK Lobor II, NK Mladost Satnica Đakovačka 2 — prvi tim već u bazi |
 | stubovi bez adrese | 2 | NK Lobor I, NK Bedekovčina I |
 
 ### Naučene lekcije (za sljedeći ingest)

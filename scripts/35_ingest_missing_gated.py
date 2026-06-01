@@ -37,6 +37,7 @@ from src import phones  # noqa: E402
 CACHE = ROOT / "data" / "raw" / "semafor"
 UNLINKED = Path("/tmp/unlinked.txt")
 REVIEW_CSV = ROOT / "data" / "exports" / "missing_clubs_gate_rejects.csv"
+PENDING_CSV = ROOT / "data" / "exports" / "missing_clubs_pending.csv"
 BATCH_TAG = "ingest-batch:35-missing-gated"
 
 # HR bounding box (same as scripts/26_verify_geo.py)
@@ -178,11 +179,56 @@ def gate(conn) -> None:
     print(f"  total clubs now: {conn.execute('SELECT count(*) FROM clubs').fetchone()[0]}")
 
 
+def pending(conn) -> None:
+    """Regenerate the durable cherry-pick queue: every cache candidate NOT
+    currently in the DB (i.e. gate-rejected or never staged). Deterministic —
+    survives the deletion of staged rows, so it's the canonical 'what's still
+    missing' list. Flags likely duplicates of existing clubs (loose name+city
+    match) so we don't cherry-pick something already in the base under a variant
+    name. When someone reports a missing club, find it here by name → grab its
+    semafor_id → re-stage+geocode+verify that one row."""
+    cands = _candidates(conn)
+    in_db = {s for (s,) in conn.execute("SELECT slug FROM clubs")}
+    # loose index of existing clubs for dupe-flagging: (first distinctive token, city)
+    existing = []
+    for n, c in conn.execute("SELECT canonical_name, city FROM clubs"):
+        existing.append((_core(n), (c or "").lower()))
+
+    rows = []
+    for sid, name, d, city, county in cands:
+        if slugify(name, city or None) in in_db:
+            continue  # already imported (the 93 kept)
+        core = _core(name)
+        likely_dupe = any(
+            core and ec and (core in ec or ec in core) and city.lower() == ecity
+            for ec, ecity in existing
+        )
+        rows.append({
+            "semafor_id": sid, "naziv": name, "grad": city,
+            "zupanija": county or "", "adresa": d["address"] or "",
+            "osnovan": d["founded_year"] or "", "telefon": d["phone"] or "",
+            "moguci_duplikat": "DA" if likely_dupe else "",
+            "semafor_url": canonical_url(int(sid)),
+        })
+    rows.sort(key=lambda r: (r["moguci_duplikat"] == "", r["naziv"]))
+    PENDING_CSV.parent.mkdir(parents=True, exist_ok=True)
+    with PENDING_CSV.open("w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
+        w.writeheader()
+        w.writerows(rows)
+    dupes = sum(1 for r in rows if r["moguci_duplikat"])
+    print(f"pending cherry-pick queue: {len(rows)} clubs → {PENDING_CSV}")
+    print(f"  od toga označeno kao mogući duplikat: {dupes}")
+    print(f"  cherry-pick: nađi klub po imenu → semafor_id → re-stage + geocode + verify")
+
+
 if __name__ == "__main__":
     conn = connect()
     if "--insert" in sys.argv:
         insert(conn)
     elif "--gate" in sys.argv:
         gate(conn)
+    elif "--pending" in sys.argv:
+        pending(conn)
     else:
-        print("usage: --insert  (stage candidates)  |  --gate  (keep 'both', drop rest)")
+        print("usage: --insert (stage) | --gate (keep 'both') | --pending (regen cherry-pick queue)")
