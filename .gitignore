@@ -9,6 +9,7 @@ data/exports/
 .DS_Store
 .env
 data/logos/
+data/logos_orig/
 data/verification/results-raw.json
 .claude/
 
