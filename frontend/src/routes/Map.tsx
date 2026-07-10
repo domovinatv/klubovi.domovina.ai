@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import maplibregl, { type StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Link } from "react-router-dom";
-import { loadClubs, loadStats, logoUrl } from "@/lib/data";
+import { loadClubs, loadStats, logoUrl, logoSrcSet } from "@/lib/data";
 import type { Club, Stats } from "@/lib/types";
 import { PageSpinner } from "@/components/PageSpinner";
 import { TierBadge } from "@/components/TierBadge";
@@ -259,7 +259,13 @@ function ClubPopupCard({ club, onClose }: { club: Club; onClose: () => void }) {
     <div className="absolute left-4 bottom-4 right-4 sm:left-4 sm:bottom-4 sm:right-auto sm:max-w-sm card shadow-elevated p-4 flex gap-3 items-start z-10">
       <div className="w-14 h-14 rounded-sm bg-surface grid place-items-center overflow-hidden flex-shrink-0">
         {lg ? (
-          <img src={lg} alt="" className="w-full h-full object-contain" />
+          <img
+            src={lg}
+            srcSet={logoSrcSet(club)}
+            sizes="56px"
+            alt=""
+            className="w-full h-full object-contain"
+          />
         ) : (
           <span className="text-3xl">⚽</span>
         )}

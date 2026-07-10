@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { loadClubDetail, loadClubs, logoUrl } from "@/lib/data";
+import { loadClubDetail, loadClubs, logoUrl, logoSrcSet } from "@/lib/data";
 import type { Club, ClubDetail } from "@/lib/types";
 import { PageSpinner } from "@/components/PageSpinner";
 import { TierBadge } from "@/components/TierBadge";
@@ -59,7 +59,13 @@ export default function ClubRoute() {
         <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-6 border-b border-border bg-gradient-to-br from-surface to-white">
           <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-DEFAULT bg-white border border-border grid place-items-center overflow-hidden shadow-card flex-shrink-0">
             {lg ? (
-              <img src={lg} alt="" className="w-full h-full object-contain p-2" />
+              <img
+                src={lg}
+                srcSet={logoSrcSet(club)}
+                sizes="(min-width: 640px) 128px, 96px"
+                alt=""
+                className="w-full h-full object-contain p-2"
+              />
             ) : (
               <span className="text-6xl">⚽</span>
             )}

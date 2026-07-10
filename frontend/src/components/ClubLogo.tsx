@@ -1,12 +1,12 @@
 import type { Club } from "@/lib/types";
-import { logoUrl } from "@/lib/data";
+import { logoUrl, logoSrcSet } from "@/lib/data";
 
 export function ClubLogo({
   club,
   size = 48,
   className = "",
 }: {
-  club: Pick<Club, "logo" | "slug" | "canonical_name">;
+  club: Pick<Club, "logo" | "slug" | "canonical_name" | "logo_sizes">;
   size?: number;
   className?: string;
 }) {
@@ -21,6 +21,8 @@ export function ClubLogo({
       {url ? (
         <img
           src={url}
+          srcSet={logoSrcSet(club)}
+          sizes={px}
           alt=""
           loading="lazy"
           decoding="async"

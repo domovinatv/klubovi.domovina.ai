@@ -46,11 +46,11 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: ({ url }) => url.pathname.startsWith("/logos/"),
+            urlPattern: ({ url }) => url.origin === "https://c.ff.hr",
             handler: "CacheFirst",
             options: {
-              cacheName: "klubovi-logos-v1",
-              expiration: { maxEntries: 1000, maxAgeSeconds: 60 * 60 * 24 * 90 },
+              cacheName: "klubovi-logos-v2",
+              expiration: { maxEntries: 1500, maxAgeSeconds: 60 * 60 * 24 * 90 },
             },
           },
           {

@@ -8,7 +8,8 @@ Writes:
     frontend/public/data/clubs/<slug>.json — per-club detail (leagues timeline, aliases)
     frontend/public/data/manifest.json  — { generated_at, counts, schema_version }
 
-Also syncs PNG logos to frontend/public/logos/.
+Logos are served from the c.ff.hr R2 CDN (see scripts/42-47); clubs.json
+carries `logo_sizes` so the frontend can build density-aware srcset.
 
 Run:
     uv run python scripts/40_export_static.py
@@ -16,7 +17,6 @@ Run:
 from __future__ import annotations
 
 import json
-import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -28,7 +28,6 @@ from src.db import connect  # noqa: E402
 
 OUT_DIR = ROOT / "frontend" / "public" / "data"
 LOGO_SRC = ROOT / "data" / "logos"
-LOGO_DST = ROOT / "frontend" / "public" / "logos"
 
 SCHEMA_VERSION = 1
 
@@ -36,7 +35,6 @@ SCHEMA_VERSION = 1
 def _ensure_dirs() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUT_DIR / "clubs").mkdir(parents=True, exist_ok=True)
-    LOGO_DST.mkdir(parents=True, exist_ok=True)
 
 
 def _write_json(path: Path, payload) -> None:
@@ -49,6 +47,15 @@ def _write_json(path: Path, payload) -> None:
 def _logo_filename(slug: str) -> str | None:
     p = LOGO_SRC / f"{slug}.png"
     return p.name if p.exists() else None
+
+
+SIZED_SRC = ROOT / "data" / "logos_sized"
+LOGO_TIERS = [192, 256, 512, 1024]
+
+
+def _logo_sizes(slug: str) -> list[int]:
+    """Size tiers genuinely available on the c.ff.hr CDN (no upscaling)."""
+    return [s for s in LOGO_TIERS if (SIZED_SRC / str(s) / f"{slug}.png").exists()]
 
 
 def export_clubs(conn) -> list[dict]:
@@ -83,6 +90,9 @@ def export_clubs(conn) -> list[dict]:
     for r in rows:
         d = dict(r)
         d["logo"] = _logo_filename(d["slug"])
+        sizes = _logo_sizes(d["slug"])
+        if sizes:
+            d["logo_sizes"] = sizes
         # drop nulls to shrink payload (~30% smaller)
         clubs.append({k: v for k, v in d.items() if v not in (None, "")})
     return clubs
@@ -200,18 +210,6 @@ def export_club_details(conn, club_ids: list[int]) -> int:
     return n
 
 
-def sync_logos() -> int:
-    if not LOGO_SRC.exists():
-        return 0
-    n = 0
-    for src in LOGO_SRC.glob("*.png"):
-        dst = LOGO_DST / src.name
-        if not dst.exists() or src.stat().st_mtime > dst.stat().st_mtime:
-            shutil.copy2(src, dst)
-        n += 1
-    return n
-
-
 def main() -> None:
     _ensure_dirs()
     with connect() as conn:
@@ -240,11 +238,9 @@ def main() -> None:
         },
     )
 
-    logos_n = sync_logos()
-
     print(
         f"clubs={len(clubs)} leagues={len(leagues)} counties={len(counties)} "
-        f"details={details_n} logos={logos_n}"
+        f"details={details_n}"
     )
 
 

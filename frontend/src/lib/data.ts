@@ -26,7 +26,24 @@ export function deburr(s: string): string {
   return s.normalize("NFKD").replace(DIACRITIC_RE, "").toLowerCase();
 }
 
+const LOGO_CDN = "https://c.ff.hr";
+
 export function logoUrl(club: Pick<Club, "logo" | "slug">): string | null {
   if (!club.logo) return null;
-  return `/logos/${club.logo}`;
+  return `${LOGO_CDN}/logos/${club.logo}`;
+}
+
+/**
+ * srcset over the CDN size ladder (192/256/512/1024). Tiers exist only where
+ * the source image honestly fills them, so the browser picks the best real
+ * resolution for the rendered size × devicePixelRatio and never upscales a
+ * tiny crest into a blurry big one.
+ */
+export function logoSrcSet(
+  club: Pick<Club, "logo" | "slug" | "logo_sizes">,
+): string | undefined {
+  if (!club.logo || !club.logo_sizes?.length) return undefined;
+  return club.logo_sizes
+    .map((s) => `${LOGO_CDN}/logos/${s}/${club.slug}.png ${s}w`)
+    .join(", ");
 }

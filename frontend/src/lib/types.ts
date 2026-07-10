@@ -29,6 +29,8 @@ export interface Club {
   top_league_id?: number;
   top_league_name?: string;
   logo?: string;
+  /** c.ff.hr size tiers genuinely available for this club (no upscaling). */
+  logo_sizes?: number[];
 }
 
 export interface League {
