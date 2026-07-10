@@ -14,6 +14,7 @@ expensive part to re-learn.
 | Size ladder | `data/logos_sized/{192,256,512,1024}/{slug}.png` → `https://c.ff.hr/logos/{size}/{slug}.png` | 763 / 635 / 222 / 63 |
 | Source of truth | `data/logos_orig/{slug}.{svg,png,jpg,gif}` → `https://c.ff.hr/originals/…` | 723 (4 SVG) |
 | Machine index | `https://c.ff.hr/index.json` — per club: `logo`, `original`, `svg`, `sizes[]` | 1014 |
+| Square app icons (1024², opaque, per-club bg) | `data/club_square/{slug}.png` → `https://c.ff.hr/club_square/{slug}.png` (+ `club_square/maskable/…` for Android adaptive) | 1014 + 1014 |
 
 Width distribution of the web catalog moved from **592 clubs < 100 px** to
 **93 < 100 px / 635 ≥ 256 px**. The residual ~93 tiny crests have no reachable
@@ -137,6 +138,32 @@ in `frontend/src/lib/data.ts`, `<img srcset sizes>` in ClubLogo / Club hero /
 Map popup; the fixed square is only an invisible alignment footprint — crests
 render in natural aspect ratio, and the grey box appears solely for the
 missing-crest fallback (Lucide `Shield`).
+
+## Square app icons (`club_square/`, script 50–51)
+
+Purpose: per-club PWA home-screen icons for the `{slug}.ff.hr` wallets — iOS
+and Android need a square, **opaque** image (iOS renders black behind
+transparent pixels) with a background color that suits *that* crest.
+
+- **Source cascade** identical in spirit to script 47 (SVG → largest raster in
+  `logos_orig` → legacy `logos/`), but upscaling is allowed (icons display
+  ≤ ~180 px; precedent script 49).
+- **Cut-out classes** (measured): 4 SVG / 502 real alpha cut-outs / 386 opaque
+  with near-white corners / 122 opaque other. White-corner sources get
+  **border flood-fill keying** (white removed only where reachable from the
+  image border — internal white crest fills survive). Uniform non-white
+  corners extend their native color into the icon background; photo-like
+  sources go unkeyed on white.
+- **Background heuristic**: brand primary from script 48's clustering; light
+  crest (mean luminance ≥ 0.60) sits on the darkened primary, dark crest on a
+  light tint (HSL S·0.35, L 0.93); greyscale crests get neutrals; a contrast
+  guard flips polarity when bg and crest luminance are within 0.15.
+- **Variants**: `club_square/{slug}.png` (crest in 70% box) and
+  `club_square/maskable/{slug}.png` (56% box — Android adaptive-icon safe
+  zone, derivation in script 49's docstring). Both 1024×1024 RGB, 256-color
+  quantized.
+- **Upload**: `scripts/51_upload_square_icons.sh` — additive backfill (new
+  keys, no edge-cache staleness), skips existing objects unless `--force`.
 
 ## CDN operations (R2 `c-ff-hr`, ff.hr account)
 
