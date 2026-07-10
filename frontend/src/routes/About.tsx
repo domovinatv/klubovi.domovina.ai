@@ -1,7 +1,8 @@
+import { Info } from "lucide-react";
 export default function About() {
   return (
     <article className="container-page py-10 max-w-3xl">
-      <div className="pill mb-3">ℹ️ O projektu</div>
+      <div className="pill mb-3 inline-flex items-center gap-1.5"><Info size={13} /> O projektu</div>
       <h1 className="text-3xl sm:text-4xl font-extrabold text-navy">
         Što je DOMOVINA Klubovi
       </h1>

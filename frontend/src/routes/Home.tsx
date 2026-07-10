@@ -1,3 +1,4 @@
+import { Database, SearchX } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { loadClubs, loadCounties, loadStats } from "@/lib/data";
@@ -101,8 +102,9 @@ function Hero({ stats }: { stats: Stats }) {
     <section className="border-b border-border bg-gradient-to-b from-surface to-white">
       <div className="container-page py-12 sm:py-16">
         <div className="max-w-3xl">
-          <div className="pill mb-4">
-            🇭🇷 Otvoreni podaci · {g.total.toLocaleString("hr-HR")} klubova
+          <div className="pill mb-4 inline-flex items-center gap-1.5">
+            <Database size={13} /> Otvoreni podaci ·{" "}
+            {g.total.toLocaleString("hr-HR")} klubova
           </div>
           <h1 className="text-balance text-3xl sm:text-5xl font-extrabold tracking-tight text-navy">
             Svi hrvatski nogometni klubovi
@@ -195,7 +197,7 @@ function ListHeader({
 function Empty() {
   return (
     <div className="card p-12 text-center text-muted">
-      <div className="text-5xl mb-3">⚽</div>
+      <div className="mb-3 grid place-items-center text-muted/50"><SearchX size={44} strokeWidth={1.5} /></div>
       <div className="font-medium text-navy">Nijedan klub ne odgovara filterima.</div>
       <div className="text-sm mt-1">Resetiraj filtere i pokušaj ponovno.</div>
     </div>

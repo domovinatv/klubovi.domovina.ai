@@ -3,6 +3,7 @@ import maplibregl, { type StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Link } from "react-router-dom";
 import { loadClubs, loadStats, logoUrl, logoSrcSet } from "@/lib/data";
+import { Shield } from "lucide-react";
 import type { Club, Stats } from "@/lib/types";
 import { PageSpinner } from "@/components/PageSpinner";
 import { TierBadge } from "@/components/TierBadge";
@@ -267,7 +268,7 @@ function ClubPopupCard({ club, onClose }: { club: Club; onClose: () => void }) {
             className="max-w-full max-h-full w-auto h-auto object-contain"
           />
         ) : (
-          <span className="text-3xl w-full h-full rounded-sm bg-surface grid place-items-center">⚽</span>
+          <span className="w-full h-full rounded-sm bg-surface grid place-items-center text-muted/60"><Shield size={26} strokeWidth={1.5} /></span>
         )}
       </div>
       <div className="flex-1 min-w-0">

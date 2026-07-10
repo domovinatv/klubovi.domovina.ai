@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Shield } from "lucide-react";
 import type { Club } from "@/lib/types";
 import { logoUrl, logoSrcSet } from "@/lib/data";
 
@@ -5,7 +7,7 @@ import { logoUrl, logoSrcSet } from "@/lib/data";
  * Club crest inside a fixed square *footprint* (keeps list rows aligned) but
  * with no visible box: non-square crests keep their aspect ratio and simply
  * take less width/height — never cropped, never letterboxed in a grey frame.
- * The grey rounded square only appears for the ⚽ fallback.
+ * The grey rounded square only appears for the missing-crest fallback.
  */
 export function ClubLogo({
   club,
@@ -16,6 +18,7 @@ export function ClubLogo({
   size?: number;
   className?: string;
 }) {
+  const [failed, setFailed] = useState(false);
   const url = logoUrl(club);
   const px = `${size}px`;
   return (
@@ -24,7 +27,7 @@ export function ClubLogo({
       style={{ width: px, height: px }}
       aria-hidden="true"
     >
-      {url ? (
+      {url && !failed ? (
         <img
           src={url}
           srcSet={logoSrcSet(club)}
@@ -33,19 +36,11 @@ export function ClubLogo({
           loading="lazy"
           decoding="async"
           className="max-w-full max-h-full w-auto h-auto object-contain"
-          onError={(e) => {
-            const t = e.currentTarget;
-            t.style.display = "none";
-            t.parentElement!.classList.add("rounded-sm", "bg-surface");
-            t.parentElement!.textContent = "⚽";
-          }}
+          onError={() => setFailed(true)}
         />
       ) : (
-        <span
-          className="w-full h-full rounded-sm bg-surface grid place-items-center"
-          style={{ fontSize: size * 0.55 }}
-        >
-          ⚽
+        <span className="w-full h-full rounded-sm bg-surface grid place-items-center text-muted/60">
+          <Shield size={size * 0.5} strokeWidth={1.5} />
         </span>
       )}
     </div>

@@ -1,3 +1,4 @@
+import { Mountain } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { loadClubs } from "@/lib/data";
@@ -46,7 +47,7 @@ export default function CountyRoute() {
       </Link>
 
       <div className="card p-6 mb-6 bg-gradient-to-br from-surface to-white">
-        <div className="pill mb-2">🏞 Županija</div>
+        <div className="pill mb-2 inline-flex items-center gap-1.5"><Mountain size={13} /> Županija</div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-navy">
           {decoded}
         </h1>

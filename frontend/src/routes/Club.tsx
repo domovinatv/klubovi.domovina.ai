@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { loadClubDetail, loadClubs, logoUrl, logoSrcSet } from "@/lib/data";
+import { Cake, MapPin, Mountain, Phone, Shield, Smartphone } from "lucide-react";
 import type { Club, ClubDetail } from "@/lib/types";
 import { PageSpinner } from "@/components/PageSpinner";
 import { TierBadge } from "@/components/TierBadge";
@@ -57,17 +58,19 @@ export default function ClubRoute() {
 
       <div className="card overflow-hidden">
         <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-6 border-b border-border bg-gradient-to-br from-surface to-white">
-          <div className="h-24 sm:h-32 min-w-24 sm:min-w-32 max-w-44 sm:max-w-60 rounded-DEFAULT bg-white border border-border grid place-items-center shadow-card flex-shrink-0 p-2">
+          <div className="h-24 sm:h-32 max-w-44 sm:max-w-60 grid place-items-center flex-shrink-0">
             {lg ? (
               <img
                 src={lg}
                 srcSet={logoSrcSet(club)}
                 sizes="(min-width: 640px) 128px, 96px"
                 alt=""
-                className="max-h-full max-w-full w-auto h-auto object-contain"
+                className="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-sm"
               />
             ) : (
-              <span className="text-6xl px-4">⚽</span>
+              <span className="w-24 h-24 sm:w-32 sm:h-32 rounded-DEFAULT bg-surface grid place-items-center text-muted/60">
+                <Shield size={48} strokeWidth={1.5} />
+              </span>
             )}
           </div>
           <div className="flex-1 min-w-0">
@@ -90,15 +93,15 @@ export default function ClubRoute() {
                 </Link>
               )}
               {club.city && (
-                <span className="pill">📍 {club.city}</span>
+                <span className="pill inline-flex items-center gap-1"><MapPin size={13} /> {club.city}</span>
               )}
               {club.county && (
                 <Link to={`/zupanija/${encodeURIComponent(club.county)}`} className="pill !text-navy">
-                  🏞 {club.county.replace(" županija", "")}
+                  <span className="inline-flex items-center gap-1"><Mountain size={13} /> {club.county.replace(" županija", "")}</span>
                 </Link>
               )}
               {club.founded_year && (
-                <span className="pill">🎂 {club.founded_year}.</span>
+                <span className="pill inline-flex items-center gap-1"><Cake size={13} /> {club.founded_year}.</span>
               )}
             </div>
           </div>
@@ -128,11 +131,13 @@ function ContactPanel({ club }: { club: Club }) {
       {club.phone && (
         <Row
           k={
-            club.phone_kind === "mobile"
-              ? "📱 Mobitel"
-              : club.phone_kind === "landline"
-                ? "☎️ Fiksni"
-                : "Telefon"
+            club.phone_kind === "mobile" ? (
+              <span className="inline-flex items-center gap-1"><Smartphone size={12} /> Mobitel</span>
+            ) : club.phone_kind === "landline" ? (
+              <span className="inline-flex items-center gap-1"><Phone size={12} /> Fiksni</span>
+            ) : (
+              "Telefon"
+            )
           }
           v={
             <a href={`tel:${club.phone_e164 || club.phone}`} className="text-navy hover:text-flag-red">
@@ -295,7 +300,7 @@ function SourcePanel({ club }: { club: Club }) {
   );
 }
 
-function Row({ k, v }: { k: string; v: React.ReactNode }) {
+function Row({ k, v }: { k: React.ReactNode; v: React.ReactNode }) {
   return (
     <div className="text-sm">
       <span className="text-muted text-xs uppercase tracking-wide">{k}:</span>{" "}

@@ -1,3 +1,4 @@
+import { ChartColumn } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { loadCounties, loadStats } from "@/lib/data";
@@ -32,7 +33,7 @@ export default function StatsRoute() {
   return (
     <section className="container-page py-6 sm:py-10">
       <header className="mb-8">
-        <div className="pill mb-2">📊 Pokrivenost</div>
+        <div className="pill mb-2 inline-flex items-center gap-1.5"><ChartColumn size={13} /> Pokrivenost</div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-navy">
           Statistika kataloga
         </h1>

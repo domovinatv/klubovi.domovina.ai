@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
+import { Globe, Mail, MessageCircle, Phone, type LucideIcon } from "lucide-react";
 import type { Club } from "@/lib/types";
 import { ClubLogo } from "./ClubLogo";
 import { TierBadge } from "./TierBadge";
 
 function ContactDots({ c }: { c: Club }) {
-  const items: Array<{ ok: boolean; label: string; emoji: string }> = [
-    { ok: c.phone_kind === "mobile", label: "Mobitel", emoji: "💬" },
-    { ok: !!c.phone, label: "Telefon", emoji: "📞" },
-    { ok: !!c.email, label: "Email", emoji: "✉" },
+  const items: Array<{ ok: boolean; label: string; Icon: LucideIcon }> = [
+    { ok: c.phone_kind === "mobile", label: "Mobitel", Icon: MessageCircle },
+    { ok: !!c.phone, label: "Telefon", Icon: Phone },
+    { ok: !!c.email, label: "Email", Icon: Mail },
     {
       ok: !!(c.website || c.fb_url || c.ig_url),
       label: "Web/društvene",
-      emoji: "🌐",
+      Icon: Globe,
     },
   ];
   return (
@@ -27,7 +28,7 @@ function ContactDots({ c }: { c: Club }) {
               : "bg-surface text-muted/50")
           }
         >
-          {it.emoji}
+          <it.Icon size={12} strokeWidth={2.2} />
         </span>
       ))}
     </div>
