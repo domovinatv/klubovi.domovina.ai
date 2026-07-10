@@ -10,6 +10,9 @@ data/exports/
 .env
 data/logos/
 data/logos_orig/
+data/logos_sized/
+data/verification/fb_logo_candidates/
+data/verification/wiki_logo_candidates/
 data/verification/results-raw.json
 .claude/
 
