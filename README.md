@@ -26,7 +26,9 @@ Two interfaces ship from this repo:
 The ingest + enrichment pipeline (`scripts/`) is fully reproducible:
 `uv run python scripts/01_ingest_sofascore.py` etc. rebuild `data/clubs.db`
 from scratch against the public sources. Data quality is sampled and scored
-by parallel AI verification runs (see `VERIFICATION.md`).
+by parallel AI verification runs (see `VERIFICATION.md`). Club crests are
+served from a public multi-resolution CDN at `c.ff.hr` — sources, size
+ladder, and the identity-gating workflow are documented in `LOGOS.md`.
 
 This repo lives under the [DOMOVINA](https://github.com/domovinatv) umbrella —
 an open Croatian podcast/data/AI ecosystem.
