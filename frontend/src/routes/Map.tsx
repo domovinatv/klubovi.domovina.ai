@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import maplibregl, { type StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Link } from "react-router-dom";
-import { loadClubs, loadStats, logoUrl, logoSrcSet } from "@/lib/data";
-import { Shield } from "lucide-react";
+import { loadClubs, loadStats, logoUrl, logoSrcSet, walletUrl } from "@/lib/data";
+import { Shield, Wallet } from "lucide-react";
 import type { Club, Stats } from "@/lib/types";
 import { PageSpinner } from "@/components/PageSpinner";
 import { TierBadge } from "@/components/TierBadge";
@@ -297,12 +297,26 @@ function ClubPopupCard({ club, onClose }: { club: Club; onClose: () => void }) {
         {club.top_league_name && (
           <div className="text-xs text-muted mt-1">{club.top_league_name}</div>
         )}
-        <Link
-          to={`/klub/${club.slug}`}
-          className="btn-ghost mt-3 inline-flex !px-3 !py-1.5 text-xs"
-        >
-          Detalji →
-        </Link>
+        <div className="mt-3 flex gap-2 flex-wrap">
+          <Link
+            to={`/klub/${club.slug}`}
+            className="btn-ghost inline-flex !px-3 !py-1.5 text-xs"
+          >
+            Detalji →
+          </Link>
+          <a
+            href={walletUrl(club)}
+            target="_blank"
+            rel="noopener"
+            title="Prototip klupskog novčanika — klub još ne prima službene uplate"
+            className="btn-ghost inline-flex !px-3 !py-1.5 text-xs"
+          >
+            <Wallet size={13} /> Novčanik
+            <span className="rounded-full bg-surface border border-border px-1.5 text-[9px] font-bold uppercase tracking-wider text-muted">
+              demo
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   );

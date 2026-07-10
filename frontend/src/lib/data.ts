@@ -28,6 +28,11 @@ export function deburr(s: string): string {
 
 const LOGO_CDN = "https://c.ff.hr";
 
+/** Brandirani self-custody novčanik kluba (wallet prototip, wildcard *.ff.hr). */
+export function walletUrl(club: Pick<Club, "slug">): string {
+  return `https://${club.slug}.ff.hr`;
+}
+
 export function logoUrl(club: Pick<Club, "logo" | "slug">): string | null {
   if (!club.logo) return null;
   return `${LOGO_CDN}/logos/${club.logo}`;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { loadClubDetail, loadClubs, logoUrl, logoSrcSet } from "@/lib/data";
-import { Cake, MapPin, Mountain, Phone, Shield, Smartphone } from "lucide-react";
+import { loadClubDetail, loadClubs, logoUrl, logoSrcSet, walletUrl } from "@/lib/data";
+import { Cake, MapPin, Mountain, Phone, Shield, Smartphone, Wallet } from "lucide-react";
 import type { Club, ClubDetail } from "@/lib/types";
 import { PageSpinner } from "@/components/PageSpinner";
 import { TierBadge } from "@/components/TierBadge";
@@ -103,6 +103,20 @@ export default function ClubRoute() {
               {club.founded_year && (
                 <span className="pill inline-flex items-center gap-1"><Cake size={13} /> {club.founded_year}.</span>
               )}
+            </div>
+            <div className="mt-4 flex items-center gap-2 flex-wrap">
+              <a
+                href={walletUrl(club)}
+                target="_blank"
+                rel="noopener"
+                title="Prototip klupskog novčanika — klub još ne prima službene uplate"
+                className="btn-primary !text-white"
+              >
+                <Wallet size={16} /> Klupski novčanik
+                <span className="rounded-full bg-white/20 px-1.5 py-px text-[10px] font-bold uppercase tracking-wider">
+                  demo
+                </span>
+              </a>
             </div>
           </div>
         </div>
