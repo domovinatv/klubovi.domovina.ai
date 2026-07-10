@@ -57,17 +57,17 @@ export default function ClubRoute() {
 
       <div className="card overflow-hidden">
         <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-6 border-b border-border bg-gradient-to-br from-surface to-white">
-          <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-DEFAULT bg-white border border-border grid place-items-center overflow-hidden shadow-card flex-shrink-0">
+          <div className="h-24 sm:h-32 min-w-24 sm:min-w-32 max-w-44 sm:max-w-60 rounded-DEFAULT bg-white border border-border grid place-items-center shadow-card flex-shrink-0 p-2">
             {lg ? (
               <img
                 src={lg}
                 srcSet={logoSrcSet(club)}
                 sizes="(min-width: 640px) 128px, 96px"
                 alt=""
-                className="w-full h-full object-contain p-2"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             ) : (
-              <span className="text-6xl">⚽</span>
+              <span className="text-6xl px-4">⚽</span>
             )}
           </div>
           <div className="flex-1 min-w-0">

@@ -257,17 +257,17 @@ function ClubPopupCard({ club, onClose }: { club: Club; onClose: () => void }) {
   const lg = logoUrl(club);
   return (
     <div className="absolute left-4 bottom-4 right-4 sm:left-4 sm:bottom-4 sm:right-auto sm:max-w-sm card shadow-elevated p-4 flex gap-3 items-start z-10">
-      <div className="w-14 h-14 rounded-sm bg-surface grid place-items-center overflow-hidden flex-shrink-0">
+      <div className="w-14 h-14 grid place-items-center flex-shrink-0">
         {lg ? (
           <img
             src={lg}
             srcSet={logoSrcSet(club)}
             sizes="56px"
             alt=""
-            className="w-full h-full object-contain"
+            className="max-w-full max-h-full w-auto h-auto object-contain"
           />
         ) : (
-          <span className="text-3xl">⚽</span>
+          <span className="text-3xl w-full h-full rounded-sm bg-surface grid place-items-center">⚽</span>
         )}
       </div>
       <div className="flex-1 min-w-0">
