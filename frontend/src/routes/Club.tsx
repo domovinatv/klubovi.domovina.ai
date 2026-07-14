@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { loadClubDetail, loadClubs, logoUrl, logoSrcSet, walletUrl } from "@/lib/data";
+import { loadClubDetail, loadClubs, logoUrl, logoSrcSet, walletUrl, udrugaDetailUrl } from "@/lib/data";
 import { Cake, MapPin, Mountain, Phone, Shield, Smartphone, Wallet } from "lucide-react";
 import type { Club, ClubDetail } from "@/lib/types";
 import { PageSpinner } from "@/components/PageSpinner";
@@ -294,15 +294,31 @@ function AliasesPanel({ detail }: { detail: ClubDetail }) {
   );
 }
 
-// Registar udruga je Vaadin aplikacija s captchom i session-vezanim rutama —
-// deep-link na pojedinu udrugu se ne može stabilno napraviti (stara
-// detalji/{id} ruta pada natrag na tražilicu). Najpouzdanije je otvoriti
-// tražilicu i pretražiti po OIB-u (jedinstven → točno jedan rezultat).
+// Registar udruga je Vaadin aplikacija s captchom. Rekonstruirali smo njen
+// serijalizirani detail-token iz (OIB, UDR_ID) pa `udrugaDetailUrl` vodi ravno
+// na točan klub — treba samo riješiti jedan kontrolni broj pri učitavanju.
+// Ako nemamo token (nema OIB-a/UDR-a), fallback je tražilica + kopiran OIB.
 const UDRUGE_SEARCH_URL = "https://registri-npo-mpu.gov.hr/";
 
 function RegistryLink({ club }: { club: Club }) {
   const [copied, setCopied] = useState(false);
-  if (!club.registry_url && !club.oib) return null;
+  const detailUrl = udrugaDetailUrl(club);
+
+  if (detailUrl) {
+    return (
+      <a
+        href={detailUrl}
+        target="_blank"
+        rel="noopener"
+        title="Otvara točan zapis u Registru udruga — riješi kontrolni broj i prikazuje se ovaj klub."
+        className="btn-ghost text-xs"
+      >
+        Registar udruga ↗
+      </a>
+    );
+  }
+
+  if (!club.oib && !club.registry_url) return null;
 
   const openSearch = () => {
     if (club.oib) {
@@ -323,7 +339,7 @@ function RegistryLink({ club }: { club: Club }) {
       onClick={openSearch}
       title={
         club.oib
-          ? "Otvara Registar udruga i kopira OIB — zalijepi ga u polje OIB i riješi kontrolni broj (jedinstven OIB → točno jedan rezultat)."
+          ? "Otvara Registar udruga i kopira OIB — zalijepi ga u polje OIB i riješi kontrolni broj."
           : "Otvara tražilicu Registra udruga."
       }
       className="btn-ghost text-xs"
