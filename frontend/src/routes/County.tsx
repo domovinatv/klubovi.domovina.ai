@@ -65,7 +65,7 @@ export default function CountyRoute() {
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
         {filtered.map((c) => (
           <ClubCard key={c.id} club={c} />
         ))}

@@ -54,7 +54,7 @@ export default function Home() {
     <>
       <Hero stats={stats} />
 
-      <section className="container-page mt-8 mb-16 grid gap-6 lg:grid-cols-[280px_1fr] 2xl:grid-cols-[320px_1fr]">
+      <section className="container-page mt-8 mb-16 grid grid-cols-1 gap-6 lg:grid-cols-[280px_1fr] 2xl:grid-cols-[320px_1fr]">
         <FilterPanel
           filter={filter}
           onChange={updateFilter}
@@ -63,7 +63,7 @@ export default function Home() {
           stats={stats}
         />
 
-        <div>
+        <div className="min-w-0">
           <ListHeader
             shown={visible.length}
             total={filtered.length}
@@ -73,7 +73,7 @@ export default function Home() {
             <Empty />
           ) : (
             <>
-              <div className="grid sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3">
                 {visible.map((c) => (
                   <ClubCard key={c.id} club={c} />
                 ))}
