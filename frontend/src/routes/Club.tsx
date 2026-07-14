@@ -103,6 +103,14 @@ export default function ClubRoute() {
               {club.founded_year && (
                 <span className="pill inline-flex items-center gap-1"><Cake size={13} /> {club.founded_year}.</span>
               )}
+              {club.is_sdd === 1 && (
+                <span
+                  className="pill !border-navy/30 !text-navy font-semibold"
+                  title="Sportsko dioničko društvo — profesionalni klub ustrojen kao dioničko društvo"
+                >
+                  s.d.d.
+                </span>
+              )}
             </div>
             <div className="mt-4 flex items-center gap-2 flex-wrap">
               <a
@@ -239,7 +247,32 @@ function FactsPanel({ club }: { club: Club }) {
         />
       )}
       {club.founded_year && <Row k="Osnovan" v={`${club.founded_year}.`} />}
+      {club.pravni_oblik && (
+        <Row
+          k="Pravni oblik"
+          v={
+            <>
+              {club.pravni_oblik}
+              {club.is_sdd === 1 && (
+                <span className="text-xs text-muted ml-1">(s.d.d.)</span>
+              )}
+            </>
+          }
+        />
+      )}
+      {club.temeljni_kapital != null && (
+        <Row
+          k="Temeljni kapital"
+          v={
+            <span className="tabular-nums">
+              {club.temeljni_kapital.toLocaleString("hr-HR")}{" "}
+              {club.temeljni_kapital_valuta === "euro" ? "€" : club.temeljni_kapital_valuta}
+            </span>
+          }
+        />
+      )}
       {club.oib && <Row k="OIB" v={<span className="font-mono text-sm">{club.oib}</span>} />}
+      {club.sudreg_mbs && <Row k="MBS" v={<span className="font-mono text-sm">{club.sudreg_mbs}</span>} />}
       {club.lat != null && club.lng != null && (
         <Row
           k="Koordinate"
@@ -357,6 +390,12 @@ function SourcePanel({ club }: { club: Club }) {
   const links: Array<{ label: string; href: string }> = [];
   if (club.semafor_url) links.push({ label: "HNS Semafor", href: club.semafor_url });
   if (club.sofascore_url) links.push({ label: "SofaScore", href: club.sofascore_url });
+  if (club.sudreg_mbs) {
+    links.push({
+      label: "Sudski registar",
+      href: "https://sudreg.pravosudje.hr/",
+    });
+  }
   const hasRegistry = Boolean(club.registry_url || club.oib);
   if (links.length === 0 && !hasRegistry && !club.rno_url) return null;
   return (

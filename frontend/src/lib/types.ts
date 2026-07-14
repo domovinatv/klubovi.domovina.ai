@@ -27,6 +27,11 @@ export interface Club {
   rno_url?: string;
   iban?: string;
   oib?: string;
+  sudreg_mbs?: string;
+  pravni_oblik?: string;
+  is_sdd?: number;
+  temeljni_kapital?: number;
+  temeljni_kapital_valuta?: string;
   top_tier?: number;
   top_league_id?: number;
   top_league_name?: string;
