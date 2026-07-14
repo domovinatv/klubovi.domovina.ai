@@ -294,12 +294,55 @@ function AliasesPanel({ detail }: { detail: ClubDetail }) {
   );
 }
 
+// Registar udruga je Vaadin aplikacija s captchom i session-vezanim rutama —
+// deep-link na pojedinu udrugu se ne može stabilno napraviti (stara
+// detalji/{id} ruta pada natrag na tražilicu). Najpouzdanije je otvoriti
+// tražilicu i pretražiti po OIB-u (jedinstven → točno jedan rezultat).
+const UDRUGE_SEARCH_URL = "https://registri-npo-mpu.gov.hr/";
+
+function RegistryLink({ club }: { club: Club }) {
+  const [copied, setCopied] = useState(false);
+  if (!club.registry_url && !club.oib) return null;
+
+  const openSearch = () => {
+    if (club.oib) {
+      navigator.clipboard?.writeText(club.oib).then(
+        () => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2500);
+        },
+        () => {},
+      );
+    }
+    window.open(UDRUGE_SEARCH_URL, "_blank", "noopener");
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={openSearch}
+      title={
+        club.oib
+          ? "Otvara Registar udruga i kopira OIB — zalijepi ga u polje OIB i riješi kontrolni broj (jedinstven OIB → točno jedan rezultat)."
+          : "Otvara tražilicu Registra udruga."
+      }
+      className="btn-ghost text-xs"
+    >
+      {copied
+        ? "OIB kopiran — zalijepi u tražilicu ✓"
+        : club.oib
+          ? "Registar udruga (traži po OIB-u) ↗"
+          : "Registar udruga ↗"}
+    </button>
+  );
+}
+
 function SourcePanel({ club }: { club: Club }) {
   const links: Array<{ label: string; href: string }> = [];
   if (club.semafor_url) links.push({ label: "HNS Semafor", href: club.semafor_url });
   if (club.sofascore_url) links.push({ label: "SofaScore", href: club.sofascore_url });
-  if (club.registry_url) links.push({ label: "Registar udruga", href: club.registry_url });
-  if (links.length === 0) return null;
+  const hasRegistry = Boolean(club.registry_url || club.oib);
+  if (links.length === 0 && !hasRegistry) return null;
   return (
     <section className="mt-4 card p-4">
       <div className="field-label">Izvori</div>
@@ -309,6 +352,7 @@ function SourcePanel({ club }: { club: Club }) {
             {l.label} ↗
           </a>
         ))}
+        <RegistryLink club={club} />
       </div>
     </section>
   );
