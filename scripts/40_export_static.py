@@ -69,7 +69,7 @@ def export_clubs(conn) -> list[dict]:
           c.address, c.fb_url, c.ig_url, c.x_url,
           c.president, c.president_role,
           c.lat, c.lng,
-          c.semafor_url, c.sofascore_url, c.registry_url, c.oib,
+          c.semafor_url, c.sofascore_url, c.registry_url, c.rno_url, c.iban, c.oib,
           (SELECT MIN(l.tier)
              FROM club_seasons cs JOIN leagues l ON l.id = cs.league_id
              WHERE cs.club_id = c.id) AS top_tier,
