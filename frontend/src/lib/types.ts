@@ -24,6 +24,8 @@ export interface Club {
   semafor_url?: string;
   sofascore_url?: string;
   registry_url?: string;
+  rno_url?: string;
+  iban?: string;
   oib?: string;
   top_tier?: number;
   top_league_id?: number;

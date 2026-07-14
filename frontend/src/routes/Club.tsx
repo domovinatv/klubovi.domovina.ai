@@ -358,7 +358,7 @@ function SourcePanel({ club }: { club: Club }) {
   if (club.semafor_url) links.push({ label: "HNS Semafor", href: club.semafor_url });
   if (club.sofascore_url) links.push({ label: "SofaScore", href: club.sofascore_url });
   const hasRegistry = Boolean(club.registry_url || club.oib);
-  if (links.length === 0 && !hasRegistry) return null;
+  if (links.length === 0 && !hasRegistry && !club.rno_url) return null;
   return (
     <section className="mt-4 card p-4">
       <div className="field-label">Izvori</div>
@@ -368,6 +368,17 @@ function SourcePanel({ club }: { club: Club }) {
             {l.label} ↗
           </a>
         ))}
+        {club.rno_url && (
+          <a
+            href={club.rno_url}
+            target="_blank"
+            rel="noopener"
+            title="Registar neprofitnih organizacija (Ministarstvo financija) — službeni zapis, bez kontrolnog broja."
+            className="btn-ghost text-xs"
+          >
+            RNO ↗
+          </a>
+        )}
         <RegistryLink club={club} />
       </div>
     </section>
