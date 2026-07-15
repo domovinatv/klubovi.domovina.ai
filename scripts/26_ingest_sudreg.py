@@ -45,6 +45,14 @@ log = logging.getLogger("ingest_sudreg")
 
 API = "https://sudreg-data.gov.hr/api"
 CACHE = ROOT / "data" / "raw" / "sudreg"
+
+# Dual-entity clubs whose stored `oib` is the (legacy) udruga's, so a lookup by
+# that OIB 404s — the s.d.d. is a separate legal person with its own OIB that we
+# can't reach via the API's (missing) name-search. Override the lookup OIB here;
+# the club's stored oib is left untouched (RNO/udruga sources still use it).
+SDD_OIB_OVERRIDE = {
+    "HNK Šibenik": "21184451714",  # HNK Šibenik š.d.d. (MBS 110046317)
+}
 EMAIL_RE = __import__("re").compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
@@ -140,7 +148,8 @@ def run(limit: int | None, refresh: bool, workers: int) -> None:
         )
 
         def work(club: dict):
-            return club, fetch_subject(client, club["oib"], refresh)
+            oib = SDD_OIB_OVERRIDE.get(club["canonical_name"], club["oib"])
+            return club, fetch_subject(client, oib, refresh)
 
         results = []
         with ThreadPoolExecutor(max_workers=workers) as ex:
