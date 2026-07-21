@@ -95,3 +95,44 @@ class HRNogometClient:
     def team(self, team_id: int) -> dict[str, Any]:
         cache = self.cache_dir / "teams" / f"{team_id}.json"
         return self._get(f"/teams/{team_id}", cache_key=cache)
+
+
+def build_county_map(payload: list[dict[str, Any]]) -> dict[int, str]:
+    """Map countyId -> county name, restricted to ACTUAL Croatian counties.
+
+    Entities in /county/leagues include national tiers ("3. Nogometna Liga",
+    "4. Nogometna Liga", etc.) which we must NOT write into clubs.county.
+    Real counties have priority=50 and either contain "županija" or equal
+    "Grad Zagreb".
+    """
+    return {
+        c["id"]: c["name"]
+        for c in payload
+        if c.get("priority") == 50
+        and ("županija" in c["name"].lower() or c["name"] == "Grad Zagreb")
+    }
+
+
+def county_map_from_cache(cache_dir: Path = RAW_DIR) -> dict[int, str]:
+    """Offline county map. Used by the backfill guard, which must be able to
+    resolve a club's county without spending a network call mid-run."""
+    path = cache_dir / "county_leagues.json"
+    if not path.exists():
+        return {}
+    return build_county_map(json.loads(path.read_text()))
+
+
+def team_county_from_cache(team_id: int, cache_dir: Path = RAW_DIR) -> str | None:
+    """County name for a hrnogomet team id, purely from cached payloads.
+
+    The feed's `teamName` carries a disambiguator but no place ("NK Mladost
+    (Z)"), so `countyId` is the only location signal available at backfill
+    time for the 31 clubs whose `county` column is empty.
+    """
+    team_path = cache_dir / "teams" / f"{team_id}.json"
+    if not team_path.exists():
+        return None
+    county_id = json.loads(team_path.read_text()).get("countyId")
+    if county_id is None:
+        return None
+    return county_map_from_cache(cache_dir).get(county_id)

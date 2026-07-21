@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from src.db import connect  # noqa: E402
-from src.hrnogomet import HRNogometClient  # noqa: E402
+from src.hrnogomet import HRNogometClient, build_county_map  # noqa: E402
 
 logging.basicConfig(
     level=logging.INFO,
@@ -26,26 +26,9 @@ logging.basicConfig(
 log = logging.getLogger("enrich_counties")
 
 
-def build_county_map(client: HRNogometClient) -> dict[int, str]:
-    """Map id -> name, restricted to ACTUAL Croatian counties.
-
-    Entities in /county/leagues include national tiers ("3. Nogometna Liga",
-    "4. Nogometna Liga", etc.) which we must NOT write into clubs.county.
-    Real counties have priority=50 and either contain "županija" or equal
-    "Grad Zagreb".
-    """
-    payload = client.county_leagues()
-    return {
-        c["id"]: c["name"]
-        for c in payload
-        if c.get("priority") == 50
-        and ("županija" in c["name"].lower() or c["name"] == "Grad Zagreb")
-    }
-
-
 def run() -> None:
     with connect() as conn, HRNogometClient() as client:
-        county_map = build_county_map(client)
+        county_map = build_county_map(client.county_leagues())
         log.info("loaded %d county entities", len(county_map))
 
         rows = conn.execute(

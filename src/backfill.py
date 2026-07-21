@@ -17,8 +17,10 @@ import logging
 import re
 from typing import Any
 
+from src.collisions import GENERIC_TOKENS, norm_domain
 from src.db import connect
 from src.firecrawl import FirecrawlClient
+from src.hrnogomet import team_county_from_cache
 from src.normalize import strip_diacritics
 from src.phones import classify as classify_phone, to_e164 as phone_e164
 
@@ -177,6 +179,192 @@ def pick_url(results: list[dict], club_name: str) -> str | None:
     return top.get("url")
 
 
+# --------------------------------------------------------------------------
+# namesake guard
+#
+# The hrnogomet feed names amateur clubs with a disambiguator but no place —
+# `{"id": 1035, "teamName": "NK Mladost (Z)", "countyId": 24}`. Searching that
+# name returns every "NK Mladost" in Croatia, and taking the first hit wrote
+# NK Mladost Ždralovi's phone, email, website and address onto five other
+# clubs. Two independent checks now stand between a search result and a write.
+# --------------------------------------------------------------------------
+
+# Ignore digits and very short fragments when comparing place names — "43000"
+# and "ul" are not evidence of anything.
+_PLACE_TOKEN_RE = re.compile(r"[^a-z]+")
+_MIN_PLACE_TOKEN = 4
+
+# Two place tokens count as the same place if they agree on this many leading
+# characters: "bjelovar" (address) vs "bjelovarsko" (county adjective).
+_PLACE_PREFIX = 6
+
+# Croatian postcodes are five digits whose first two identify the county. This
+# is the only county signal that works when the county is not named after its
+# capital — "Zabok, 49210" is Krapinsko-zagorska, and no amount of string
+# comparison between "zabok" and "krapinsko" would ever discover that.
+_POSTCODE_RE = re.compile(r"\b(\d{5})\b")
+
+_POSTCODE_COUNTY = {
+    "10": "grad zagreb", "11": "zagrebacka", "20": "dubrovacko-neretvanska",
+    "21": "splitsko-dalmatinska", "22": "sibensko-kninska", "23": "zadarska",
+    "31": "osjecko-baranjska", "32": "vukovarsko-srijemska",
+    "33": "viroviticko-podravska", "34": "pozesko-slavonska",
+    "35": "brodsko-posavska", "40": "medimurska", "42": "varazdinska",
+    "43": "bjelovarsko-bilogorska", "44": "sisacko-moslavacka",
+    "47": "karlovacka", "48": "koprivnicko-krizevacka",
+    "49": "krapinsko-zagorska", "51": "primorsko-goranska",
+    "52": "istarska", "53": "licko-senjska",
+}
+
+# Clubs are routinely filed under either of these two, so a mismatch between
+# them is not evidence of a leak.
+_ZAGREB_PAIR = {"grad zagreb", "zagrebacka"}
+
+
+def _norm_county(s: str | None) -> str:
+    s = strip_diacritics(str(s or "")).lower()
+    s = re.sub(r"\s*zupanija\s*$", "", s).strip()
+    return re.sub(r"\s+", " ", s)
+
+
+def _counties_compatible(a: str, b: str) -> bool:
+    a, b = _norm_county(a), _norm_county(b)
+    if not a or not b:
+        return False
+    return a == b or {a, b} <= _ZAGREB_PAIR
+
+
+def postcode_counties(text: str) -> set[str]:
+    """Counties implied by any Croatian postcode appearing in the text."""
+    out = set()
+    for pc in _POSTCODE_RE.findall(text or ""):
+        county = _POSTCODE_COUNTY.get(pc[:2])
+        if county:
+            out.add(county)
+    return out
+
+
+def _place_tokens(text: str | None) -> set[str]:
+    if not text:
+        return set()
+    toks = {t for t in _PLACE_TOKEN_RE.split(strip_diacritics(str(text)).lower())
+            if len(t) >= _MIN_PLACE_TOKEN}
+    return toks - GENERIC_TOKENS
+
+
+def _prefix_match(a: str, b: str) -> bool:
+    n = min(len(a), len(b), _PLACE_PREFIX)
+    return n >= _PLACE_PREFIX and a[:n] == b[:n]
+
+
+def resolve_county(conn, club_row: dict) -> str:
+    """Club's county, falling back to the hrnogomet `countyId` when the column
+    is empty. 31 clubs carry a paren name AND a blank county — exactly the
+    rows the old guard skipped outright, so it never fired for them."""
+    county = (club_row.get("county") or "").strip()
+    if county:
+        return county
+    row = conn.execute(
+        "SELECT alias FROM club_aliases WHERE club_id = ? AND source = 'hrnogomet-id'",
+        (club_row["id"],),
+    ).fetchone()
+    if not row:
+        return ""
+    try:
+        return team_county_from_cache(int(row["alias"])) or ""
+    except (TypeError, ValueError):
+        return ""
+
+
+def place_evidence(club_row: dict, county: str, url: str, extracted: dict) -> tuple[bool, str]:
+    """Does this source name a place consistent with what we know of the club?
+
+    Signals are tiered by how much they actually pin a location down:
+
+      * `city` and the place part of `registry_naziv` are specific — when we
+        have either, the source must corroborate THAT, not merely the county.
+      * `county` alone is coarse (Ždralovi and Zabok are both in one county),
+        so it is only used when nothing better exists, and it is why the
+        ambiguity check below carries the weight for same-county namesakes.
+      * no signal at all means we cannot verify, which for a disambiguated
+        name is a rejection rather than a free pass.
+    """
+    blob = " ".join(str(x or "") for x in (
+        norm_domain(url) or url,
+        extracted.get("address"),
+        extracted.get("city"),
+        extracted.get("page_title"),
+    ))
+    found = _place_tokens(blob)
+    if not found:
+        return False, "source names no place"
+
+    specific = _place_tokens(club_row.get("city"))
+    # Registry name = 'NOGOMETNI KLUB "MLADOST" ŽDRALOVI'; drop the club-name
+    # tokens so only the place part remains.
+    registry = _place_tokens(club_row.get("registry_naziv")) - _place_tokens(
+        _PAREN_RE.sub("", club_row.get("canonical_name") or "")
+    )
+    specific |= registry
+
+    if specific:
+        hit = specific & found
+        if hit:
+            return True, f"specific place match: {','.join(sorted(hit))}"
+        return False, (f"expected one of {sorted(specific)}, source names "
+                       f"{sorted(found)}")
+
+    if not county:
+        return False, "no city, registry or county signal to verify against"
+
+    # A postcode in the address settles the county outright, in both
+    # directions: 43000 Ždralovi is Bjelovarsko-bilogorska, 49210 Zabok is
+    # Krapinsko-zagorska, and neither town's name resembles its county's.
+    pc_counties = postcode_counties(blob)
+    if pc_counties:
+        if any(_counties_compatible(county, pc) for pc in pc_counties):
+            return True, f"postcode county match: {sorted(pc_counties)}"
+        return False, (f"postcode implies {sorted(pc_counties)}, club is in "
+                       f"{_norm_county(county)}")
+
+    # No postcode. Fall back to the county adjective sharing a stem with a
+    # place name, which only fires for counties named after their capital
+    # (Bjelovarsko-bilogorska / Bjelovar) but costs nothing when it does not.
+    for ct in _place_tokens(county):
+        for ft in found:
+            if _prefix_match(ct, ft):
+                return True, f"county match: {ct}~{ft}"
+
+    return False, (f"no postcode and nothing in {sorted(found)} matches county "
+                   f"{_norm_county(county)}")
+
+
+def namesake_candidates(results: list[dict], club_name: str) -> list[str]:
+    """Distinct non-social domains that all look equally like this club.
+
+    For `NK Mladost (Z)` the search returned `mladost-zdralovi.hr` AND
+    `nk-mladost-zabok.hr`, both scoring well because both spell "mladost".
+    Only one is ours and nothing in the query says which, so the honest answer
+    is to write nothing rather than to take whichever sorted first.
+    """
+    if not _PAREN_RE.search(club_name):
+        return []
+    scored: dict[str, int] = {}
+    for r in results:
+        url = r.get("url") or ""
+        dom = norm_domain(url)
+        if not dom or any(s in dom for s in _SOCIAL_DOMAINS):
+            continue
+        s = score_url(url, club_name)
+        if s > 0:
+            scored[dom] = max(scored.get(dom, s), s)
+    if len(scored) < 2:
+        return []
+    top = max(scored.values())
+    near = sorted(d for d, s in scored.items() if s >= top - 2)
+    return near if len(near) >= 2 else []
+
+
 def update_club(conn, club_id: int, fields: dict[str, Any]) -> list[str]:
     """Write non-blank, currently-empty fields back to clubs. Returns the set
     we actually wrote (used for the audit trail)."""
@@ -242,12 +430,24 @@ def backfill_club(
     search_limit: int = 5,
 ) -> dict[str, Any]:
     name = club_row["canonical_name"]
-    query = search_query(name, club_row.get("city"), club_row.get("county"))
+    # Resolve county up front: it feeds both the search query and the guard,
+    # and for 31 paren-named clubs it only exists via the hrnogomet countyId.
+    county = resolve_county(conn, club_row)
+    query = search_query(name, club_row.get("city"), county)
     logger.info("search: %r", query)
 
     results = client.search(query, limit=search_limit)
     if not results:
         return {"club_id": club_row["id"], "name": name, "status": "no-results", "fields": []}
+
+    # Guard 1 — two plausible namesakes, no way to choose. Write nothing.
+    rivals = namesake_candidates(results, name)
+    if rivals:
+        logger.warning("ambiguous namesake for %r: %s", name, rivals)
+        return {
+            "club_id": club_row["id"], "name": name, "status": "ambiguous",
+            "candidates": rivals, "fields": [],
+        }
 
     url = pick_url(results, name)
     if not url:
@@ -290,25 +490,25 @@ def backfill_club(
             "url": url, "error": str(e)[:200], "fields": [],
         }
 
-    # Cross-source validation: if the club is a paren-disambiguated namesake
-    # (e.g. "HNK Hajduk (LB)") and the extracted address/city doesn't match
-    # the club's county, reject the entire extraction. Big-name lookups
-    # commonly leak through aggregator sites that key off the simple name.
-    if _PAREN_RE.search(name) and club_row.get("county"):
-        county_root = club_row["county"].split()[0].lower()
-        addr_blob = " ".join(
-            str(extracted.get(k) or "") for k in ("address", "city")
-        ).lower()
-        if addr_blob and county_root not in addr_blob:
-            # Demand the address mention some town that's NOT a known pro-club city.
-            for bad in ("split", "zagreb", "rijeka", "osijek", "velika gorica"):
-                if bad in addr_blob:
-                    logger.warning(
-                        "rejecting extraction for %r: address %r doesn't match county %r",
-                        name, addr_blob, club_row["county"],
-                    )
-                    extracted = {}
-                    break
+    # Guard 2 — the source must actually name a place we can reconcile with
+    # what we already know about this club. Note this runs regardless of
+    # whether `county` is populated: the previous version bailed out when
+    # county was empty, which is precisely the state of the 31 clubs the
+    # namesake leak hit hardest.
+    if _PAREN_RE.search(name):
+        ok, why = place_evidence(club_row, county, url, extracted)
+        if not ok:
+            logger.warning("rejecting extraction for %r from %s: %s", name, url, why)
+            conn.execute(
+                "INSERT INTO backfill_runs (club_id, fields_filled, source_urls) "
+                "VALUES (?, ?, ?)",
+                (club_row["id"], json.dumps([]),
+                 json.dumps([r.get("url") for r in results[:3]], ensure_ascii=False)),
+            )
+            return {
+                "club_id": club_row["id"], "name": name, "status": "place-mismatch",
+                "url": url, "reason": why, "fields": [],
+            }
 
     written = update_club(conn, club_row["id"], extracted)
     source_urls = [r.get("url") for r in results[:3]]
