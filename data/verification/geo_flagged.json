@@ -1,0 +1,2975 @@
+{
+  "counters": {
+    "bbox": 0,
+    "name_mismatch": 173,
+    "city_mismatch": 32,
+    "any": 195
+  },
+  "flagged": [
+    {
+      "id": 770,
+      "canonical_name": "HNK Rat",
+      "city": "KUNA",
+      "county": "Dubrovačko-neretvanska županija",
+      "address": "KUNA PELJEŠKA-20243KUNA-Croatia",
+      "lat": 42.9639713,
+      "lng": 17.345674,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "106.3km from name probe 'Rat, Dubrovačko-neretvanska, Hrvatska' → (42.4481,18.4412)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "70.3km from 'KUNA, Dubrovačko-neretvanska, Hrvatska' → (42.6522,18.0952)"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "canonical_name": "NK Dugopolje",
+      "city": "Dugopolje",
+      "county": null,
+      "address": "Matice hrvatske 11, Dugopolje",
+      "lat": 43.588036,
+      "lng": 16.573949,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "88.3km from name probe 'Dugopolje, Hrvatska' → (44.3346,16.1997)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "88.3km from 'Dugopolje, Hrvatska' → (44.3346,16.1997)"
+        }
+      ]
+    },
+    {
+      "id": 409,
+      "canonical_name": "NK Hrvatski Sokol (P)",
+      "city": "Sokolovac",
+      "county": "Bjelovarsko-bilogorska županija",
+      "address": "Sokolovac, Trg dr. T. Bardeka 10a, 48306 Sokolovac",
+      "lat": 46.1038615,
+      "lng": 16.7081964,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "25.3km from name probe 'Hrvatski, Bjelovarsko-bilogorska, Hrvatska' → (45.8969,16.8432)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "62.5km from 'Sokolovac, Bjelovarsko-bilogorska, Hrvatska' → (45.5855,17.0207)"
+        }
+      ]
+    },
+    {
+      "id": 361,
+      "canonical_name": "NK Jedinstvo",
+      "city": "Pustakovec",
+      "county": null,
+      "address": "Pustakovec 68, 48314 Pustakovec",
+      "lat": 46.4265244,
+      "lng": 16.3275979,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "204.5km from name probe 'Jedinstvo, Hrvatska' → (45.3015,18.4169)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "42.0km from 'Pustakovec, Hrvatska' → (46.2305,16.7956)"
+        }
+      ]
+    },
+    {
+      "id": 542,
+      "canonical_name": "NK Mladost 1977",
+      "city": "Bebrina",
+      "county": "Brodsko-posavska županija",
+      "address": "Banovci 20, 35254 Bebrina Banovci",
+      "lat": 45.0972641,
+      "lng": 18.18282,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "66.2km from name probe 'Mladost, Brodsko-posavska, Hrvatska' → (45.2847,17.3805)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "27.4km from 'Bebrina, Brodsko-posavska, Hrvatska' → (45.0979,17.8338)"
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "canonical_name": "NK Nehaj Senj",
+      "city": "Senj",
+      "county": null,
+      "address": "S.S.KRANJČEVIĆA 3A, 53270 Senj",
+      "lat": 44.988518,
+      "lng": 14.905597799999997,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "107.3km from name probe 'Nehaj, Hrvatska' → (44.0506,15.2227)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "87.8km from 'Senj, Hrvatska' → (45.3504,13.9098)"
+        }
+      ]
+    },
+    {
+      "id": 152,
+      "canonical_name": "NK Poljana",
+      "city": "Poljana",
+      "county": "Sisačko-moslavačka županija",
+      "address": "Kolodvorska 20 C, Poljana, 34543 Poljana",
+      "lat": 45.4626034,
+      "lng": 16.982788499999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "54.6km from name probe 'Poljana, Sisačko-moslavačka, Hrvatska' → (45.4460,16.2826)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "54.6km from 'Poljana, Sisačko-moslavačka, Hrvatska' → (45.4460,16.2826)"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "canonical_name": "NK Ponikve",
+      "city": "Zagreb",
+      "county": "Dubrovačko-neretvanska županija",
+      "address": "Kozjačka 50 Zagreb 10090 Hrvatska",
+      "lat": 45.815097900000005,
+      "lng": 15.8801768,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "357.6km from name probe 'Ponikve, Dubrovačko-neretvanska, Hrvatska' → (42.8497,17.6208)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "392.1km from 'Zagreb, Dubrovačko-neretvanska, Hrvatska' → (42.6618,18.0843)"
+        }
+      ]
+    },
+    {
+      "id": 485,
+      "canonical_name": "NK Slavonac Novaki",
+      "city": "Novaki",
+      "county": "Virovitičko-podravska županija",
+      "address": "Matije Gupca 16,Novaki",
+      "lat": 45.8832328,
+      "lng": 15.8620968,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "137.4km from name probe 'Novaki, Virovitičko-podravska, Hrvatska' → (45.8043,17.6322)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "137.4km from 'Novaki, Virovitičko-podravska, Hrvatska' → (45.8043,17.6322)"
+        }
+      ]
+    },
+    {
+      "id": 202,
+      "canonical_name": "NK Vrh",
+      "city": "Kraljev Vrh",
+      "county": "Zagrebačka županija",
+      "address": "Turistička cesta b. b., 10297 Kraljev Vrh",
+      "lat": 45.937289899999996,
+      "lng": 15.901262899999999,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "26.2km from name probe 'Vrh, Zagrebačka, Hrvatska' → (45.7610,15.6760)"
+        },
+        {
+          "check": "city_mismatch",
+          "detail": "38.6km from 'Kraljev Vrh, Zagrebačka, Hrvatska' → (45.9802,16.3974)"
+        }
+      ]
+    },
+    {
+      "id": 757,
+      "canonical_name": "BŠK Zmaj",
+      "city": "Blato",
+      "county": null,
+      "address": "Ulica 32 br. 192, Blato, Otok Korčula, Hrvatska",
+      "lat": 42.9388312,
+      "lng": 16.7912696,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "324.8km from name probe 'Zmaj, Hrvatska' → (45.8076,16.0243)"
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "canonical_name": "GNK Tigar Sveta Nedelja",
+      "city": "Sveta Nedelja",
+      "county": null,
+      "address": "Franje Gredelja 4, 10431 Brezje",
+      "lat": 45.792601499999996,
+      "lng": 15.782546000000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "258.8km from name probe 'Tigar, Hrvatska' → (43.5147,16.4549)"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "canonical_name": "GŠNK Mladost Petrinja",
+      "city": "Petrinja",
+      "county": null,
+      "address": "Rokova 13, 44250 Petrinja",
+      "lat": 45.4308972,
+      "lng": 16.2719623,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "46.8km from name probe 'Mladost, Hrvatska' → (45.7840,15.9443)"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "canonical_name": "HNK Gorica",
+      "city": "Velika Gorica",
+      "county": null,
+      "address": "Hrvatske Bratske Zajednice 80, HR-10410 Velika Gorica",
+      "lat": 45.72399,
+      "lng": 16.073116,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "165.5km from name probe 'Gorica, Hrvatska' → (44.3973,15.1189)"
+        }
+      ]
+    },
+    {
+      "id": 728,
+      "canonical_name": "HNK Jadran (T)",
+      "city": "Kaštel Sućurac",
+      "county": "Splitsko-dalmatinska županija",
+      "address": "Tamunic 46, 21212, Kaštel Sućurac, Hrvatska",
+      "lat": 43.5466748,
+      "lng": 16.4321446,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "58.1km from name probe 'Jadran, Splitsko-dalmatinska, Hrvatska' → (43.2732,17.0444)"
+        }
+      ]
+    },
+    {
+      "id": 135,
+      "canonical_name": "HNK Jadran Kaštel Sućurac",
+      "city": "Kaštel Sućurac",
+      "county": null,
+      "address": "Tamunic 46, 21212, Kaštel Sućurac, Hrvatska",
+      "lat": 43.5495057,
+      "lng": 16.4220903,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "299.8km from name probe 'Jadran, Hrvatska' → (46.2169,16.9796)"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "canonical_name": "HNK Orijent",
+      "city": "Rijeka",
+      "county": null,
+      "address": "Kumičićeva 66, 51 000 Rijeka",
+      "lat": 45.323716,
+      "lng": 14.468411,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "131.3km from name probe 'Orijent, Hrvatska' → (45.8160,16.0012)"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "canonical_name": "HNK Primorac Biograd na Moru",
+      "city": "Biograd na Moru",
+      "county": null,
+      "address": "Ruđera Boškovića 9, 23210 Biograd na Moru",
+      "lat": 43.9403659,
+      "lng": 15.4551594,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "181.2km from name probe 'Primorac, Hrvatska' → (45.4965,14.7738)"
+        }
+      ]
+    },
+    {
+      "id": 585,
+      "canonical_name": "HNK Radnički (M)",
+      "city": "Vukovar",
+      "county": null,
+      "address": "Kolodvorska ul. 2, 32000 Vukovar",
+      "lat": 46.0292845,
+      "lng": 16.5208886,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "207.2km from 'Vukovar, Hrvatska' → (45.3444,19.0024)"
+        }
+      ]
+    },
+    {
+      "id": 730,
+      "canonical_name": "HNK Slaven Trogir",
+      "city": null,
+      "county": "Splitsko-dalmatinska županija",
+      "address": "Hrvatskih mučenika 30, Trogir",
+      "lat": 43.5164142,
+      "lng": 16.2497163,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "74.1km from name probe 'Slaven, Splitsko-dalmatinska, Hrvatska' → (43.2349,17.0804)"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "canonical_name": "HNK Sloga Mravince",
+      "city": "Mravince",
+      "county": null,
+      "address": "Gajeva 2A, 21209 Mravince",
+      "lat": 43.5325663,
+      "lng": 16.5184153,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "282.1km from name probe 'Sloga, Hrvatska' → (45.5499,18.6782)"
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "canonical_name": "HNK Val Kaštel Stari",
+      "city": "Kaštel Stari",
+      "county": null,
+      "address": "TAMUNIĆ 46, 21212 Kaštel Sućurac",
+      "lat": 43.5533286,
+      "lng": 16.345825,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "289.7km from name probe 'Val, Hrvatska' → (45.2542,13.5834)"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "canonical_name": "HNK Vukovar 1991",
+      "city": "Osijek",
+      "county": null,
+      "address": "Rudolfa Perešina 8, 32 000 Vukovar",
+      "lat": 45.380262599999995,
+      "lng": 18.9645692,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "28.6km from 'Osijek, Hrvatska' → (45.5549,18.6954)"
+        }
+      ]
+    },
+    {
+      "id": 731,
+      "canonical_name": "HRNK Zmaj (M)",
+      "city": "MAKARSKA",
+      "county": null,
+      "address": "Franjevački put 2, 21300 MAKARSKA",
+      "lat": 43.2931059,
+      "lng": 17.0202077,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "290.5km from name probe 'Zmaj, Hrvatska' → (45.8076,16.0243)"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "canonical_name": "HRNK Zmaj Makarska",
+      "city": "Makarska",
+      "county": null,
+      "address": "Franjevački put 2, 21300 MAKARSKA",
+      "lat": 43.2939756,
+      "lng": 17.020242,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "290.4km from name probe 'Zmaj, Hrvatska' → (45.8076,16.0243)"
+        }
+      ]
+    },
+    {
+      "id": 629,
+      "canonical_name": "NK BSK Beketinci",
+      "city": null,
+      "county": "Osječko-baranjska županija",
+      "address": "Čepinska 138 Beketinci",
+      "lat": 45.4521768,
+      "lng": 18.4736331,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "32.1km from name probe 'BSK, Osječko-baranjska, Hrvatska' → (45.5194,18.8741)"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "canonical_name": "NK BSK Bijelo Brdo",
+      "city": "Bijelo",
+      "county": null,
+      "address": "Nikole Tesle 69a, Bijelo Brdo",
+      "lat": 45.5175778,
+      "lng": 18.8731691,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "244.3km from name probe 'BSK, Hrvatska' → (45.8675,15.7673)"
+        }
+      ]
+    },
+    {
+      "id": 576,
+      "canonical_name": "NK BSK Bizovac",
+      "city": "Bizovac",
+      "county": "Osječko-baranjska županija",
+      "address": "Valpovačka 42a, Bizovac",
+      "lat": 45.5939788,
+      "lng": 18.4581401,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "33.4km from name probe 'BSK, Osječko-baranjska, Hrvatska' → (45.5194,18.8741)"
+        }
+      ]
+    },
+    {
+      "id": 215,
+      "canonical_name": "NK Ban Jelačić (B)",
+      "city": "Banovo",
+      "county": "Zagrebačka županija",
+      "address": "Banovo 63, 10340, BANOVO, Hrvatska",
+      "lat": 45.9154019,
+      "lng": 16.4331037,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "66.0km from name probe 'Ban, Zagrebačka, Hrvatska' → (45.6759,15.6537)"
+        }
+      ]
+    },
+    {
+      "id": 194,
+      "canonical_name": "NK Ban Jelačić (V)",
+      "city": "Banovo",
+      "county": "Zagrebačka županija",
+      "address": "Banovo 63, 10340, BANOVO, Hrvatska",
+      "lat": 45.9154019,
+      "lng": 16.4331037,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "66.0km from name probe 'Ban, Zagrebačka, Hrvatska' → (45.6759,15.6537)"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "canonical_name": "NK Bedem Ivankovo",
+      "city": "Ivankovo",
+      "county": null,
+      "address": "Grac 10 c, 32281 Ivankovo",
+      "lat": 45.2866937,
+      "lng": 18.6963442,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "215.7km from name probe 'Bedem, Hrvatska' → (46.3112,16.3339)"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "canonical_name": "NK Belišće",
+      "city": "Osijek",
+      "county": null,
+      "address": "Željeznička 20, Belišće",
+      "lat": 45.684784,
+      "lng": 18.408198499999997,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "26.6km from 'Osijek, Hrvatska' → (45.5549,18.6954)"
+        }
+      ]
+    },
+    {
+      "id": 137,
+      "canonical_name": "NK Borac",
+      "city": "Bakar",
+      "county": "Koprivničko-križevačka županija",
+      "address": "Primorje 39, 51222 Bakar, Hrvatska/Croatia",
+      "lat": 45.306381699999996,
+      "lng": 14.545684200000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "203.4km from name probe 'Borac, Koprivničko-križevačka, Hrvatska' → (46.1864,16.8438)"
+        }
+      ]
+    },
+    {
+      "id": 848,
+      "canonical_name": "NK Borac (BA)",
+      "city": "Bakar",
+      "county": null,
+      "address": "Primorje 39, 51222 Bakar, Hrvatska/Croatia",
+      "lat": 45.306381699999996,
+      "lng": 14.545684200000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "143.8km from name probe 'Borac, Hrvatska' → (45.4238,16.3783)"
+        }
+      ]
+    },
+    {
+      "id": 871,
+      "canonical_name": "NK Borac (BO)",
+      "city": "Bakar",
+      "county": null,
+      "address": "Primorje 39, 51222 Bakar, Hrvatska/Croatia",
+      "lat": 45.306381699999996,
+      "lng": 14.545684200000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "143.8km from name probe 'Borac, Hrvatska' → (45.4238,16.3783)"
+        }
+      ]
+    },
+    {
+      "id": 708,
+      "canonical_name": "NK Borac (D)",
+      "city": "Bakar",
+      "county": "Vukovarsko-srijemska županija",
+      "address": "Primorje 39, 51222 Bakar, Hrvatska/Croatia",
+      "lat": 45.306381699999996,
+      "lng": 14.545684200000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "345.2km from name probe 'Borac, Vukovarsko-srijemska, Hrvatska' → (44.9172,18.9100)"
+        }
+      ]
+    },
+    {
+      "id": 822,
+      "canonical_name": "NK Borac (DH)",
+      "city": "Bakar",
+      "county": "Međimurska županija",
+      "address": "Primorje 39, 51222 Bakar, Hrvatska/Croatia",
+      "lat": 45.306381699999996,
+      "lng": 14.545684200000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "202.2km from name probe 'Borac, Međimurska, Hrvatska' → (46.4066,16.6244)"
+        }
+      ]
+    },
+    {
+      "id": 682,
+      "canonical_name": "NK Borac (R)",
+      "city": "Bakar",
+      "county": "Vukovarsko-srijemska županija",
+      "address": "Primorje 39, 51222 Bakar, Hrvatska/Croatia",
+      "lat": 45.306381699999996,
+      "lng": 14.545684200000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "345.2km from name probe 'Borac, Vukovarsko-srijemska, Hrvatska' → (44.9172,18.9100)"
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "canonical_name": "NK Borac Kneževi Vinogradi",
+      "city": "Kneževi Vinogradi",
+      "county": null,
+      "address": "Hrvatske Republike 3, Kneževi Vinogradi",
+      "lat": 45.7468515,
+      "lng": 18.7330933,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "186.7km from name probe 'Borac, Hrvatska' → (45.4238,16.3783)"
+        }
+      ]
+    },
+    {
+      "id": 807,
+      "canonical_name": "NK Borac PMP",
+      "city": "Bakar",
+      "county": "Međimurska županija",
+      "address": "Primorje 39, 51222 Bakar, Hrvatska/Croatia",
+      "lat": 45.306381699999996,
+      "lng": 14.545684200000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "202.2km from name probe 'Borac, Međimurska, Hrvatska' → (46.4066,16.6244)"
+        }
+      ]
+    },
+    {
+      "id": 718,
+      "canonical_name": "NK Bosut",
+      "city": "Apševci",
+      "county": "Vukovarsko-srijemska županija",
+      "address": "Ulica kralja Tomislava 60, Apševci",
+      "lat": 45.070941,
+      "lng": 19.0748545,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "27.9km from name probe 'Bosut, Vukovarsko-srijemska, Hrvatska' → (45.2249,18.7942)"
+        }
+      ]
+    },
+    {
+      "id": 610,
+      "canonical_name": "NK Columbus 2005",
+      "city": "Suza",
+      "county": "Osječko-baranjska županija",
+      "address": "Željeznička b. b., 31308 Suza",
+      "lat": 45.782234,
+      "lng": 18.7760867,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "28.9km from name probe '2005, Osječko-baranjska, Hrvatska' → (45.5356,18.6589)"
+        }
+      ]
+    },
+    {
+      "id": 502,
+      "canonical_name": "NK Croatia (DO)",
+      "city": "Stara Subocka",
+      "county": "Požeško-slavonska županija",
+      "address": "Stara Subocka b. b., 44330 Novska Stara Subocka",
+      "lat": 45.3642239,
+      "lng": 16.9073897,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "60.3km from name probe 'Croatia, Požeško-slavonska, Hrvatska' → (45.3353,17.6778)"
+        }
+      ]
+    },
+    {
+      "id": 636,
+      "canonical_name": "NK Croatia (M)",
+      "city": "Velimirovac",
+      "county": "Osječko-baranjska županija",
+      "address": "BANA JELAČIĆA 53A, 31500, Velimirovac, Hrvatska",
+      "lat": 45.5239257,
+      "lng": 18.1034507,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "34.3km from name probe 'Croatia, Osječko-baranjska, Hrvatska' → (45.3041,18.4124)"
+        }
+      ]
+    },
+    {
+      "id": 660,
+      "canonical_name": "NK Croatia (V)",
+      "city": "Velimirovac",
+      "county": "Osječko-baranjska županija",
+      "address": "BANA JELAČIĆA 53A, 31500, Velimirovac, Hrvatska",
+      "lat": 45.5239257,
+      "lng": 18.1034507,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "34.3km from name probe 'Croatia, Osječko-baranjska, Hrvatska' → (45.3041,18.4124)"
+        }
+      ]
+    },
+    {
+      "id": 524,
+      "canonical_name": "NK Croatia Tisovac",
+      "city": "Tisovac",
+      "county": "Brodsko-posavska županija",
+      "address": "Tisovac 54, 35 420 Staro Petrovo Selo, Tisovac",
+      "lat": 45.265766199999995,
+      "lng": 17.5131753,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "41.0km from name probe 'Croatia, Brodsko-posavska, Hrvatska' → (45.1543,18.0118)"
+        }
+      ]
+    },
+    {
+      "id": 612,
+      "canonical_name": "NK Croatia Velimirovac",
+      "city": "Velimirovac",
+      "county": "Osječko-baranjska županija",
+      "address": "B. J. Jelačića 53a Velimirovac 31500 Našice, Velimirovac",
+      "lat": 45.5239208,
+      "lng": 18.1005456,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "34.5km from name probe 'Croatia, Osječko-baranjska, Hrvatska' → (45.3041,18.4124)"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "canonical_name": "NK Croatia Zmijavci",
+      "city": "Zmijavci",
+      "county": null,
+      "address": "Kujundžušin put 12, 21266 Zmijavci",
+      "lat": 43.413972,
+      "lng": 17.204907,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "249.4km from name probe 'Croatia, Hrvatska' → (45.3658,15.6575)"
+        }
+      ]
+    },
+    {
+      "id": 609,
+      "canonical_name": "NK Dinamo (BPS)",
+      "city": "Palovec",
+      "county": "Osječko-baranjska županija",
+      "address": "Športska 33, 40000, Palovec, Hrvatska",
+      "lat": 46.388218599999995,
+      "lng": 16.542961,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "164.4km from name probe 'Dinamo, Osječko-baranjska, Hrvatska' → (45.7554,18.4698)"
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "canonical_name": "NK Dinamo Domašinec",
+      "city": "Domašinec",
+      "county": null,
+      "address": "Martina Pušteka 17 Domašinec 40 318 Dekanovec, Domašinec",
+      "lat": 46.4288612,
+      "lng": 16.5981068,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "81.3km from name probe 'Dinamo, Hrvatska' → (45.8187,16.0179)"
+        }
+      ]
+    },
+    {
+      "id": 239,
+      "canonical_name": "NK Dinamo Hidrel",
+      "city": "Novo Čiče",
+      "county": "Zagrebačka županija",
+      "address": "Novo Čiče, 10410 Novo Čiće",
+      "lat": 45.7048175,
+      "lng": 16.1184629,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "29.7km from name probe 'Dinamo, Zagrebačka, Hrvatska' → (45.8817,16.4057)"
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "canonical_name": "NK Dinamo Predavac",
+      "city": "Predavac",
+      "county": null,
+      "address": "29. rujna 1, Predavac",
+      "lat": 45.9389337,
+      "lng": 16.782004,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "60.6km from name probe 'Dinamo, Hrvatska' → (45.8187,16.0179)"
+        }
+      ]
+    },
+    {
+      "id": 600,
+      "canonical_name": "NK Dinamo Trnava",
+      "city": null,
+      "county": "Osječko-baranjska županija",
+      "address": "BRAĆE RADIĆA 34, Trnava",
+      "lat": 45.2591882,
+      "lng": 18.25466,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "57.7km from name probe 'Dinamo, Osječko-baranjska, Hrvatska' → (45.7554,18.4698)"
+        }
+      ]
+    },
+    {
+      "id": 841,
+      "canonical_name": "NK Dinamo Vidovci",
+      "city": null,
+      "county": null,
+      "address": "Martina Pušteka 17, Domašinec",
+      "lat": 45.3315725,
+      "lng": 17.7172713,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "142.9km from name probe 'Dinamo, Hrvatska' → (45.8187,16.0179)"
+        }
+      ]
+    },
+    {
+      "id": 293,
+      "canonical_name": "NK Dobra (N)",
+      "city": "Zagradci",
+      "county": "Karlovačka županija",
+      "address": "Zagradci 94, 47250 Zagradci, Netretić",
+      "lat": 45.4786052,
+      "lng": 15.449916900000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "27.1km from name probe 'Dobra, Karlovačka, Hrvatska' → (45.2825,15.2432)"
+        }
+      ]
+    },
+    {
+      "id": 297,
+      "canonical_name": "NK Dobra (SP)",
+      "city": "Zagradci",
+      "county": "Karlovačka županija",
+      "address": "Zagradci 94, 47250 Zagradci, Netretić",
+      "lat": 45.4786052,
+      "lng": 15.449916900000002,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "27.1km from name probe 'Dobra, Karlovačka, Hrvatska' → (45.2825,15.2432)"
+        }
+      ]
+    },
+    {
+      "id": 206,
+      "canonical_name": "NK Donja Kupčina",
+      "city": "Donja Kupčina",
+      "county": null,
+      "address": "Donja Kupčina 197, Pisarovina, 10451 Donja Kupčina",
+      "lat": 45.541229099999995,
+      "lng": 15.8064156,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "350.7km from name probe 'Donja, Hrvatska' → (42.6976,17.7084)"
+        }
+      ]
+    },
+    {
+      "id": 218,
+      "canonical_name": "NK Donja Zelina",
+      "city": "Donja Zelina",
+      "county": null,
+      "address": "Donja Zelina, 10382 Donja Zelina",
+      "lat": 45.9646568,
+      "lng": 16.252758,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "381.3km from name probe 'Donja, Hrvatska' → (42.6976,17.7084)"
+        }
+      ]
+    },
+    {
+      "id": 824,
+      "canonical_name": "NK Donji Koncovčak",
+      "city": null,
+      "county": "Međimurska županija",
+      "address": "Donji Koncovčak 39A, Donji Koncovčak",
+      "lat": 46.5047895,
+      "lng": 16.3795912,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "25.7km from name probe 'Donji, Međimurska, Hrvatska' → (46.3673,16.6496)"
+        }
+      ]
+    },
+    {
+      "id": 365,
+      "canonical_name": "NK Dragovoljac",
+      "city": "Zagreb",
+      "county": "Zadarska županija",
+      "address": "Aleja Pomoraca 25, 10 200 Zagreb",
+      "lat": 45.772777,
+      "lng": 15.9735299,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "210.8km from 'Zagreb, Zadarska, Hrvatska' → (43.9064,15.5075)"
+        }
+      ]
+    },
+    {
+      "id": 356,
+      "canonical_name": "NK Drava (SP)",
+      "city": "Ptuj",
+      "county": null,
+      "address": "Čučkova ulica 7, 2250 Ptuj",
+      "lat": 46.3164146,
+      "lng": 16.7313964,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "83.4km from 'Ptuj, Hrvatska' → (45.8138,15.9297)"
+        }
+      ]
+    },
+    {
+      "id": 639,
+      "canonical_name": "NK Drava Nard",
+      "city": "Valpovo",
+      "county": "Osječko-baranjska županija",
+      "address": "Valpovačka-31550VALPOVO-Croatia",
+      "lat": 45.6595827,
+      "lng": 18.4815811,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "31.0km from name probe 'Drava, Osječko-baranjska, Hrvatska' → (45.7315,18.0957)"
+        }
+      ]
+    },
+    {
+      "id": 189,
+      "canonical_name": "NK Dubrava",
+      "city": "Zagreb",
+      "county": "Zagrebačka županija",
+      "address": "Aleja Blaža Jurišića 2, 10040 Zagreb",
+      "lat": 45.8367424,
+      "lng": 16.0538098,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "37.5km from name probe 'Dubrava, Zagrebačka, Hrvatska' → (45.8374,16.5382)"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "canonical_name": "NK Dubrava Tim Kabel",
+      "city": "Zagreb",
+      "county": null,
+      "address": "Aleja Blaža Jurišića 2, 10040 Zagreb",
+      "lat": 45.837717,
+      "lng": 16.054805,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "37.4km from name probe 'Dubrava, Hrvatska' → (45.8374,16.5382)"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "canonical_name": "NK Dugo Selo",
+      "city": "Dugo Selo",
+      "county": null,
+      "address": "Dugo Selo, Ulica Đure Dubenika 2",
+      "lat": 45.8086537,
+      "lng": 16.2311676,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "242.8km from name probe 'Dugo, Hrvatska' → (43.6450,15.8183)"
+        }
+      ]
+    },
+    {
+      "id": 300,
+      "canonical_name": "NK Frankopan (B)",
+      "city": "Karlovac",
+      "county": "Karlovačka županija",
+      "address": "Brežani 9/b, 47000 Karlovac",
+      "lat": 45.2675976,
+      "lng": 15.2244322,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "35.3km from 'Karlovac, Karlovačka, Hrvatska' → (45.4893,15.5486)"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "canonical_name": "NK GOŠK-Dubrovnik 1919",
+      "city": "Dubrovnik",
+      "county": null,
+      "address": "Kralja Tomislava 2, 20000 Dubrovnik",
+      "lat": 42.6543661,
+      "lng": 18.0779506,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "310.7km from name probe '1919, Hrvatska' → (45.2229,16.5491)"
+        }
+      ]
+    },
+    {
+      "id": 223,
+      "canonical_name": "NK Gaj",
+      "city": "Mače",
+      "county": "Zagrebačka županija",
+      "address": "Gaj 28a, Gaj",
+      "lat": 46.0935427,
+      "lng": 16.0433754,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "33.2km from name probe 'Gaj, Zagrebačka, Hrvatska' → (45.8981,16.3685)"
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "canonical_name": "NK Gaj Mače",
+      "city": "Mače",
+      "county": null,
+      "address": "Mače 30, Mače",
+      "lat": 46.0942745,
+      "lng": 16.0444225,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "33.2km from name probe 'Gaj, Hrvatska' → (45.8981,16.3685)"
+        }
+      ]
+    },
+    {
+      "id": 375,
+      "canonical_name": "NK Gornja Rijeka",
+      "city": "Gornja Rijeka",
+      "county": "Koprivničko-križevačka županija",
+      "address": "Trg Sidonije Rubido Erdody 3, 48268 Gornja Rijeka",
+      "lat": 46.1097278,
+      "lng": 16.3924291,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "43.6km from name probe 'Gornja, Koprivničko-križevačka, Hrvatska' → (46.0775,16.9559)"
+        }
+      ]
+    },
+    {
+      "id": 355,
+      "canonical_name": "NK Graničar (NV)",
+      "city": null,
+      "county": null,
+      "address": "Stjepana Radića 6, Žlebina",
+      "lat": 45.0763597,
+      "lng": 18.6925748,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "193.4km from name probe 'Graničar, Hrvatska' → (45.9123,16.5160)"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "canonical_name": "NK Graničar Kotoriba",
+      "city": "Kotoriba",
+      "county": null,
+      "address": "Kotoriba",
+      "lat": 46.3483305,
+      "lng": 16.8145703,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "53.7km from name probe 'Graničar, Hrvatska' → (45.9123,16.5160)"
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "canonical_name": "NK Graničar Đurđevac",
+      "city": "Đurđevac",
+      "county": null,
+      "address": "Antuna Radića 23, Đurđevac",
+      "lat": 46.0436624,
+      "lng": 17.0731144,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "45.5km from name probe 'Graničar, Hrvatska' → (45.9123,16.5160)"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "canonical_name": "NK Graničar Županja",
+      "city": "Županja",
+      "county": null,
+      "address": "Strossmayerova 49, 32270 Županja",
+      "lat": 45.0764002,
+      "lng": 18.6924678,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "193.4km from name probe 'Graničar, Hrvatska' → (45.9123,16.5160)"
+        }
+      ]
+    },
+    {
+      "id": 688,
+      "canonical_name": "NK Hajduk Mirko",
+      "city": null,
+      "county": "Vukovarsko-srijemska županija",
+      "address": "Nogometna 9, Mirkovci",
+      "lat": 45.8055537,
+      "lng": 15.87469,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "225.0km from name probe 'Hajduk, Vukovarsko-srijemska, Hrvatska' → (45.3359,18.6865)"
+        }
+      ]
+    },
+    {
+      "id": 838,
+      "canonical_name": "NK Hajduk Pakrac",
+      "city": null,
+      "county": null,
+      "address": "Ulica hrvatske policije iz Domovinskog rata 1, Pakrac",
+      "lat": 45.429738,
+      "lng": 17.1936598,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "221.6km from name probe 'Hajduk, Hrvatska' → (43.5063,16.4643)"
+        }
+      ]
+    },
+    {
+      "id": 678,
+      "canonical_name": "NK Hašk Sokol",
+      "city": "Stari Jankovci",
+      "county": null,
+      "address": "Dr. Franje Tuđmana 1, Stari Jankovci 32241",
+      "lat": 45.260063,
+      "lng": 18.9109026,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "106.9km from name probe 'Sokol, Hrvatska' → (45.2658,17.5447)"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "canonical_name": "NK Hrvace",
+      "city": "Split",
+      "county": null,
+      "address": "Hrvace bb, Hrvace",
+      "lat": 43.7687612,
+      "lng": 16.6300284,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "32.4km from 'Split, Hrvatska' → (43.5116,16.4400)"
+        }
+      ]
+    },
+    {
+      "id": 370,
+      "canonical_name": "NK Hrvatski Bojovnik",
+      "city": null,
+      "county": "Koprivničko-križevačka županija",
+      "address": "Mokrice Miholečke 34, Mokrice Miholečke",
+      "lat": 46.055,
+      "lng": 16.381944,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "36.0km from name probe 'Hrvatski, Koprivničko-križevačka, Hrvatska' → (46.1637,16.8216)"
+        }
+      ]
+    },
+    {
+      "id": 655,
+      "canonical_name": "NK Hrvatski Sokol (B)",
+      "city": null,
+      "county": "Osječko-baranjska županija",
+      "address": "M.GUPCA 2A, Bocanjevci",
+      "lat": 45.7344702,
+      "lng": 18.2541647,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "38.8km from name probe 'Hrvatski, Osječko-baranjska, Hrvatska' → (45.5592,18.6855)"
+        }
+      ]
+    },
+    {
+      "id": 715,
+      "canonical_name": "NK Hrvatski Sokol (M)",
+      "city": null,
+      "county": "Vukovarsko-srijemska županija",
+      "address": "Josifa Pančića 7A, Mirkovci",
+      "lat": 45.4937587,
+      "lng": 15.5534281,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "269.8km from name probe 'Hrvatski, Vukovarsko-srijemska, Hrvatska' → (45.3504,19.0047)"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "canonical_name": "NK Hrvatski Vitez Posedarje",
+      "city": "Posedarje",
+      "county": null,
+      "address": "ŠPORTSKA ULICA 1, 23242 POSEDARJE",
+      "lat": 44.2129808,
+      "lng": 15.4708877,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "182.6km from name probe 'Hrvatski, Hrvatska' → (45.8160,15.9723)"
+        }
+      ]
+    },
+    {
+      "id": 432,
+      "canonical_name": "NK Ilova",
+      "city": "Tomašica",
+      "county": "Bjelovarsko-bilogorska županija",
+      "address": "Tomašica b. b., 43280 Garešnica, Tomašica",
+      "lat": 45.4657372,
+      "lng": 16.8309206,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "27.5km from name probe 'Ilova, Bjelovarsko-bilogorska, Hrvatska' → (45.6377,17.0843)"
+        }
+      ]
+    },
+    {
+      "id": 751,
+      "canonical_name": "NK Iskra",
+      "city": "Labin",
+      "county": "Istarska županija",
+      "address": "Dom kulture Vinež b. b. 52220 Labin, Vinež",
+      "lat": 45.1071205,
+      "lng": 14.111881799999999,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "37.0km from name probe 'Iskra, Istarska, Hrvatska' → (45.0999,13.6411)"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "canonical_name": "NK Istra 1961",
+      "city": "Pula",
+      "county": null,
+      "address": "Mate Balote 11, 52100 Pula",
+      "lat": 44.861679,
+      "lng": 13.851346,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "37.2km from name probe 'Istra, Hrvatska' → (45.1934,13.9151)"
+        }
+      ]
+    },
+    {
+      "id": 371,
+      "canonical_name": "NK Jadran - Galeb",
+      "city": null,
+      "county": null,
+      "address": "Koledinec b. b., 48312 Koledinec",
+      "lat": 45.7707442,
+      "lng": 15.994581,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "90.8km from name probe 'Jadran, Hrvatska' → (46.2169,16.9796)"
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "canonical_name": "NK Jadran Luka Ploče",
+      "city": "Ploce",
+      "county": null,
+      "address": "Tamunić 46, Kaštel Sućurac",
+      "lat": 43.047157899999995,
+      "lng": 17.440613799999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "354.3km from name probe 'Jadran, Hrvatska' → (46.2169,16.9796)"
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "canonical_name": "NK Jadran Poreč",
+      "city": "Porec",
+      "county": null,
+      "address": "7300-7398 Colonial Rd, Brooklyn, NY 11209, USA",
+      "lat": 45.223839999999996,
+      "lng": 13.6041755,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "284.3km from name probe 'Jadran, Hrvatska' → (46.2169,16.9796)"
+        }
+      ]
+    },
+    {
+      "id": 772,
+      "canonical_name": "NK Jadran Smokvica",
+      "city": "Smokvica",
+      "county": "Dubrovačko-neretvanska županija",
+      "address": "Smokvica 80, 20272 Smokvica",
+      "lat": 42.9303211,
+      "lng": 16.8792255,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "105.3km from name probe 'Jadran, Dubrovačko-neretvanska, Hrvatska' → (42.6409,18.1073)"
+        }
+      ]
+    },
+    {
+      "id": 868,
+      "canonical_name": "NK Jedinstvo (DM)",
+      "city": "Pustakovec",
+      "county": null,
+      "address": "Pustakovec 68, 48314 Pustakovec",
+      "lat": 46.2304858,
+      "lng": 16.7955538,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "162.7km from name probe 'Jedinstvo, Hrvatska' → (45.3015,18.4169)"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "canonical_name": "NK Kamen Podbablje",
+      "city": "Ivanbegovina",
+      "county": null,
+      "address": "IVANBEGOVINA 15A, Ivanbegovina",
+      "lat": 43.4196973,
+      "lng": 17.1515022,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "52.3km from name probe 'Kamen, Hrvatska' → (43.5133,16.5168)"
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "canonical_name": "NK Lokomotiva Rijeka",
+      "city": null,
+      "county": null,
+      "address": "Omladinska 8, Rijeka",
+      "lat": 45.3321602,
+      "lng": 14.437511699999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "129.3km from name probe 'Lokomotiva, Hrvatska' → (45.7822,15.9685)"
+        }
+      ]
+    },
+    {
+      "id": 529,
+      "canonical_name": "NK MV Croatia 1976",
+      "city": null,
+      "county": "Brodsko-posavska županija",
+      "address": "Stadionska bb, 35000 Slavonski Brod",
+      "lat": 45.2594168,
+      "lng": 17.2008515,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "64.6km from name probe 'Croatia, Brodsko-posavska, Hrvatska' → (45.1543,18.0118)"
+        }
+      ]
+    },
+    {
+      "id": 156,
+      "canonical_name": "NK Matija Gubec (K)",
+      "city": null,
+      "county": "Sisačko-moslavačka županija",
+      "address": "Kutina",
+      "lat": 45.8197569,
+      "lng": 15.8329976,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "58.1km from name probe 'Matija, Sisačko-moslavačka, Hrvatska' → (45.3961,16.2708)"
+        }
+      ]
+    },
+    {
+      "id": 853,
+      "canonical_name": "NK Mladost (F)",
+      "city": "Bjelovar",
+      "county": null,
+      "address": "Daruvarska ul. 42, Ždralovi, 43000 Bjelovar",
+      "lat": 45.8829001,
+      "lng": 16.865572699999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "72.2km from name probe 'Mladost, Hrvatska' → (45.7840,15.9443)"
+        }
+      ]
+    },
+    {
+      "id": 175,
+      "canonical_name": "NK Mladost (G)",
+      "city": "Jasenovac",
+      "county": "Sisačko-moslavačka županija",
+      "address": "Košutarica b. b., 44324 Jasenovac Košutarica",
+      "lat": 45.4933092,
+      "lng": 16.7318038,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "28.5km from 'Jasenovac, Sisačko-moslavačka, Hrvatska' → (45.2693,16.9100)"
+        }
+      ]
+    },
+    {
+      "id": 180,
+      "canonical_name": "NK Mladost (K)",
+      "city": "Jasenovac",
+      "county": "Sisačko-moslavačka županija",
+      "address": "Košutarica b. b., 44324 Jasenovac Košutarica",
+      "lat": 45.4933092,
+      "lng": 16.7318038,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "28.5km from 'Jasenovac, Sisačko-moslavačka, Hrvatska' → (45.2693,16.9100)"
+        }
+      ]
+    },
+    {
+      "id": 238,
+      "canonical_name": "NK Mladost (KD)",
+      "city": "Marija Bistrica",
+      "county": "Zagrebačka županija",
+      "address": "Zagrebačka 13 A, 49246 Marija Bistrica",
+      "lat": 46.0008045,
+      "lng": 16.1204646,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "46.1km from name probe 'Mladost, Zagrebačka, Hrvatska' → (45.5903,16.2048)"
+        }
+      ]
+    },
+    {
+      "id": 205,
+      "canonical_name": "NK Mladost (L)",
+      "city": "Marija Bistrica",
+      "county": "Zagrebačka županija",
+      "address": "Zagrebačka 13 A, 49246 Marija Bistrica",
+      "lat": 46.0008045,
+      "lng": 16.1204646,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "46.1km from name probe 'Mladost, Zagrebačka, Hrvatska' → (45.5903,16.2048)"
+        }
+      ]
+    },
+    {
+      "id": 224,
+      "canonical_name": "NK Mladost (O)",
+      "city": "Bjelovar",
+      "county": null,
+      "address": "Daruvarska ul. 42, Ždralovi, 43000 Bjelovar",
+      "lat": 45.8829001,
+      "lng": 16.865572699999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "72.2km from name probe 'Mladost, Hrvatska' → (45.7840,15.9443)"
+        }
+      ]
+    },
+    {
+      "id": 232,
+      "canonical_name": "NK Mladost (OKS)",
+      "city": "Marija Bistrica",
+      "county": "Zagrebačka županija",
+      "address": "Zagrebačka 13 A, 49246 Marija Bistrica",
+      "lat": 46.0008045,
+      "lng": 16.1204646,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "46.1km from name probe 'Mladost, Zagrebačka, Hrvatska' → (45.5903,16.2048)"
+        }
+      ]
+    },
+    {
+      "id": 804,
+      "canonical_name": "NK Mladost (SM)",
+      "city": "Bjelovar",
+      "county": null,
+      "address": "Daruvarska ul. 42, Ždralovi, 43000 Bjelovar",
+      "lat": 45.8829001,
+      "lng": 16.865572699999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "72.2km from name probe 'Mladost, Hrvatska' → (45.7840,15.9443)"
+        }
+      ]
+    },
+    {
+      "id": 888,
+      "canonical_name": "NK Mladost (Z)",
+      "city": "Bjelovar",
+      "county": null,
+      "address": "Daruvarska ul. 42, Ždralovi, 43000 Bjelovar",
+      "lat": 45.8829001,
+      "lng": 16.865572699999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "72.2km from name probe 'Mladost, Hrvatska' → (45.7840,15.9443)"
+        }
+      ]
+    },
+    {
+      "id": 479,
+      "canonical_name": "NK Mladost 1930",
+      "city": "Čađavica",
+      "county": "Virovitičko-podravska županija",
+      "address": "Čađavica, Vukovarska 48",
+      "lat": 45.745273,
+      "lng": 17.8601739,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "38.3km from name probe '1930, Virovitičko-podravska, Hrvatska' → (45.8349,17.3830)"
+        }
+      ]
+    },
+    {
+      "id": 380,
+      "canonical_name": "NK Mladost Carevdar",
+      "city": "Carevdar",
+      "county": "Koprivničko-križevačka županija",
+      "address": "Carevdar 164, 48263 Carevdar",
+      "lat": 46.0724283,
+      "lng": 16.644626,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "40.5km from name probe 'Mladost, Koprivničko-križevačka, Hrvatska' → (45.9834,17.1539)"
+        }
+      ]
+    },
+    {
+      "id": 366,
+      "canonical_name": "NK Mladost Veliki Raven",
+      "city": "Križevci",
+      "county": "Koprivničko-križevačka županija",
+      "address": "Veliki Raven 5a, 48260 Križevci",
+      "lat": 45.9928617,
+      "lng": 16.4797768,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "52.1km from name probe 'Mladost, Koprivničko-križevačka, Hrvatska' → (45.9834,17.1539)"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "canonical_name": "NK Mladost Ždralovi",
+      "city": "Ždralovi",
+      "county": null,
+      "address": "Daruvarska ul. 42, Ždralovi, 43000 Bjelovar",
+      "lat": 45.8829001,
+      "lng": 16.865572699999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "72.2km from name probe 'Mladost, Hrvatska' → (45.7840,15.9443)"
+        }
+      ]
+    },
+    {
+      "id": 404,
+      "canonical_name": "NK Mlinar",
+      "city": "Dežanovac",
+      "county": "Bjelovarsko-bilogorska županija",
+      "address": "Gornji Sređani b. b., 43506 Dežanovac, Gornji Sređani",
+      "lat": 45.8965163,
+      "lng": 16.8413608,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "40.8km from 'Dežanovac, Bjelovarsko-bilogorska, Hrvatska' → (45.5719,17.0869)"
+        }
+      ]
+    },
+    {
+      "id": 738,
+      "canonical_name": "NK Mosor Žrnovnica",
+      "city": "Žrnovnica",
+      "county": "Splitsko-dalmatinska županija",
+      "address": "Hrvatskih velikana 36, 21251 Žrnovnica",
+      "lat": 43.5192619,
+      "lng": 16.5484443,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "78.1km from name probe 'Mosor, Splitsko-dalmatinska, Hrvatska' → (43.1792,17.3935)"
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "canonical_name": "NK Naprijed Hreljin",
+      "city": "Hreljin",
+      "county": null,
+      "address": "Hreljin 119, 51226 Hreljin",
+      "lat": 45.2863244,
+      "lng": 14.5904416,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "122.3km from name probe 'Naprijed, Hrvatska' → (45.7766,15.9959)"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "canonical_name": "NK Neretva Metković",
+      "city": "Metković",
+      "county": null,
+      "address": "Športska 1, 20350 Metković",
+      "lat": 43.0517901,
+      "lng": 17.6460392,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "34.4km from name probe 'Neretva, Hrvatska' → (42.8143,17.3747)"
+        }
+      ]
+    },
+    {
+      "id": 895,
+      "canonical_name": "NK Odra",
+      "city": "Zagreb",
+      "county": null,
+      "address": "10020 Zagreb, Svetog Izidora 16",
+      "lat": 45.7273795,
+      "lng": 15.9914087,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "25.2km from name probe 'Odra, Hrvatska' → (45.6053,16.2654)"
+        }
+      ]
+    },
+    {
+      "id": 587,
+      "canonical_name": "NK Olimpija",
+      "city": "Ljubljana",
+      "county": null,
+      "address": "Vojkova ulica 100, 1000 Ljubljana",
+      "lat": 45.5549963,
+      "lng": 18.7328197,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "300.9km from 'Ljubljana, Hrvatska' → (43.7021,15.9604)"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "canonical_name": "NK Omladinac Gornja Vrba",
+      "city": "Slavonski Brod",
+      "county": null,
+      "address": "Gornja Vrba, Savska bb, Slavonski Brod, Hrvatska",
+      "lat": 45.1522067,
+      "lng": 18.0635093,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "126.2km from name probe 'Omladinac, Hrvatska' → (45.8975,16.8418)"
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "canonical_name": "NK OŠK Omišalj",
+      "city": "Omišalj",
+      "county": null,
+      "address": "Pušća 250, 51513 Omišalj",
+      "lat": 45.216519,
+      "lng": 14.5607,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "241.6km from name probe 'OŠK, Hrvatska' → (43.6902,16.7282)"
+        }
+      ]
+    },
+    {
+      "id": 476,
+      "canonical_name": "NK Papuk Osječko 1664",
+      "city": "Orahovica",
+      "county": "Virovitičko-podravska županija",
+      "address": "Sjepana Radića 1-33515 Orahovica",
+      "lat": 45.5246503,
+      "lng": 17.8753322,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "36.6km from name probe 'Papuk, Virovitičko-podravska, Hrvatska' → (45.5456,17.4065)"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "canonical_name": "NK Podravac",
+      "city": "Sopje",
+      "county": null,
+      "address": "Kralja Tomislava 20,Sopje",
+      "lat": 45.8067527,
+      "lng": 17.7656898,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "66.3km from name probe 'Podravac, Hrvatska' → (46.0693,16.9954)"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "canonical_name": "NK Podravina Ludbreg",
+      "city": "Ludbreg",
+      "county": null,
+      "address": "Ivana Gundulića 6a, 42230 Ludbreg",
+      "lat": 46.2563718,
+      "lng": 16.6205525,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "91.4km from name probe 'Podravina, Hrvatska' → (45.7733,17.5789)"
+        }
+      ]
+    },
+    {
+      "id": 367,
+      "canonical_name": "NK Polet",
+      "city": "Sv. Martin na Muri",
+      "county": null,
+      "address": "Dunajska 44, 40313 Sv. Martin na Muri",
+      "lat": 46.5294476,
+      "lng": 16.3611146,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "232.7km from name probe 'Polet, Hrvatska' → (45.2981,18.7941)"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "canonical_name": "NK Polet Sv. Martin na Muri",
+      "city": "Sv. Martin na Muri",
+      "county": null,
+      "address": "Dunajska 44, 40313 Sv. Martin na Muri",
+      "lat": 46.5299088,
+      "lng": 16.3610909,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "232.8km from name probe 'Polet, Hrvatska' → (45.2981,18.7941)"
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "canonical_name": "NK Pomorac",
+      "city": "Kostrena",
+      "county": null,
+      "address": "ŽUKNICA 7 A, 51221 Kostrena, Kostrena , 51221",
+      "lat": 45.304908,
+      "lng": 14.497509,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "69.5km from name probe 'Pomorac, Hrvatska' → (44.8210,13.9375)"
+        }
+      ]
+    },
+    {
+      "id": 553,
+      "canonical_name": "NK Posavac (D)",
+      "city": "Davor",
+      "county": "Brodsko-posavska županija",
+      "address": "I. Gunduluća 30 35425 Davor",
+      "lat": 45.1129356,
+      "lng": 17.5221366,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "29.4km from name probe 'Posavac, Brodsko-posavska, Hrvatska' → (45.1093,17.8970)"
+        }
+      ]
+    },
+    {
+      "id": 527,
+      "canonical_name": "NK Posavac (KA)",
+      "city": "Davor",
+      "county": "Brodsko-posavska županija",
+      "address": "I. Gunduluća 30 35425 Davor",
+      "lat": 45.1129356,
+      "lng": 17.5221366,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "29.4km from name probe 'Posavac, Brodsko-posavska, Hrvatska' → (45.1093,17.8970)"
+        }
+      ]
+    },
+    {
+      "id": 509,
+      "canonical_name": "NK Posavac (R)",
+      "city": "Davor",
+      "county": "Brodsko-posavska županija",
+      "address": "I. Gunduluća 30 35425 Davor",
+      "lat": 45.1129356,
+      "lng": 17.5221366,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "29.4km from name probe 'Posavac, Brodsko-posavska, Hrvatska' → (45.1093,17.8970)"
+        }
+      ]
+    },
+    {
+      "id": 362,
+      "canonical_name": "NK Prigorje",
+      "city": "Zagreb",
+      "county": null,
+      "address": "Markuševečka cesta 160/1, 10040, Zagreb",
+      "lat": 45.8737444,
+      "lng": 16.0138791,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "38.1km from name probe 'Prigorje, Hrvatska' → (46.1805,15.7940)"
+        }
+      ]
+    },
+    {
+      "id": 628,
+      "canonical_name": "NK Radnik (J)",
+      "city": "Vrbica",
+      "county": "Osječko-baranjska županija",
+      "address": "Mrzovička bb, Vrbica",
+      "lat": 45.3100076,
+      "lng": 18.560808599999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "29.4km from name probe 'Radnik, Osječko-baranjska, Hrvatska' → (45.5733,18.5899)"
+        }
+      ]
+    },
+    {
+      "id": 599,
+      "canonical_name": "NK Radnik (V)",
+      "city": "Vrbica",
+      "county": "Osječko-baranjska županija",
+      "address": "Mrzovička bb, Vrbica",
+      "lat": 45.3100076,
+      "lng": 18.560808599999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "29.4km from name probe 'Radnik, Osječko-baranjska, Hrvatska' → (45.5733,18.5899)"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "canonical_name": "NK Radnik Križevci",
+      "city": "Krizevci",
+      "county": null,
+      "address": "Šetalište Dragutina Novaka 1, 48260 Križevci",
+      "lat": 46.0247391,
+      "lng": 16.5457794,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "194.4km from name probe 'Radnik, Hrvatska' → (45.2968,14.2720)"
+        }
+      ]
+    },
+    {
+      "id": 364,
+      "canonical_name": "NK Radnički",
+      "city": "Vukovar",
+      "county": null,
+      "address": "Kolodvorska ul. 2, 32000 Vukovar",
+      "lat": 46.0292845,
+      "lng": 16.5208886,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "207.2km from 'Vukovar, Hrvatska' → (45.3444,19.0024)"
+        }
+      ]
+    },
+    {
+      "id": 431,
+      "canonical_name": "NK Radnički (VV)",
+      "city": "Bjelovar",
+      "county": "Bjelovarsko-bilogorska županija",
+      "address": "Poljana Dr. Franje Tuđmana 5, 43 000 Bjelovar",
+      "lat": 45.5202593,
+      "lng": 16.8845703,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "42.2km from 'Bjelovar, Bjelovarsko-bilogorska, Hrvatska' → (45.8987,16.8422)"
+        }
+      ]
+    },
+    {
+      "id": 866,
+      "canonical_name": "NK Radnički (Ž)",
+      "city": "Vukovar",
+      "county": null,
+      "address": "Kolodvorska ul. 2, 32000 Vukovar",
+      "lat": 45.3702096,
+      "lng": 18.9553259,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "202.8km from name probe 'Radnički, Hrvatska' → (46.0293,16.5209)"
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "canonical_name": "NK Radnički Dalj",
+      "city": "Dalj",
+      "county": null,
+      "address": "30 svibnja 68, 31226 Dalj",
+      "lat": 45.480889,
+      "lng": 18.9867022,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "200.8km from name probe 'Radnički, Hrvatska' → (46.0293,16.5209)"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "canonical_name": "NK Ravnice",
+      "city": null,
+      "county": null,
+      "address": "Fakultetsko dobro 2a, 10000 Zagreb",
+      "lat": 45.8225318,
+      "lng": 16.0249077,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "112.5km from name probe 'Ravnice, Hrvatska' → (45.5791,14.6183)"
+        }
+      ]
+    },
+    {
+      "id": 387,
+      "canonical_name": "NK Ribar (K)",
+      "city": "Kopačevo",
+      "county": "Osječko-baranjska županija",
+      "address": "Podunavska 34, 31327 Kopačevo",
+      "lat": 45.3234294,
+      "lng": 18.3792171,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "44.3km from 'Kopačevo, Osječko-baranjska, Hrvatska' → (45.6001,18.7871)"
+        }
+      ]
+    },
+    {
+      "id": 363,
+      "canonical_name": "NK Rudar (B)",
+      "city": "Mursko Središće",
+      "county": null,
+      "address": "Ul. Franje Koroša 6B, 40315, Mursko Središće",
+      "lat": 46.514460899999996,
+      "lng": 16.4451157,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "86.2km from name probe 'Rudar, Hrvatska' → (45.7982,16.0169)"
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "canonical_name": "NK Rudar Labin",
+      "city": "Labin",
+      "county": null,
+      "address": "Zelenice 46, Labin 52220",
+      "lat": 45.096319099999995,
+      "lng": 14.118747599999999,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "167.4km from name probe 'Rudar, Hrvatska' → (45.7982,16.0169)"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "canonical_name": "NK Rudar Mursko Središće",
+      "city": "Mursko Središće",
+      "county": null,
+      "address": "Ulica Franje Koroša 6B, Mursko Središće",
+      "lat": 46.514460899999996,
+      "lng": 16.4451157,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "86.2km from name probe 'Rudar, Hrvatska' → (45.7982,16.0169)"
+        }
+      ]
+    },
+    {
+      "id": 519,
+      "canonical_name": "NK SOKO 1970",
+      "city": null,
+      "county": "Brodsko-posavska županija",
+      "address": "Strossmayerova b. b., 35424 Orubica",
+      "lat": 45.2073233,
+      "lng": 13.8987029,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "258.6km from name probe '1970, Brodsko-posavska, Hrvatska' → (45.2594,17.2009)"
+        }
+      ]
+    },
+    {
+      "id": 179,
+      "canonical_name": "NK Sava",
+      "city": "Svilaj",
+      "county": "Sisačko-moslavačka županija",
+      "address": "Svilaj 55a, 35213 Svilaj",
+      "lat": 45.122265999999996,
+      "lng": 18.2925947,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "146.1km from name probe 'Sava, Sisačko-moslavačka, Hrvatska' → (45.4407,16.4803)"
+        }
+      ]
+    },
+    {
+      "id": 878,
+      "canonical_name": "NK Sava Strmec",
+      "city": "Strmec",
+      "county": null,
+      "address": "Trg Lazina 1/a, 10434 Strmec",
+      "lat": 45.820295900000005,
+      "lng": 15.7962527,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "147.9km from name probe 'Sava, Hrvatska' → (45.1608,17.4437)"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "canonical_name": "NK Slaven Belupo",
+      "city": "Koprivnica",
+      "county": null,
+      "address": "M. P. Miškine 10, 48000 Koprivnica",
+      "lat": 46.166803,
+      "lng": 16.835081,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "402.5km from name probe 'Slaven, Hrvatska' → (42.6672,18.1310)"
+        }
+      ]
+    },
+    {
+      "id": 758,
+      "canonical_name": "NK Slaven Gruda",
+      "city": null,
+      "county": "Dubrovačko-neretvanska županija",
+      "address": "Gruda 154, Gruda",
+      "lat": 42.5211516,
+      "lng": 18.3791445,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "25.1km from name probe 'Slaven, Dubrovačko-neretvanska, Hrvatska' → (42.6600,18.1377)"
+        }
+      ]
+    },
+    {
+      "id": 417,
+      "canonical_name": "NK Slavija",
+      "city": "Staro Petrovo Selo",
+      "county": null,
+      "address": "Matije Gubca 29 B, 35420 Staro Petrovo Selo",
+      "lat": 45.2267011,
+      "lng": 17.5162793,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "101.7km from name probe 'Slavija, Hrvatska' → (45.3052,18.8104)"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "canonical_name": "NK Slavija Pleternica",
+      "city": null,
+      "county": null,
+      "address": "Trg Zrinskog i Frankopana 20, Pleternica",
+      "lat": 45.2862978,
+      "lng": 17.8015103,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "78.9km from name probe 'Slavija, Hrvatska' → (45.3052,18.8104)"
+        }
+      ]
+    },
+    {
+      "id": 833,
+      "canonical_name": "NK Slavonac (NK)",
+      "city": "Novaki",
+      "county": null,
+      "address": "Matije Gupca 16,Novaki",
+      "lat": 45.8832328,
+      "lng": 15.8620968,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "199.2km from name probe 'Slavonac, Hrvatska' → (45.6634,18.4109)"
+        }
+      ]
+    },
+    {
+      "id": 717,
+      "canonical_name": "NK Slavonac (P)",
+      "city": "Lipovljani",
+      "county": "Vukovarsko-srijemska županija",
+      "address": "Sajmišna b. b., 44322 Lipovljani",
+      "lat": 45.3994265,
+      "lng": 16.891795,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "163.9km from name probe 'Slavonac, Vukovarsko-srijemska, Hrvatska' → (45.1518,18.9566)"
+        }
+      ]
+    },
+    {
+      "id": 515,
+      "canonical_name": "NK Slavonac 1980 (B)",
+      "city": null,
+      "county": null,
+      "address": "Stadionska ulica 18, 35209 Bukovlje",
+      "lat": 45.183071899999995,
+      "lng": 18.0579355,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "60.1km from name probe 'Slavonac, Hrvatska' → (45.6634,18.4109)"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "canonical_name": "NK Slavonac Bukovlje",
+      "city": "Bukovlje",
+      "county": null,
+      "address": "Stadionska /bb, 35000 Bukovlje",
+      "lat": 45.1823807,
+      "lng": 18.0599998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "60.1km from name probe 'Slavonac, Hrvatska' → (45.6634,18.4109)"
+        }
+      ]
+    },
+    {
+      "id": 631,
+      "canonical_name": "NK Slavonija Ivanovac",
+      "city": null,
+      "county": "Osječko-baranjska županija",
+      "address": "SPORTSKA 1, Ivanovac",
+      "lat": 45.4876589,
+      "lng": 18.639047299999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "25.7km from name probe 'Slavonija, Osječko-baranjska, Hrvatska' → (45.3170,18.4174)"
+        }
+      ]
+    },
+    {
+      "id": 507,
+      "canonical_name": "NK Slavonija Prekopakra",
+      "city": null,
+      "county": "Požeško-slavonska županija",
+      "address": "Matkovac, Prekopakra",
+      "lat": 45.445254999999996,
+      "lng": 17.1710505,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "41.1km from name probe 'Slavonija, Požeško-slavonska, Hrvatska' → (45.3366,17.6736)"
+        }
+      ]
+    },
+    {
+      "id": 869,
+      "canonical_name": "NK Slavonija Soljani",
+      "city": null,
+      "county": null,
+      "address": "MATIJE GUPCA 1, Klokočevci",
+      "lat": 44.9507349,
+      "lng": 18.9729128,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "99.7km from name probe 'Slavonija, Hrvatska' → (45.4039,17.8756)"
+        }
+      ]
+    },
+    {
+      "id": 219,
+      "canonical_name": "NK Sloboda (G)",
+      "city": "Varaždin",
+      "county": null,
+      "address": "Ognjena Price 31, 42000 Varaždin",
+      "lat": 42.640897,
+      "lng": 18.1109367,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "431.3km from 'Varaždin, Hrvatska' → (46.3080,16.3378)"
+        }
+      ]
+    },
+    {
+      "id": 834,
+      "canonical_name": "NK Sloga (NG)",
+      "city": "Konjščina",
+      "county": null,
+      "address": "Sportska bb, 49282 Konjščina",
+      "lat": 45.54993,
+      "lng": 18.6782096,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "201.6km from 'Konjščina, Hrvatska' → (46.0531,16.1793)"
+        }
+      ]
+    },
+    {
+      "id": 793,
+      "canonical_name": "NK Sloga (Č)",
+      "city": "Konjščina",
+      "county": null,
+      "address": "Sportska bb, 49282 Konjščina",
+      "lat": 45.54993,
+      "lng": 18.6782096,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "201.6km from 'Konjščina, Hrvatska' → (46.0531,16.1793)"
+        }
+      ]
+    },
+    {
+      "id": 196,
+      "canonical_name": "NK Sloga Križ",
+      "city": "Križ",
+      "county": "Zagrebačka županija",
+      "address": "Zdeneka Tomičeka 2, 10314, Križ, Hrvatska",
+      "lat": 45.6624276,
+      "lng": 16.5245864,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "59.4km from name probe 'Sloga, Zagrebačka, Hrvatska' → (45.7927,15.7826)"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "canonical_name": "NK Sloga Nova Gradiška",
+      "city": "Nova Gradiška",
+      "county": null,
+      "address": "Psunjska 9a, Nova Gradiška",
+      "lat": 45.2633885,
+      "lng": 17.3780567,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "106.4km from name probe 'Sloga, Hrvatska' → (45.5499,18.6782)"
+        }
+      ]
+    },
+    {
+      "id": 614,
+      "canonical_name": "NK Sloga Podgorač",
+      "city": "Podgorač",
+      "county": "Osječko-baranjska županija",
+      "address": "Trg Pavla Pejačevića 2 31 433 Podgorač",
+      "lat": 45.4571041,
+      "lng": 18.2221074,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "37.0km from name probe 'Sloga, Osječko-baranjska, Hrvatska' → (45.5499,18.6782)"
+        }
+      ]
+    },
+    {
+      "id": 711,
+      "canonical_name": "NK Sloga Račinovci",
+      "city": null,
+      "county": "Vukovarsko-srijemska županija",
+      "address": "Ante Starčevića 3A, Račinovci",
+      "lat": 44.8645034,
+      "lng": 18.9561402,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "59.9km from name probe 'Sloga, Vukovarsko-srijemska, Hrvatska' → (45.4032,18.9797)"
+        }
+      ]
+    },
+    {
+      "id": 864,
+      "canonical_name": "NK Sloga Štitar",
+      "city": "Štitar",
+      "county": null,
+      "address": "Bana Jelačića b. b. 32274, Štitar",
+      "lat": 45.0943645,
+      "lng": 18.6392554,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "50.7km from name probe 'Sloga, Hrvatska' → (45.5499,18.6782)"
+        }
+      ]
+    },
+    {
+      "id": 359,
+      "canonical_name": "NK Sokol",
+      "city": "Milanovac",
+      "county": null,
+      "address": "Vinogradski put 1,odvojak 6,Milanovac",
+      "lat": 45.8053569,
+      "lng": 17.3876533,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "61.2km from name probe 'Sokol, Hrvatska' → (45.2658,17.5447)"
+        }
+      ]
+    },
+    {
+      "id": 144,
+      "canonical_name": "NK Sokol (L)",
+      "city": "Sokolovac",
+      "county": "Sisačko-moslavačka županija",
+      "address": "Trg dr. T. Bardeka 10a, 48306 Sokolovac",
+      "lat": 45.6094159,
+      "lng": 16.580645,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "43.6km from 'Sokolovac, Sisačko-moslavačka, Hrvatska' → (45.3410,16.1723)"
+        }
+      ]
+    },
+    {
+      "id": 176,
+      "canonical_name": "NK Sokol (R)",
+      "city": "Sokolovac",
+      "county": "Sisačko-moslavačka županija",
+      "address": "Trg dr. T. Bardeka 10a, 48306 Sokolovac",
+      "lat": 45.6094159,
+      "lng": 16.580645,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "43.6km from 'Sokolovac, Sisačko-moslavačka, Hrvatska' → (45.3410,16.1723)"
+        }
+      ]
+    },
+    {
+      "id": 246,
+      "canonical_name": "NK Straža",
+      "city": null,
+      "county": null,
+      "address": "Hum na Sutli 175 Hum na Sutli, 49231 Hum Na Sutli",
+      "lat": 46.2104559,
+      "lng": 15.680712600000001,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "86.1km from name probe 'Straža, Hrvatska' → (45.4598,15.4094)"
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "canonical_name": "NK Svačić Stari Slatinik",
+      "city": null,
+      "county": null,
+      "address": "Hrvatskih Branitelja 266, 35253 Stari Slatinik",
+      "lat": 45.174621099999996,
+      "lng": 17.8524593,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "78.7km from name probe 'Svačić, Hrvatska' → (45.5517,18.7055)"
+        }
+      ]
+    },
+    {
+      "id": 331,
+      "canonical_name": "NK Tehničar",
+      "city": "Cvetkovec",
+      "county": null,
+      "address": "Trg sv. Trojstva b. b., Cvetkovec Rasinja, 48312 Cvetkovec",
+      "lat": 46.2045106,
+      "lng": 16.700485399999998,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "300.6km from name probe 'Tehničar, Hrvatska' → (43.5080,16.4386)"
+        }
+      ]
+    },
+    {
+      "id": 397,
+      "canonical_name": "NK Tomislav (B)",
+      "city": "Berek",
+      "county": "Bjelovarsko-bilogorska županija",
+      "address": "Berek-43232BEREK-Hrvatska",
+      "lat": 45.7418725,
+      "lng": 16.8316143,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "27.1km from name probe 'Tomislav, Bjelovarsko-bilogorska, Hrvatska' → (45.9800,16.9041)"
+        }
+      ]
+    },
+    {
+      "id": 333,
+      "canonical_name": "NK Tomislav (Đ)",
+      "city": "Berek",
+      "county": "Bjelovarsko-bilogorska županija",
+      "address": "Berek-43232BEREK-Hrvatska",
+      "lat": 45.7418725,
+      "lng": 16.8316143,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "27.1km from name probe 'Tomislav, Bjelovarsko-bilogorska, Hrvatska' → (45.9800,16.9041)"
+        }
+      ]
+    },
+    {
+      "id": 574,
+      "canonical_name": "NK Tomislav - Livana",
+      "city": "Livana",
+      "county": null,
+      "address": "Cvjetna b. b., Livana",
+      "lat": 45.5275454,
+      "lng": 18.6153058,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "205.9km from name probe 'Tomislav, Hrvatska' → (45.8126,15.9963)"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "canonical_name": "NK Tomislav Cerna",
+      "city": "Cerna",
+      "county": null,
+      "address": "Kolodvorska 8, 32272 Cerna",
+      "lat": 45.1926085,
+      "lng": 18.6953292,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "221.3km from name probe 'Tomislav, Hrvatska' → (45.8126,15.9963)"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "canonical_name": "NK Tomislav Donji Andrijevci",
+      "city": "Donji Andrijevci",
+      "county": null,
+      "address": "Trg kralja Tomislava 14, 35214 Donji Andrijevci",
+      "lat": 45.1861153,
+      "lng": 18.2960038,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "192.3km from name probe 'Tomislav, Hrvatska' → (45.8126,15.9963)"
+        }
+      ]
+    },
+    {
+      "id": 332,
+      "canonical_name": "NK Tomislav Radnik",
+      "city": "Sv. Ivan Žabno",
+      "county": "Koprivničko-križevačka županija",
+      "address": "Ulica kralja Tomislava 1,48214 Sv. Ivan Žabno",
+      "lat": 45.9434108,
+      "lng": 16.6020096,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "30.5km from name probe 'Tomislav, Koprivničko-križevačka, Hrvatska' → (46.1633,16.8382)"
+        }
+      ]
+    },
+    {
+      "id": 357,
+      "canonical_name": "NK Tomislav Siž",
+      "city": null,
+      "county": "Koprivničko-križevačka županija",
+      "address": "Trg Karla Lukaša 11, Sveti Ivan Žabno",
+      "lat": 45.9464805,
+      "lng": 16.6055861,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "30.1km from name probe 'Tomislav, Koprivničko-križevačka, Hrvatska' → (46.1633,16.8382)"
+        }
+      ]
+    },
+    {
+      "id": 886,
+      "canonical_name": "NK Top",
+      "city": "KERESTINEC",
+      "county": "Zagrebačka županija",
+      "address": "Rimski trg 1, 10431, KERESTINEC, Hrvatska",
+      "lat": 45.7681453,
+      "lng": 15.8032372,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "53.2km from name probe 'Top, Zagrebačka, Hrvatska' → (45.4949,16.3652)"
+        }
+      ]
+    },
+    {
+      "id": 581,
+      "canonical_name": "NK Torpedo (K)",
+      "city": "Kuševac",
+      "county": null,
+      "address": "I.G.Kovačića 52 b, Kuševac",
+      "lat": 45.350449999999995,
+      "lng": 18.4256062,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "314.4km from name probe 'Torpedo, Hrvatska' → (45.3350,14.4025)"
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "canonical_name": "NK Uljanik Pula",
+      "city": "Pula",
+      "county": null,
+      "address": "Ulica Velog Jože 3, 52100 Pula",
+      "lat": 44.8585656,
+      "lng": 13.833404199999999,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "260.8km from name probe 'Uljanik, Hrvatska' → (45.5331,17.0215)"
+        }
+      ]
+    },
+    {
+      "id": 171,
+      "canonical_name": "NK Una - Mladost",
+      "city": "Hrvatska Dubica",
+      "county": "Sisačko-moslavačka županija",
+      "address": "Petra Zrinskog 36A, Hrvatska Dubica",
+      "lat": 45.1884056,
+      "lng": 16.8143308,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "35.7km from name probe 'Una, Sisačko-moslavačka, Hrvatska' → (45.0804,16.3860)"
+        }
+      ]
+    },
+    {
+      "id": 724,
+      "canonical_name": "NK Urania",
+      "city": null,
+      "county": null,
+      "address": "Dr.Šimuna Sikavice 7A, Baška Voda",
+      "lat": 43.3543161,
+      "lng": 16.9514643,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "283.9km from name probe 'Urania, Hrvatska' → (45.8157,15.9964)"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "canonical_name": "NK Urania Baška Voda",
+      "city": "Baška Voda",
+      "county": null,
+      "address": "Dr. Šimuna Sikavice 7A, 21320 Baška Voda",
+      "lat": 43.3534566,
+      "lng": 16.9528401,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "284.1km from name probe 'Urania, Hrvatska' → (45.8157,15.9964)"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "canonical_name": "NK Uskok Klis",
+      "city": "Klis",
+      "county": null,
+      "address": "Iza grada 4, 21231 Klis",
+      "lat": 43.561324314397,
+      "lng": 16.524438899183,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "253.2km from name probe 'Uskok, Hrvatska' → (45.8051,15.9816)"
+        }
+      ]
+    },
+    {
+      "id": 749,
+      "canonical_name": "NK Veli Vrh",
+      "city": null,
+      "county": "Istarska županija",
+      "address": "Veli Vrh 1, 52100 Pula",
+      "lat": 45.2107125,
+      "lng": 13.6181389,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "31.8km from name probe 'Veli, Istarska, Hrvatska' → (45.3978,13.9257)"
+        }
+      ]
+    },
+    {
+      "id": 230,
+      "canonical_name": "NK Velika Mlaka 1947",
+      "city": "Velika Mlaka",
+      "county": "Zagrebačka županija",
+      "address": "Velikomlačka ulica 12A, 10408 Velika Mlaka",
+      "lat": 45.7387496,
+      "lng": 16.022947,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "57.8km from name probe 'Velika, Zagrebačka, Hrvatska' → (45.9545,16.7025)"
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "canonical_name": "NK Vinodol",
+      "city": "Novi Vinodolski",
+      "county": null,
+      "address": "Bahalin 1, 51250 Novi Vinodolski",
+      "lat": 45.133787899999994,
+      "lng": 14.7860403,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "123.3km from name probe 'Vinodol, Hrvatska' → (45.3459,16.3322)"
+        }
+      ]
+    },
+    {
+      "id": 839,
+      "canonical_name": "NK Zadrugar",
+      "city": "Oprisavci",
+      "county": null,
+      "address": "Hrvatskih velikana 12, 35213 Oprisavci",
+      "lat": 45.146904199999994,
+      "lng": 18.2139831,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "176.1km from name probe 'Zadrugar, Hrvatska' → (46.2492,16.5849)"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "canonical_name": "NK Zagora Unešić",
+      "city": "Unešić",
+      "county": null,
+      "address": "Put škole 3, 22323 Unešić",
+      "lat": 43.7382351,
+      "lng": 16.1876725,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "273.8km from name probe 'Zagora, Hrvatska' → (46.1907,15.8719)"
+        }
+      ]
+    },
+    {
+      "id": 677,
+      "canonical_name": "NK Zrinski (B)",
+      "city": null,
+      "county": null,
+      "address": "Zrinski Topolovac 274, Zrinski Topolovac",
+      "lat": 45.8170132,
+      "lng": 15.746783800000001,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "397.6km from name probe 'Zrinski, Hrvatska' → (42.6582,18.0872)"
+        }
+      ]
+    },
+    {
+      "id": 596,
+      "canonical_name": "NK Zrinski (D)",
+      "city": "Punitovci",
+      "county": "Osječko-baranjska županija",
+      "address": "Stjepana Radića 58, 31424 Punitovci",
+      "lat": 45.5427557,
+      "lng": 18.046028,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "31.0km from 'Punitovci, Osječko-baranjska, Hrvatska' → (45.4330,18.4116)"
+        }
+      ]
+    },
+    {
+      "id": 412,
+      "canonical_name": "NK Zrinski (ZT)",
+      "city": "Farkaševec",
+      "county": "Bjelovarsko-bilogorska županija",
+      "address": "Farkaševec 130, 10430 Farkaševec",
+      "lat": 45.8170132,
+      "lng": 15.746783800000001,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "84.9km from name probe 'Zrinski, Bjelovarsko-bilogorska, Hrvatska' → (45.8954,16.8373)"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "canonical_name": "NK Zrinski Osječko 1664",
+      "city": "Čepin",
+      "county": null,
+      "address": "Wodrowa Wilsona 2, 31000 Osijek",
+      "lat": 45.5236008,
+      "lng": 18.5737213,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "321.0km from name probe 'Zrinski, Hrvatska' → (42.6582,18.0872)"
+        }
+      ]
+    },
+    {
+      "id": 291,
+      "canonical_name": "NK Zrinski Ozalj",
+      "city": "Ozalj",
+      "county": "Karlovačka županija",
+      "address": "Karlovačka cesta 65 A, 47280 Ozalj",
+      "lat": 45.6060214,
+      "lng": 15.4824828,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "42.9km from name probe 'Zrinski, Karlovačka, Hrvatska' → (45.2647,15.2257)"
+        }
+      ]
+    },
+    {
+      "id": 657,
+      "canonical_name": "NK Zrinski Vinogradci",
+      "city": null,
+      "county": "Osječko-baranjska županija",
+      "address": "K.TOMISLAVA 61, Vinogradci",
+      "lat": 45.6632049,
+      "lng": 18.3646902,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "28.2km from name probe 'Zrinski, Osječko-baranjska, Hrvatska' → (45.5428,18.0460)"
+        }
+      ]
+    },
+    {
+      "id": 681,
+      "canonical_name": "NK Šokadija (BG)",
+      "city": "Babina Greda",
+      "county": null,
+      "address": "Sajmište 18, Babina Greda",
+      "lat": 45.5883247,
+      "lng": 18.0320121,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "65.7km from 'Babina Greda, Hrvatska' → (45.1161,18.5370)"
+        }
+      ]
+    },
+    {
+      "id": 861,
+      "canonical_name": "NK Šokadija (ST)",
+      "city": "Babina Greda",
+      "county": "Osječko-baranjska županija",
+      "address": "B. RADIĆA 172, Strizivojna",
+      "lat": 45.1118391,
+      "lng": 18.5417725,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "66.3km from name probe 'Šokadija, Osječko-baranjska, Hrvatska' → (45.5883,18.0320)"
+        }
+      ]
+    },
+    {
+      "id": 843,
+      "canonical_name": "NK Željezničar 1946",
+      "city": null,
+      "county": "Brodsko-posavska županija",
+      "address": "Aleja Miroslava Krleže 4, 35000 Slavonski Brod",
+      "lat": 43.5008109,
+      "lng": 16.4455708,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "204.6km from name probe '1946, Brodsko-posavska, Hrvatska' → (45.2594,17.2009)"
+        }
+      ]
+    },
+    {
+      "id": 327,
+      "canonical_name": "ŠNK Gora",
+      "city": "Ludbreg",
+      "county": "Varaždinska županija",
+      "address": "Ludbreška 141, Globočec, 42230 Ludbreg",
+      "lat": 46.2784528,
+      "lng": 15.9121081,
+      "issues": [
+        {
+          "check": "city_mismatch",
+          "detail": "54.4km from 'Ludbreg, Varaždinska, Hrvatska' → (46.2495,16.6181)"
+        }
+      ]
+    },
+    {
+      "id": 910,
+      "canonical_name": "ŽNK 4 rijeke",
+      "city": "Karlovac",
+      "county": "Karlovačka županija",
+      "address": "Mostanje 94, 47000 Karlovac",
+      "lat": 45.4715481,
+      "lng": 15.5593428,
+      "issues": [
+        {
+          "check": "name_mismatch",
+          "detail": "39.1km from name probe 'rijeke, Karlovačka, Hrvatska' → (45.1207,15.5816)"
+        }
+      ]
+    }
+  ]
+}
