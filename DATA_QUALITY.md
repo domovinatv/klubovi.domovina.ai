@@ -1,9 +1,11 @@
 # Data quality — poznati sustavni bugovi
 
-Stanje: 2026-07-21. Baza: `data/clubs.db`, 1014 klubova.
+Stanje: 2026-07-22. Baza: `data/clubs.db`, 1014 klubova.
 
 Ovaj dokument bilježi **uzroke** grešaka u katalogu, ne pojedinačne greške.
-Popravak još nije napravljen — vidi "Plan popravka" na dnu.
+Detekcija + guard su implementirani i commitani (vidi "Status popravka" na dnu).
+**Popravak podataka (`61 --execute`) još nije pokrenut** — pokreće se ručno tek
+nakon verifikacije `collisions.csv`.
 
 ---
 
@@ -110,43 +112,75 @@ poruka istom primatelju.
 
 ---
 
-## Plan popravka
+## Status popravka (2026-07-22)
 
-Redoslijed je bitan — popravi kod, pa tek onda podatke.
+Implementirano i commitano (5 commita, `2c5abd8`..`6015d95`). Kod di'ram gore.
+`data/clubs.db` **nije diran** — dry-run + testovi rade nad sintetičkom bazom.
 
-1. **`scripts/60_detect_collisions.py`** (read-only) — nađi sve kolizijske grupe
-   po normaliziranoj vrijednosti (telefon → E.164, web → registrable domain,
-   mail lowercase, koordinate na 5 decimala). Za svaku grupu odredi
-   owner-kandidata **determinističkim** signalima: token iz `canonical_name`/
-   `city` u domeni/mailu/FB slugu, poklapanje `registry_naziv`, neparen-ime,
-   neovisna potvrda preko `semafor_url`/`sofascore_url`.
-   Izlaz: `data/exports/collisions.csv` s verdiktom `owner|orphan|ambiguous`.
+| korak | datoteka | stanje |
+|---|---|---|
+| detekcija | `scripts/60_detect_collisions.py` + `src/collisions.py` | ✅ read-only, CSV svjež |
+| popravak | `scripts/61_quarantine_leaks.py` | ✅ dry-run testiran, `--execute` **čeka ručno pokretanje** |
+| guard | `src/backfill.py` + `src/hrnogomet.py` | ✅ 2 provjere, 69 testova |
+| geo reverify | `scripts/62_reverify_geo.py` | ✅ read-only |
+| testovi | `tests/` | ✅ 69 passed, bez mreže, sintetička baza |
 
-2. **`scripts/61_quarantine_leaks.py`** (dry-run default, `--execute` za pisanje)
-   — za `orphan` **poništi** zaražena polja. Nikad ne pogađaj ispravnu
-   vrijednost, samo briši krivu. Loguj u novu tablicu `data_repairs`
-   (`club_id, field, old_value, new_value, reason, ran_at`) da se sve može
-   rekonstruirati. Poništene klubove gurni u backfill queue.
+### Rezultat detekcije (`collisions_summary.json`)
 
-3. **Fix `src/backfill.py`** — makni `and club_row.get("county")`; zamijeni
-   hardkodiranu blacklist gradova provjerom protiv poznatog geo signala
-   (`countyId` iz hrnogomet feeda, mjesto iz `semafor_url`, mjesto iz
-   `registry_naziv`); kad više search rezultata izgleda kao različiti klubovi
-   istog imena → `status="ambiguous"`, ne piši ništa. Popuni `county` za 31
-   klub preko postojeće mape u `scripts/03_enrich_counties.py`.
+| polje | grupe | owner | orphan | ambiguous | klubova ↓ |
+|---|---:|---:|---:|---:|---:|
+| phone | 86 | 47 | 69 | 107 | 69 |
+| email | 85 | 45 | 67 | 111 | 67 |
+| oib | 73 | 38 | 58 | 83 | 58 |
+| address | 83 | 43 | 66 | 105 | 66 |
+| website | 56 | 30 | 48 | 133 | 48 |
+| fb_url | 42 | 19 | 30 | 112 | 30 |
+| latlng | 73 | 33 | 56 | 97 | 56 |
 
-4. **`scripts/62_reverify_geo.py`** (read-only) — izvezi u
-   `data/exports/geo_suspect.csv` sve klubove gdje je `city` upisan backfillom
-   **i** `geo_source='both'`. To su lažno potvrđeni zapisi.
+154 klubova ima ≥1 orphan verdikt; popravak dira 133. Geo je **detect-only**
+(dvije lokacije na istom pinu je često legitimno dijeljen teren).
 
-5. **Tek nakon verifikacije** pokreni backfill za očišćene klubove.
+### Naredba za popravak
+
+```bash
+uv run python scripts/60_detect_collisions.py           # već pokrenuto
+uv run python scripts/61_quarantine_leaks.py            # dry-run, provjeri
+uv run python scripts/61_quarantine_leaks.py --execute  # popravak (backup + data_repairs)
+```
+
+### Tri nalaza koja su promijenila plan
+
+1. **`countyId` NE rješava 31 klub — rješava 0/31.** Zahtjev 4 iz originalnog
+   plana ("popuni county preko hrnogomet mape") ne radi: tim klubovima je
+   `countyId` 24/37/-8, što su *lige* ("4./3. Nogometna Liga") pa `priority==50`
+   filter ispravno odbija. Ostaje im samo `registry_naziv` (30/31, ali 19 je
+   krivih N:1 matcheva koje 61 briše) i Semafor (15/31). → 20 klubova ostaje bez
+   provjerljivog geo signala; guard ih tada odbija (sigurno, ali backfill ih ne
+   može popuniti bez ručnog rada).
+
+2. **County sam po sebi ne može biti guard.** Zabok je u Krapinsko-zagorskoj —
+   riječi nemaju zajednički korijen, pa je prvi pokušaj odbijao *ispravne*
+   ekstrakcije. Rješenje: **poštanski broj** (prva 2 znaka → županija; 43000 =
+   Bjelovarsko-bilogorska, 49210 = Krapinsko-zagorska). To je jedini signal koji
+   razdvaja Ždralovi od Zaboka kad županija nije nazvana po sjedištu.
+
+3. **Redoslijed je load-bearing.** Guard se oslanja na `registry_naziv` kao
+   specifičan signal, a 19 tih zapisa je krivo. Zato **61 mora ići prije
+   re-backfilla** — inače guard verificira protiv istog krivog podatka.
 
 ### Ograničenja koja vrijede za cijeli popravak
 
 - Detekcija i popravak su **100% deterministički Python** — nula LLM poziva.
-  Backfill preko LLM subagenata je preskup za 1000 klubova.
 - Jedini dopušteni vanjski poziv je **Firecrawl**, i to samo iza `--execute`.
-- Skripte moraju biti idempotentne i pokretljive u pozadini (progress log).
-- Testovi idu nad sintetičkom in-memory SQLite bazom, nikad nad `data/clubs.db`,
-  i ne smiju raditi mrežni poziv. Ždralovi-grupa od 6 klubova je obavezan
-  fixture.
+- Skripte su idempotentne; drugi `--execute` je no-op (plan se gradi iz živih
+  vrijednosti, već-NULL polja se preskaču).
+- Testovi idu nad sintetičkom SQLite bazom u `tmp_path`, nikad nad
+  `data/clubs.db`, i ne rade mrežni poziv. Ždralovi-grupa od 6 klubova i
+  Graničar-OIB grupa od 8 su obavezni fixturi.
+
+### Nove tablice (kreira ih `61 --execute`)
+
+- `data_repairs (id, club_id, field, old_value, new_value, reason, ran_at)` —
+  audit svake poništene vrijednosti, potpuno rekonstruktivno.
+- `backfill_queue (club_id, fields JSON, reason, queued_at, done_at)` —
+  očišćeni klubovi koje kasniji backfill pokupi.
